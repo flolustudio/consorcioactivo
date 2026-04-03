@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <!-- Primaria -->
+  <title>Consorcio Activo · Administración de Consorcios</title>
+  <meta name="description" content="Administración profesional de consorcios en Buenos Aires. Organización, transparencia y mejora continua de la gestión. Expensas, proveedores y atención a propietarios.">
+  <meta name="author" content="Nous">
+  <meta name="robots" content="index, follow">
+
+  <!-- Theme color (dark mode) -->
+  <meta name="theme-color" content="#0d0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://consorcioactivo.com.ar/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Consorcio Activo">
+  <meta property="og:url"         content="https://consorcioactivo.com.ar/">
+  <meta property="og:title"       content="Consorcio Activo · Administración de Consorcios">
+  <meta property="og:description" content="Organización, transparencia y gestión activa. Acompañamos a propietarios y consejos de administración con soluciones claras y eficientes.">
+  <meta property="og:image"       content="https://consorcioactivo.com.ar/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale"      content="es_AR">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Consorcio Activo · Administración de Consorcios">
+  <meta name="twitter:description" content="Organización, transparencia y gestión activa para cada edificio.">
+  <meta name="twitter:image"       content="https://consorcioactivo.com.ar/images/og-image.png">
+
+  <!-- Favicon & Icons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.png">
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <!-- Fonts: Outfit (títulos) + Manrope (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ======== NAVEGACIÓN ======== -->
+  <header>
+    <nav class="nav" id="nav" aria-label="Navegación principal">
+      <div class="nav__inner">
+        <a href="#inicio" class="nav__logo" aria-label="Consorcio Activo — inicio">
+          <img src="icons/logo-blanco-sin-fondo.png" alt="Consorcio Activo">
+        </a>
+
+        <!-- Desktop links (flex, color blanco) -->
+        <ul class="nav__links" role="list">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#metodologia">Metodología</a></li>
+          <li><a href="#diferenciales">Diferenciales</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto" class="nav__cta">Contacto</a></li>
+        </ul>
+
+        <!-- Mobile burger -->
+        <button class="nav__burger" id="burger" aria-label="Abrir menú"
+          aria-expanded="false" aria-controls="drawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile drawer — div, no nav: el <nav> padre ya cubre este contenido -->
+      <div class="nav__drawer" id="drawer">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#metodologia">Metodología</a>
+        <a href="#diferenciales">Diferenciales</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ======== HERO ========
+    ========================== -->
+    <section class="hero section" id="inicio" aria-labelledby="hero-h">
+      <div class="container">
+        <div class="hero__grid">
+
+          <div class="hero__content">
+            <span class="eyebrow hero__eyebrow">Administración de Consorcios</span>
+            <h1 class="t-xl hero__title" id="hero-h">
+              Organización,<br>transparencia<br>y gestión activa.
+            </h1>
+            <p class="lead hero__lead">
+              Trabajamos acompañando a propietarios y consejos de administración,
+              brindando soluciones claras y eficientes para el correcto
+              funcionamiento de cada edificio.
+            </p>
+            <div class="hero__actions">
+              <a href="#contacto" class="btn btn--primary">Consultar ahora</a>
+              <a href="#nosotros"  class="btn btn--ghost">Conocernos</a>
+            </div>
+          </div>
+
+          <div class="hero__order-first" aria-hidden="true">
+            <div class="hero__stats">
+              <div class="stat stat--featured">
+                <p class="stat__n">100%</p>
+                <p class="stat__label">Transparencia en la gestión</p>
+              </div>
+              <div class="stat">
+                <p class="stat__n">4</p>
+                <p class="stat__label">Pilares de trabajo</p>
+              </div>
+              <div class="stat">
+                <p class="stat__n">5+</p>
+                <p class="stat__label">Servicios integrales</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== NOSOTROS ======== -->
+    <section class="section section--alt" id="nosotros" aria-labelledby="nosotros-h">
+      <div class="container">
+        <div class="nosotros__grid">
+
+          <div class="nosotros__copy">
+            <span class="eyebrow">Quiénes Somos</span>
+            <h2 class="t-lg" id="nosotros-h">
+              Experiencia en gestión con una mirada actual.
+            </h2>
+            <p>
+              Somos una administración que combina experiencia en gestión con
+              una mirada actual, entendiendo las necesidades reales de los
+              consorcios hoy.
+            </p>
+            <p>
+              Nuestro objetivo es profesionalizar la administración, generando
+              confianza a través de procesos ordenados, comunicación clara y
+              responsabilidad en cada acción.
+            </p>
+          </div>
+
+          <aside class="nosotros__card" aria-label="Cita institucional">
+            <blockquote>
+              <p class="nosotros__quote">
+                "Generamos confianza a través de procesos ordenados,
+                comunicación clara y responsabilidad en cada acción."
+              </p>
+              <footer class="nosotros__quote-attr">— Consorcio Activo</footer>
+            </blockquote>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== METODOLOGÍA ======== -->
+    <section class="section" id="metodologia" aria-labelledby="met-h">
+      <div class="container">
+        <header class="sec-head sec-head--center">
+          <span class="eyebrow">Nuestra Forma de Trabajo</span>
+          <h2 class="t-lg" id="met-h">
+            Una buena administración<br>se basa en cuatro pilares.
+          </h2>
+        </header>
+
+        <div class="pillars" role="list">
+          <article class="pillar" role="listitem">
+            <p class="pillar__num" aria-hidden="true">01</p>
+            <h3 class="pillar__name">Organización</h3>
+            <p class="pillar__desc">
+              Organización en cada proceso, garantizando que nada quede librado al azar.
+            </p>
+          </article>
+          <article class="pillar" role="listitem">
+            <p class="pillar__num" aria-hidden="true">02</p>
+            <h3 class="pillar__name">Claridad</h3>
+            <p class="pillar__desc">
+              Claridad en la información para que propietarios y consejos estén siempre al tanto.
+            </p>
+          </article>
+          <article class="pillar" role="listitem">
+            <p class="pillar__num" aria-hidden="true">03</p>
+            <h3 class="pillar__name">Respuesta</h3>
+            <p class="pillar__desc">
+              Respuesta oportuna ante cada situación, sin demoras ni burocracia innecesaria.
+            </p>
+          </article>
+          <article class="pillar" role="listitem">
+            <p class="pillar__num" aria-hidden="true">04</p>
+            <h3 class="pillar__name">Cercanía</h3>
+            <p class="pillar__desc">
+              Cercanía con los propietarios porque cada consorcio tiene su propia realidad.
+            </p>
+          </article>
+        </div>
+
+        <p class="pillars__closing">
+          Buscamos que cada consorcio funcione de manera previsible,
+          ordenada y sin conflictos innecesarios.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======== DIFERENCIALES ======== -->
+    <section class="section section--alt" id="diferenciales" aria-labelledby="dif-h">
+      <div class="container">
+        <header class="sec-head sec-head--center">
+          <span class="eyebrow">Qué Nos Destaca</span>
+          <h2 class="t-lg" id="dif-h">Lo que define nuestro trabajo.</h2>
+        </header>
+
+        <div class="dif-grid">
+          <article class="dif-card">
+            <div class="dif-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h3 class="dif-card__title">Transparencia</h3>
+            <p class="dif-card__text">
+              Brindamos información clara y accesible sobre la gestión y los gastos.
+              Sin letra chica, sin demoras en la rendición de cuentas.
+            </p>
+          </article>
+
+          <article class="dif-card">
+            <div class="dif-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M10.05 4.575a1.575 1.575 0 10-3.15 0v3m3.15-3v-1.5a1.575 1.575 0 013.15 0v1.5m-3.15 0l.075 5.925m3.075.75V4.575m0 0a1.575 1.575 0 013.15 0V15M6.9 7.575a1.575 1.575 0 10-3.15 0v8.175a6.75 6.75 0 006.75 6.75h2.018a5.25 5.25 0 003.712-1.538l1.732-1.732a5.25 5.25 0 001.538-3.712V9.3a1.575 1.575 0 00-3.15 0v1.2"/>
+              </svg>
+            </div>
+            <h3 class="dif-card__title">Compromiso</h3>
+            <p class="dif-card__text">
+              Nos involucramos activamente en el día a día de cada consorcio.
+              No somos un intermediario: somos parte del equipo.
+            </p>
+          </article>
+
+          <article class="dif-card">
+            <div class="dif-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="dif-card__title">Eficiencia</h3>
+            <p class="dif-card__text">
+              Optimizamos recursos y tiempos para mejorar el funcionamiento general.
+              Cada proceso está diseñado para reducir fricciones.
+            </p>
+          </article>
+
+          <article class="dif-card">
+            <div class="dif-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
+            </div>
+            <h3 class="dif-card__title">Comunicación</h3>
+            <p class="dif-card__text">
+              Mantenemos canales abiertos y respuestas ágiles.
+              La comunicación fluida es la base de una convivencia ordenada.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== SERVICIOS ======== -->
+    <section class="section" id="servicios" aria-labelledby="serv-h">
+      <div class="container">
+        <div class="servicios__layout">
+
+          <div>
+            <span class="eyebrow">Servicios</span>
+            <h2 class="t-lg" id="serv-h" style="margin-bottom:2rem;">
+              Gestión integral<br>para cada edificio.
+            </h2>
+            <ul class="servicios__list" role="list">
+              <li class="servicios__item">
+                <span class="servicios__dot" aria-hidden="true"></span>
+                <span class="servicios__text">Administración integral de consorcios</span>
+              </li>
+              <li class="servicios__item">
+                <span class="servicios__dot" aria-hidden="true"></span>
+                <span class="servicios__text">Gestión y seguimiento de proveedores</span>
+              </li>
+              <li class="servicios__item">
+                <span class="servicios__dot" aria-hidden="true"></span>
+                <span class="servicios__text">Control y registro de gastos</span>
+              </li>
+              <li class="servicios__item">
+                <span class="servicios__dot" aria-hidden="true"></span>
+                <span class="servicios__text">Liquidación de expensas</span>
+              </li>
+              <li class="servicios__item">
+                <span class="servicios__dot" aria-hidden="true"></span>
+                <span class="servicios__text">Atención a propietarios</span>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="servicios__aside">
+            <span class="eyebrow">Nuestro Objetivo</span>
+            <p class="servicios__objetivo">
+              Acompañar a cada consorcio en una gestión ordenada, clara y eficiente,
+              generando tranquilidad en propietarios y mejorando la convivencia.
+            </p>
+            <a href="#contacto" class="btn btn--primary">Solicitar información</a>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CONTACTO ======== -->
+    <section class="section section--alt" id="contacto" aria-labelledby="cont-h">
+      <div class="container">
+        <div class="contacto__layout">
+
+          <div class="contacto__copy">
+            <span class="eyebrow">Contacto</span>
+            <h2 class="t-lg" id="cont-h">Hablemos.</h2>
+            <p class="lead">
+              Para consultas o asesoramiento, podés comunicarte con nosotros
+              por cualquiera de estos canales o completar el formulario.
+            </p>
+
+            <div class="info-list" role="list">
+              <div class="info-item" role="listitem">
+                <div class="info-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="info-label">WhatsApp</p>
+                  <p class="info-value">[número a completar]</p>
+                </div>
+              </div>
+              <div class="info-item" role="listitem">
+                <div class="info-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="info-label">Email</p>
+                  <p class="info-value">[correo a completar]</p>
+                </div>
+              </div>
+              <div class="info-item" role="listitem">
+                <div class="info-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p class="info-label">Ubicación</p>
+                  <p class="info-value">[dirección si aplica]</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <div>
+            <form class="form" novalidate aria-label="Formulario de contacto">
+              <div class="form__row">
+                <div class="form__group">
+                  <label class="form__label" for="nombre">Nombre</label>
+                  <input class="form__input" type="text" id="nombre" name="nombre"
+                    placeholder="Tu nombre" autocomplete="given-name" required>
+                </div>
+                <div class="form__group">
+                  <label class="form__label" for="apellido">Apellido</label>
+                  <input class="form__input" type="text" id="apellido" name="apellido"
+                    placeholder="Tu apellido" autocomplete="family-name">
+                </div>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="email">Email</label>
+                <input class="form__input" type="email" id="email" name="email"
+                  placeholder="tu@email.com" autocomplete="email" required>
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="edificio">Edificio / Consorcio</label>
+                <input class="form__input" type="text" id="edificio" name="edificio"
+                  placeholder="Nombre o dirección del edificio">
+              </div>
+              <div class="form__group">
+                <label class="form__label" for="mensaje">Mensaje</label>
+                <textarea class="form__textarea" id="mensaje" name="mensaje"
+                  placeholder="¿En qué podemos ayudarte?" required></textarea>
+              </div>
+              <button type="submit" class="btn btn--primary" style="align-self:flex-start;">
+                Enviar mensaje
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======== FOOTER ======== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div>
+          <p class="footer__logo">Consorcio <span>Activo</span></p>
+          <p class="footer__tagline">
+            Administración profesional de consorcios.
+            Organización, transparencia y compromiso en cada edificio.
+          </p>
+        </div>
+        <nav aria-label="Secciones">
+          <p class="footer__col-title">Secciones</p>
+          <ul class="footer__nav" role="list">
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#metodologia">Metodología</a></li>
+            <li><a href="#diferenciales">Diferenciales</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+          </ul>
+        </nav>
+        <div>
+          <p class="footer__col-title">Contacto</p>
+          <ul class="footer__nav" role="list">
+            <li><a href="#">WhatsApp: [número]</a></li>
+            <li><a href="#">Email: [correo]</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 Consorcio Activo. Todos los derechos reservados.</p>
+        <p class="footer__claim">
+          <em>Trabajamos para que la administración deje de ser un problema
+          y pase a ser una solución.</em>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======== JAVASCRIPT ======== -->
+  <script>
+    /* Nav: scroll effect */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('nav--scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* Nav: mobile burger */
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+
+    burger.addEventListener('click', () => {
+      const open = drawer.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+    });
+    drawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* Form: submit feedback */
+    document.querySelector('.form').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('[type="submit"]');
+      btn.textContent = '¡Mensaje enviado!';
+      btn.disabled = true;
+      btn.style.background = '#30d158';
+      setTimeout(() => {
+        btn.textContent = 'Enviar mensaje';
+        btn.disabled = false;
+        btn.style.background = '';
+        e.target.reset();
+      }, 3500);
+    });
+  </script>
+
+</body>
+</html>
