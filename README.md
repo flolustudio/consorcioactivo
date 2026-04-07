@@ -118,6 +118,12 @@ Actualizar en `index.html` la URL canónica real:
 
 **Animaciones de entrada** — `IntersectionObserver` para revelar secciones al hacer scroll. Sin dependencias, respetando `prefers-reduced-motion`.
 
+---
+
+## Notas de cambios
+
+`Mon 6 April` — Aquí se cambió la sección `#nosotros` a una variante con colores invertidos: fondo blanco y letras negras, manteniendo el estilo general del sitio.
+
 **Formulario real** — Conectar el `<form>` a Formspree, Netlify Forms o un endpoint propio. El HTML ya tiene la estructura correcta con `name` attributes.
 
 **Web Components** — Las stat cards, pilares y cards de diferenciales son candidatos naturales a `<custom-element>` según Cap. 7 de *Vanilla Web*. Encapsulación con Shadow DOM.
