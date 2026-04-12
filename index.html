@@ -168,7 +168,7 @@
     </section>
 
     <!-- ======== METODOLOGÍA ======== -->
-    <section class="section" id="metodologia" aria-labelledby="met-h">
+    <section class="section section--light" id="metodologia" aria-labelledby="met-h">
       <div class="container">
         <header class="sec-head sec-head--center">
           <span class="eyebrow">Nuestra Forma de Trabajo</span>
@@ -216,7 +216,7 @@
     </section>
 
     <!-- ======== DIFERENCIALES ======== -->
-    <section class="section section--alt" id="diferenciales" aria-labelledby="dif-h">
+    <section class="section section--light" id="diferenciales" aria-labelledby="dif-h">
       <div class="container">
         <header class="sec-head sec-head--center">
           <span class="eyebrow">Qué Nos Destaca</span>
@@ -280,13 +280,13 @@
     </section>
 
     <!-- ======== SERVICIOS ======== -->
-    <section class="section" id="servicios" aria-labelledby="serv-h">
+    <section class="section section--light" id="servicios" aria-labelledby="serv-h">
       <div class="container">
         <div class="servicios__layout">
 
           <div>
             <span class="eyebrow">Servicios</span>
-            <h2 class="t-lg" id="serv-h" style="margin-bottom:2rem;">
+            <h2 class="t-lg" id="serv-h">
               Gestión integral<br>para cada edificio.
             </h2>
             <ul class="servicios__list" role="list">
@@ -327,7 +327,7 @@
     </section>
 
     <!-- ======== CONTACTO ======== -->
-    <section class="section section--alt" id="contacto" aria-labelledby="cont-h">
+    <section class="section section--light" id="contacto" aria-labelledby="cont-h">
       <div class="container">
         <div class="contacto__layout">
 
@@ -399,7 +399,7 @@
                 <textarea class="form__textarea" id="mensaje" name="mensaje"
                   placeholder="¿En qué podemos ayudarte?" required></textarea>
               </div>
-              <button type="submit" class="btn btn--primary" style="align-self:flex-start;">
+              <button type="submit" class="btn btn--primary">
                 Enviar mensaje
               </button>
             </form>
@@ -478,11 +478,11 @@
       const btn = e.target.querySelector('[type="submit"]');
       btn.textContent = '¡Mensaje enviado!';
       btn.disabled = true;
-      btn.style.background = '#30d158';
+      btn.classList.add('btn--success');
       setTimeout(() => {
         btn.textContent = 'Enviar mensaje';
         btn.disabled = false;
-        btn.style.background = '';
+        btn.classList.remove('btn--success');
         e.target.reset();
       }, 3500);
     });

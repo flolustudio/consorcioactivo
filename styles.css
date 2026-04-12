@@ -35,8 +35,10 @@
     --bg-card:     #222224;
 
     --text-primary:   #f5f5f7;
-    --text-secondary: #f5f5f7;
-    --text-tertiary:  #f5f5f7;
+    --text-secondary: rgba(245, 245, 247, 0.68);
+    --text-tertiary:  rgba(245, 245, 247, 0.42);
+
+    color-scheme: dark;
 
     --accent:        #2997ff;
     --accent-hover:  #0a84ff;
@@ -129,7 +131,7 @@
   }
 
   .section      { padding: var(--space-xl) 0; }
-  .section--alt { background: var(--bg-1); }
+
   .section--light { background: #f5f5f0; color: #121212; }
 
   .sec-head          { margin-bottom: var(--space-lg); }
@@ -161,6 +163,7 @@
   }
   .btn--primary            { background: var(--accent); color: #fff; }
   .btn--primary:hover      { background: var(--accent-hover); transform: translateY(-2px); }
+  .btn--success            { background: #30d158; color: #fff; }
   .btn--ghost              { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
   .btn--ghost:hover        { border-color: var(--text-secondary); background: var(--bg-2); }
 
@@ -205,7 +208,7 @@
     align-items: center;
     gap: 1.75rem;
   }
-  .nav__links a {
+  .nav__links a:not(.nav__cta) {
     font-size: 0.875rem;
     font-weight: 500;
     color: var(--text-primary);
@@ -214,15 +217,15 @@
   .nav__links a:not(.nav__cta):hover { opacity: 0.65; }
 
   .nav__cta {
-    font-size: 0.875rem !important;
-    font-weight: 600 !important;
-    color: #fff !important;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #fff;
     background: var(--accent);
     padding: 0.45rem 1.2rem;
     border-radius: 100px;
-    transition: background var(--t) var(--ease) !important;
+    transition: background var(--t) var(--ease);
   }
-  .nav__cta:hover { background: var(--accent-hover) !important; opacity: 1 !important; }
+  .nav__cta:hover { background: var(--accent-hover); opacity: 1; }
 
   .nav__burger {
     display: none;
@@ -461,6 +464,7 @@
   .dif-card__text { font-size: 0.95rem; line-height: 1.65; color: var(--text-secondary); }
 
   /* --- Servicios --- */
+  .servicios__layout .t-lg { margin-bottom: 2rem; }
   .servicios__layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -555,6 +559,7 @@
   .info-value a:hover { text-decoration: underline; }
 
   .form { display: flex; flex-direction: column; gap: 1.1rem; }
+  .form > .btn { align-self: flex-start; }
   .form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form__group { display: flex; flex-direction: column; gap: 0.45rem; }
   .form__label { font-size: 0.82rem; font-weight: 500; color: var(--text-secondary); }
@@ -577,12 +582,11 @@
   .form__textarea { resize: vertical; min-height: 130px; }
 
   /* ---- Secciones con fondo claro: Metodología, Diferenciales, Servicios, Contacto ---- */
+  /* background y color vienen de .section--light; aquí solo el separador */
   #metodologia,
   #diferenciales,
   #servicios,
   #contacto {
-    background: #f5f5f0;
-    color: #121212;
     border-top: 1px solid rgba(18, 18, 18, 0.08);
   }
 
