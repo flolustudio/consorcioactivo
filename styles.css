@@ -576,6 +576,81 @@
   .form__textarea:focus { outline: none; border-color: var(--accent); }
   .form__textarea { resize: vertical; min-height: 130px; }
 
+  /* ---- Secciones con fondo claro: Metodología, Diferenciales, Servicios, Contacto ---- */
+  #metodologia,
+  #diferenciales,
+  #servicios,
+  #contacto {
+    background: #f5f5f0;
+    color: #121212;
+    border-top: 1px solid rgba(18, 18, 18, 0.08);
+  }
+
+  /* Headings de sección */
+  #metodologia .t-lg,
+  #diferenciales .t-lg,
+  #contacto .t-lg { color: #121212; }
+
+  /* Texto secundario de sección */
+  #metodologia .pillars__closing { color: #3a3a3c; }
+
+  /* Pilares — fondo blanco */
+  #metodologia .pillar {
+    background: #ffffff;
+    border-color: rgba(18, 18, 18, 0.10);
+    box-shadow: 0 4px 16px rgba(18, 18, 18, 0.06);
+  }
+  #metodologia .pillar:hover { border-color: var(--accent-border); }
+  #metodologia .pillar__num  { color: var(--accent); }
+  #metodologia .pillar__name { color: #121212; }
+  #metodologia .pillar__desc { color: #3a3a3c; }
+
+  /* Dif-cards — fondo blanco */
+  #diferenciales .dif-card {
+    background: #ffffff;
+    border-color: rgba(18, 18, 18, 0.10);
+    box-shadow: 0 4px 16px rgba(18, 18, 18, 0.06);
+  }
+  #diferenciales .dif-card:hover { border-color: var(--accent-border); }
+  #diferenciales .dif-card__title { color: #121212; }
+  #diferenciales .dif-card__text  { color: #3a3a3c; }
+
+  /* Servicios — lista e items */
+  #servicios .t-lg            { color: #121212; }
+  #servicios .servicios__item {
+    background: #ffffff;
+    border-color: rgba(18, 18, 18, 0.10);
+    box-shadow: 0 4px 16px rgba(18, 18, 18, 0.06);
+  }
+  #servicios .servicios__item:hover { border-color: var(--accent-border); }
+  #servicios .servicios__text { color: #121212; }
+  #servicios .servicios__aside {
+    background: #ffffff;
+    border-color: rgba(18, 18, 18, 0.10);
+    box-shadow: 0 4px 16px rgba(18, 18, 18, 0.06);
+  }
+  #servicios .servicios__objetivo { color: #3a3a3c; }
+
+  /* Contacto — textos e info */
+  #contacto .lead        { color: #3a3a3c; }
+  #contacto .info-label  { color: #6e6e73; }
+  #contacto .info-value  { color: #121212; }
+  #contacto .info-item   { border-color: rgba(18, 18, 18, 0.10); }
+  #contacto .info-list > .info-item:first-child { border-color: rgba(18, 18, 18, 0.10); }
+
+  /* Contacto — formulario */
+  #contacto .form__label { color: #3a3a3c; }
+  #contacto .form__input,
+  #contacto .form__textarea {
+    background: #ffffff;
+    border-color: rgba(18, 18, 18, 0.15);
+    color: #121212;
+  }
+  #contacto .form__input::placeholder,
+  #contacto .form__textarea::placeholder { color: #a1a1aa; }
+  #contacto .form__input:focus,
+  #contacto .form__textarea:focus { border-color: var(--accent); }
+
   /* --- Footer --- */
   .footer {
     background: var(--bg-1);
