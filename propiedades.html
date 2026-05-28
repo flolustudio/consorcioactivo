@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Propiedades · Consorcio Activo</title>
+  <meta name="description" content="Propiedades residenciales, de oficinas y comerciales administradas por Consorcio Activo. Encontrá tu espacio ideal en Neuquén y la región.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#FBC603" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1C1B1F" media="(prefers-color-scheme: dark)">
+  <link rel="canonical" href="https://consorcioactivo.ar/propiedades.html">
+  <meta property="og:type"        content="website">
+  <meta property="og:site_name"   content="Consorcio Activo">
+  <meta property="og:url"         content="https://consorcioactivo.ar/propiedades.html">
+  <meta property="og:title"       content="Propiedades · Consorcio Activo">
+  <meta property="og:description" content="Residenciales, oficinas y comerciales. Encontrá tu espacio ideal.">
+  <meta property="og:image"       content="https://consorcioactivo.ar/public/images/og-image.png">
+  <meta property="og:locale"      content="es_AR">
+  <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
+  <link rel="apple-touch-icon"    href="icons/apple-touch-icon.png">
+  <link rel="manifest"            href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <app-nav current="propiedades">
+    <nav class="nav" aria-label="Navegación principal">
+
+      <a href="index.html" class="nav__logo" aria-label="Consorcio Activo — inicio">
+        <img src="icons/logoBLACK.png"
+             alt="Consorcio Activo"
+             width="160" height="40">
+      </a>
+
+      <ul class="nav-links" role="list" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="propiedades.html" aria-current="page">Propiedades</a></li>
+        <li><a href="soporte.html">Soporte</a></li>
+      </ul>
+
+      <a href="contacto.html" class="btn btn-brand nav-cta">Contáctanos</a>
+
+      <button class="nav-toggle" aria-label="Abrir menú"
+              aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+    </nav>
+  </app-nav>
+
+  <main id="main">
+
+    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
+    <section class="page-hero" aria-labelledby="page-h">
+      <div class="inner">
+        <p class="section-label">Propiedades</p>
+        <h1 id="page-h">
+          Encontrá tu<br>
+          <em class="accent">espacio ideal.</em>
+        </h1>
+        <p class="hero-lead">Te acompañamos en la búsqueda del espacio que mejor
+           se adapta a tus necesidades, con total transparencia y profesionalismo.</p>
+      </div>
+    </section>
+
+    <!-- ── RESIDENCIALES ─────────────────────────────────────── -->
+    <section id="residenciales" class="properties-section" aria-labelledby="res-h">
+      <div class="inner">
+
+        <header class="properties-header">
+          <div>
+            <p class="section-label">Residenciales</p>
+            <h2 id="res-h">Tu hogar,<br><em class="accent">tu espacio.</em></h2>
+          </div>
+          <p class="properties-aside-text">
+            Departamentos, duplex y monoambientes amueblados para vivir o invertir.
+          </p>
+        </header>
+
+        <ul class="properties-grid" role="list">
+          <li>
+            <property-card
+              title="Departamento 2 Amb."
+              desc="Amueblado, luminoso, piso 4. Cochera opcional."
+              href="contacto.html?tipo=residencial"
+              img="public/images/imagen_recidenciales_inicio.jpg"
+              imgalt="Departamento residencial amueblado">
+            </property-card>
+          </li>
+          <li>
+            <property-card
+              title="Duplex"
+              desc="2 dormitorios, jardín privado, excelente ubicación."
+              href="contacto.html?tipo=residencial"
+              img="public/images/imagen_recidenciales_inicio.jpg"
+              imgalt="Duplex con jardín privado">
+            </property-card>
+          </li>
+          <li>
+            <property-card
+              title="Monoambiente"
+              desc="Totalmente equipado. Ideal para estudiantes o profesionales."
+              href="contacto.html?tipo=residencial"
+              img="public/images/imagen_recidenciales_inicio.jpg"
+              imgalt="Monoambiente equipado">
+            </property-card>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ── OFICINAS ──────────────────────────────────────────── -->
+    <section id="oficinas" class="properties-section properties-section--alt" aria-labelledby="ofi-h">
+      <div class="inner">
+
+        <header class="properties-header">
+          <div>
+            <p class="section-label">Oficinas</p>
+            <h2 id="ofi-h">Espacios para<br><em class="accent">trabajar mejor.</em></h2>
+          </div>
+          <p class="properties-aside-text">
+            Oficinas equipadas con salas de reuniones y sala de coworking incluida.
+          </p>
+        </header>
+
+        <ul class="properties-grid" role="list">
+          <li>
+            <property-card
+              title="Oficina Estándar"
+              desc="Hasta 4 puestos. Internet dedicado, AC, sala de reuniones compartida."
+              href="contacto.html?tipo=oficina"
+              img="public/images/imagen_oficinas_inicio.jpg"
+              imgalt="Oficina estándar equipada">
+            </property-card>
+          </li>
+          <li>
+            <property-card
+              title="Suite Ejecutiva"
+              desc="6 puestos privados. Sala de reuniones exclusiva, recepción."
+              href="contacto.html?tipo=oficina"
+              img="public/images/imagen_oficinas_inicio.jpg"
+              imgalt="Suite ejecutiva con sala privada">
+            </property-card>
+          </li>
+          <li>
+            <property-card
+              title="Coworking"
+              desc="Puesto flexible por día, semana o mes. Networking incluido."
+              href="contacto.html?tipo=coworking"
+              img="public/images/imagen_oficinas_inicio.jpg"
+              imgalt="Sala de coworking compartida">
+            </property-card>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ── COMERCIALES ───────────────────────────────────────── -->
+    <section id="comerciales" class="properties-section" aria-labelledby="com-h">
+      <div class="inner">
+
+        <header class="properties-header">
+          <div>
+            <p class="section-label">Comerciales</p>
+            <h2 id="com-h">Locales para<br><em class="accent">crecer.</em></h2>
+          </div>
+          <p class="properties-aside-text">
+            Locales de distintos tamaños, en ubicaciones estratégicas de la ciudad.
+          </p>
+        </header>
+
+        <ul class="properties-grid" role="list">
+          <li>
+            <property-card
+              title="Local Pequeño"
+              desc="35 m². Vidrieras dobles, contrafrente. Ideal gastronomía."
+              href="contacto.html?tipo=comercial"
+              img="public/images/imagen_comerciales_inicio.jpg"
+              imgalt="Local comercial pequeño">
+            </property-card>
+          </li>
+          <li>
+            <property-card
+              title="Local Amplio"
+              desc="120 m² + depósito. Sobre avenida principal, alta circulación."
+              href="contacto.html?tipo=comercial"
+              img="public/images/imagen_comerciales_inicio.jpg"
+              imgalt="Local comercial amplio sobre avenida">
+            </property-card>
+          </li>
+          <li>
+            <property-card
+              title="Galería Comercial"
+              desc="Espacios modulables desde 20 m². Seguridad y estacionamiento."
+              href="contacto.html?tipo=comercial"
+              img="public/images/imagen_comerciales_inicio.jpg"
+              imgalt="Galería comercial con locales modulables">
+            </property-card>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- ── GALERÍA ───────────────────────────────────────────── -->
+    <section id="galeria" class="spaces" aria-labelledby="gal-h">
+
+      <figure class="spaces-figure" aria-hidden="true">
+        <img src="public/images/imagen_nosotros_inicio.jpg"
+             alt="Espacios comunes de los edificios administrados"
+             width="640" height="480" loading="lazy">
+      </figure>
+
+      <div class="spaces-content">
+        <p class="section-label">Nuestros Espacios</p>
+        <h2 id="gal-h">
+          Diseñados,<br>
+          para <em class="accent">disfrutar.</em>
+        </h2>
+        <p>Cada espacio común de los edificios que administramos está pensado
+           para el bienestar y la conexión entre vecinos.</p>
+        <a href="contacto.html" class="btn btn-brand">Consultá disponibilidad</a>
+      </div>
+
+    </section>
+
+    <!-- ── CTA ──────────────────────────────────────────────── -->
+    <section class="contact-cta" aria-labelledby="cta-h">
+      <div class="contact-cta-content">
+        <h2 id="cta-h">¿No encontraste<br>lo que buscabas?</h2>
+        <p>Contanos qué necesitás y te ayudamos a encontrarlo</p>
+        <div class="contact-cta-actions">
+          <a href="contacto.html" class="btn btn-brand">Escribinos</a>
+          <a href="tel:+5492995880858" class="link-arrow">
+            Llamanos <span aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+      <figure class="contact-cta-figure" aria-hidden="true">
+        <div class="img-ph img-ph--cta"></div>
+      </figure>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="nav__logo" aria-label="Consorcio Activo — inicio">
+          <img src="icons/logoBLACK.png" alt="Consorcio Activo"
+               width="160" height="40" loading="lazy">
+        </a>
+      </div>
+      <nav class="footer-nav" aria-label="Páginas del sitio">
+        <ul role="list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="propiedades.html">Propiedades</a></li>
+          <li><a href="soporte.html">Soporte</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-legal" aria-label="Información legal">
+        <ul role="list">
+          <li><a href="terminos.html">Términos y condiciones</a></li>
+          <li><a href="privacidad.html">Política de privacidad</a></li>
+        </ul>
+      </nav>
+      <address class="footer-contact">
+        <p><a href="https://www.instagram.com/consorcio.activo.nqn"
+              target="_blank" rel="noopener noreferrer">@consorcio.activo.nqn</a></p>
+        <p>Consorcio Activo</p>
+        <p><a href="tel:+5492995880858">299 588-0858</a></p>
+        <p><a href="mailto:consorcios.nqn@gmail.com">consorcios.nqn@gmail.com</a></p>
+      </address>
+    </div>
+    <p class="footer-copy">
+      <small>© <time datetime="2025">2025</time> Consorcio Activo. Todos los derechos reservados.</small>
+    </p>
+  </footer>
+
+  <script type="module" src="components/AppNav.js"></script>
+  <script type="module" src="components/PropertyCard.js"></script>
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>

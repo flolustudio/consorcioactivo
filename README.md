@@ -7,20 +7,42 @@
 | Producto | Landing page institucional para administración de consorcios |
 | Enfoque | Vanilla Web · HTML5 semántico · CSS3 sin frameworks |
 | Referencia técnica | *Vanilla Web* |
-| Tipografía | Outfit 700/800 (títulos) · Manrope 400/500/600 (cuerpo) |
-| Versión | 1.0 — Abril 2026 |
+| Tipografía | Manrope 400/500/600/700/800 |
+| Versión | 1.0 — Mayo 2026 |
 
 ---
 
 ## Estructura del proyecto
 
 ```
-consorcio-activo/
-├── index.html            # Documento principal — HTML5 semántico
-├── styles.css            # Estilos — CSS3 con @layer cascade
-├── images/
-│   └── hero.png          # Imagen de fondo sección hero (1920×1080)
-└── icons/                
+consorcioactivo/
+├── index.html
+├── nosotros.html
+├── propiedades.html
+├── soporte.html
+├── contacto.html
+├── terminos.html
+├── privacidad.html
+├── styles.css
+├── app.js
+├── components/
+│   ├── AppNav.js
+│   ├── ContactForm.js
+│   └── PropertyCard.js
+├── icons/
+│   ├── commitment-icons/
+│   ├── favicon.svg
+│   ├── icon-192.png
+│   ├── icon-512.png
+│   ├── icon-maskable.png
+│   └── logoBLACK.png
+├── public/
+│   └── images/
+│       ├── og-image.png
+│       ├── screenshot-desktop.png
+│       └── screenshot-mobile.png
+├── manifest.webmanifest
+└── sw.js
 ```
 
 ---
@@ -33,9 +55,9 @@ consorcio-activo/
 | Estilos | CSS3 · `@layer` cascade | 5 layers explícitos · Custom properties como design tokens · Sin preprocesadores |
 | Layout | CSS Grid + Flexbox | Grid para secciones de dos columnas · Flex para nav, actions y listas |
 | Tipografía | `clamp()` fluido | Escala tipográfica sin breakpoints arbitrarios |
-| Scripts | Vanilla JS · DOM API | Nav scroll · Mobile burger · Form feedback · < 30 líneas |
+| Scripts | Vanilla JS · Web Components · DOM API | Nav, cards, formulario y comportamiento progresivo |
 | Fuentes | Google Fonts con `display=swap` | Sin bloqueo de render · Fallback a `system-ui` |
-| Imágenes | `background-image` + overlay CSS | `::before` con gradiente oscuro sobre la imagen del hero |
+| Imágenes | `public/images` + CSS backgrounds | Assets reales por sección, OG y screenshots de PWA |
 | Metadata | Open Graph · Twitter Card · Canonical | SEO completo · Compartible en redes sociales |
 
 ---
@@ -93,20 +115,12 @@ Cada layer tiene prioridad explícita: el último declarado gana sin necesidad d
 
 ---
 
-## Pendientes de producción
+## Assets de producción
 
-```
-/icons/favicon.ico              # Generar desde el logo
-/icons/favicon.svg
-/icons/apple-touch-icon-180.png
-/manifest.webmanifest           # Linkeado en el <head>, falta el archivo
-/images/og-image.png            # Imagen 1200×630 para Open Graph
-```
-
-Actualizar en `index.html` la URL canónica real:
-```html
-<link rel="canonical" href="https://[dominio-real].com.ar/">
-```
+- Favicons e íconos PWA en `icons/`.
+- Imágenes de secciones en `public/images/`.
+- Open Graph: `public/images/og-image.png`.
+- Manifest screenshots: `public/images/screenshot-desktop.png` y `public/images/screenshot-mobile.png`.
 
 ---
 
@@ -130,7 +144,7 @@ Actualizar en `index.html` la URL canónica real:
 
 **Dark/Light mode explícito** — El `theme-color` ya tiene ambas variantes. Agregar toggle manual con `data-theme` en `<html>` y variantes de tokens en el CSS.
 
-**Optimización de fuentes** — Auto-hospedar Outfit y Manrope para eliminar la dependencia de Google Fonts y garantizar disponibilidad offline.
+**Optimización de fuentes** — Auto-hospedar Manrope para eliminar la dependencia de Google Fonts y garantizar disponibilidad offline.
 
 ---
 
