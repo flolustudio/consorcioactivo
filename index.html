@@ -62,7 +62,9 @@
   }
   </script>
 
-  <link rel="stylesheet" href="styles.css?v=20260603-02">
+  <!-- Preload imagen LCP -->
+  <link rel="preload" href="public/images/imagen_hero_inicio-v3.jpg" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=20260603-03">
 </head>
 <body>
 
@@ -336,9 +338,9 @@
   <!-- ============================================================
        SCRIPTS — Web Components + Service Worker
   ============================================================ -->
-  <script type="module" src="components/AppNav.js?v=20260603-02"></script>
-  <script type="module" src="components/PropertyCard.js?v=20260603-02"></script>
-  <script type="module" src="app.js?v=20260603-02"></script>
+  <script type="module" src="components/AppNav.js?v=20260603-03"></script>
+  <script type="module" src="components/PropertyCard.js?v=20260603-03"></script>
+  <script type="module" src="app.js?v=20260603-03"></script>
 
 </body>
 </html>

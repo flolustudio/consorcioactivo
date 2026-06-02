@@ -51,3 +51,53 @@ if ('serviceWorker' in navigator) {
   });
 })();
 /* ─────────────────────────────────────────────────────────── */
+
+/* ── Scroll-driven animations: fallback IntersectionObserver ─
+   Solo activa en navegadores sin soporte nativo (ej. Firefox).
+   El CSS nativo tiene prioridad cuando está disponible.
+─────────────────────────────────────────────────────────────── */
+if (
+  !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
+  !CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
+) {
+  const ANIMATED = [
+    '.commitment-card',
+    '.property-card',
+    '.value-card',
+    '.nosotros-testimonial-list li',
+    '.support-card',
+    '.support-topic-list li',
+    '.support-accordion-item',
+  ].join(',');
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .js-scroll-hidden {
+      opacity: 0;
+      translate: 0 28px;
+      transition: opacity 0.5s ease, translate 0.5s ease;
+    }
+    .js-scroll-visible {
+      opacity: 1;
+      translate: 0 0;
+    }
+  `;
+  document.head.appendChild(style);
+
+  const observer = new IntersectionObserver(
+    entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.replace('js-scroll-hidden', 'js-scroll-visible');
+          observer.unobserve(entry.target);
+        }
+      }
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll(ANIMATED).forEach(el => {
+    el.classList.add('js-scroll-hidden');
+    observer.observe(el);
+  });
+}

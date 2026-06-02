@@ -5,7 +5,7 @@
  * Versión: cambiá CACHE_VERSION para invalidar el caché en deploys.
  */
 
-const CACHE_VERSION  = 'ca-v23';
+const CACHE_VERSION  = 'ca-v25';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
@@ -16,13 +16,15 @@ const PRECACHE_ASSETS = [
   '/nosotros.html',
   '/propiedades.html',
   '/soporte.html',
+  '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260603-02',
-  '/app.js?v=20260603-02',
-  '/components/AppNav.js?v=20260603-02',
-  '/components/PropertyCard.js?v=20260603-02',
-  '/components/ContactForm.js?v=20260603-02',
+  '/styles.css?v=20260603-03',
+  '/app.js?v=20260603-03',
+  '/components/AppNav.js?v=20260603-03',
+  '/components/PropertyCard.js?v=20260603-03',
+  '/components/ContactForm.js?v=20260603-03',
+  '/data/properties.js',
   '/manifest.webmanifest',
   '/icons/logoBLACK.png',
   '/icons/favicon.svg',

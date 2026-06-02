@@ -51,8 +51,10 @@
   h1, h2, h3 { text-wrap: balance; }
   p          { text-wrap: pretty; }
 
-  /* Transiciones cross-page suaves — MPA nativa */
-  @view-transition { navigation: auto; }
+  /* Transiciones cross-page suaves — MPA nativa (solo si el usuario no pidió reducción) */
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+  }
 }
 
 
@@ -86,6 +88,11 @@
     /* ── Tipografía ── */
     --font-display: 'Manrope', system-ui, sans-serif;
     --font-body:    'Manrope', system-ui, sans-serif;
+
+    /* ── Scrollbar + accent ── */
+    scrollbar-color: var(--brand) var(--surface-1);
+    scrollbar-width: thin;
+    accent-color: var(--brand);
 
     /* ── Espaciado (escala × 4px) ── */
     --sp-1:  0.25rem;  /*  4px */
@@ -186,7 +193,7 @@
     z-index: 999;
     transition: top var(--t-fast) var(--ease);
   }
-  .skip-link:focus { top: 0; }
+  .skip-link:focus-visible { top: 0; }
 
 
   /* ── Botones ── */
@@ -360,12 +367,12 @@
     background: var(--text-primary);
     transition: transform var(--t-base) var(--ease), opacity var(--t-base) var(--ease);
   }
-  /* Estado abierto — isla JS añade .is-open al <nav> */
-  .nav.is-open .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .nav.is-open .nav-toggle span:nth-child(2) { opacity: 0; }
-  .nav.is-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  /* Estado abierto — CSS puro vía :has() + aria-expanded */
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-toggle span:nth-child(2) { opacity: 0; }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  .nav.is-open .nav-links {
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-links {
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -380,8 +387,8 @@
     margin-left: 0;
     transform: none;
   }
-  .nav.is-open .nav-links a { font-size: 1rem; border-bottom-color: transparent; }
-  .nav.is-open .nav-cta { display: none; }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-links a { font-size: 1rem; border-bottom-color: transparent; }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-cta { display: none; }
 
 
   /* ================================================================
@@ -2295,6 +2302,81 @@
     cursor: default;
     pointer-events: none;
     opacity: 0.75;
+  }
+
+
+  /* ================================================================
+     VIEW TRANSITIONS — animación suave entre páginas
+  ================================================================ */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes vt-fade-out {
+      to { opacity: 0; transform: scale(0.985); }
+    }
+    @keyframes vt-fade-in {
+      from { opacity: 0; transform: scale(1.008); }
+    }
+
+    ::view-transition-old(root) {
+      animation: 200ms ease both vt-fade-out;
+    }
+    ::view-transition-new(root) {
+      animation: 280ms ease both vt-fade-in;
+    }
+  }
+
+
+  /* ================================================================
+     CONTENT-VISIBILITY — diferir render de secciones off-screen
+     Solo en secciones garantizadas fuera del fold inicial.
+  ================================================================ */
+  .commitment,
+  .about-preview,
+  .properties-preview,
+  .spaces,
+  .contact-cta,
+  .site-footer,
+  .nosotros-about,
+  .nosotros-commitment,
+  .nosotros-testimonials,
+  .values,
+  .mission,
+  .support-channels,
+  .support-faq,
+  .support-quick-contact,
+  .contacto-canales,
+  .contacto-form-section,
+  .contacto-map-title,
+  .contacto-map-wrap {
+    content-visibility: auto;
+    contain-intrinsic-size: auto none auto 400px;
+  }
+
+
+  /* ================================================================
+     SCROLL-DRIVEN ANIMATIONS — fade-in al entrar al viewport
+     Fallback via IntersectionObserver en app.js para Firefox.
+  ================================================================ */
+  @media (prefers-reduced-motion: no-preference) {
+    @supports ((animation-timeline: view()) and (animation-range: entry)) {
+      @keyframes scroll-fade-up {
+        from {
+          opacity: 0;
+          translate: 0 28px;
+        }
+      }
+
+      .commitment-card,
+      .property-card,
+      .value-card,
+      .nosotros-testimonial-list li,
+      .support-card,
+      .support-topic-list li,
+      .support-accordion-item {
+        animation: scroll-fade-up auto linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+    }
   }
 }
 

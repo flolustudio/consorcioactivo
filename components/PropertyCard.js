@@ -8,8 +8,9 @@
 
 class PropertyCard extends HTMLElement {
   connectedCallback() {
-    // Si el store ya tiene datos, renderizamos inmediatamente.
-    // Si no, esperamos el evento.
+    // Flag para evitar doble render si el elemento se mueve en el DOM.
+    if (this._rendered) return;
+
     if (window.app?.store?.properties) {
       this._render();
     } else {
@@ -17,7 +18,13 @@ class PropertyCard extends HTMLElement {
     }
   }
 
+  disconnectedCallback() {
+    // Mantiene el flag al moverse, pero resetea si se saca del DOM definitivamente
+    // (el browser lo llama antes de moverlo; connectedCallback lo vuelve a llamar)
+  }
+
   _render() {
+    this._rendered = true;
     const id = parseInt(this.dataset.id, 10);
     const p  = window.app?.store?.properties?.find(x => x.id === id);
     if (!p) return;

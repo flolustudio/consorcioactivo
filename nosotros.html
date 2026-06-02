@@ -30,7 +30,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260603-02">
+  <!-- Preload imagen LCP -->
+  <link rel="preload" href="public/images/nosotros-hero.png" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="styles.css?v=20260603-03">
 </head>
 <body>
 
@@ -106,8 +108,9 @@
           </div>
         </div>
       </div>
-      <figure class="nosotros-about-figure" aria-hidden="true">
-        <img src="public/images/nosotros-quienes_somos.png" alt="" loading="lazy">
+      <figure class="nosotros-about-figure">
+        <img src="public/images/nosotros-quienes_somos.png"
+             alt="Equipo de Consorcio Activo reunido en oficina" loading="lazy">
       </figure>
     </section>
 
@@ -127,11 +130,13 @@
             <p>Sistemas de seguridad y vigilancia 24hs para tu tranquilidad</p>
           </div>
         </div>
-        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_camaras.png" alt="" loading="lazy">
+        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_camaras.png"
+             alt="Cámaras de seguridad instaladas en edificio administrado" loading="lazy">
       </article>
 
       <article class="nosotros-commitment-row nosotros-commitment-row--community">
-        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_chic@s.png" alt="" loading="lazy">
+        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_chic@s.png"
+             alt="Equipo de Consorcio Activo trabajando en comunidad" loading="lazy">
         <div class="nosotros-commitment-text">
           <div class="nosotros-commitment-copy">
             <h3>Comunidad</h3>
@@ -147,7 +152,8 @@
             <p>Sistemas de seguridad y vigilancia 24hs para tu tranquilidad</p>
           </div>
         </div>
-        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_innovacion.png" alt="" loading="lazy">
+        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_innovacion.png"
+             alt="Tecnología e innovación aplicada a la gestión de consorcios" loading="lazy">
       </article>
     </section>
 
@@ -246,8 +252,8 @@
 
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260603-02"></script>
-  <script type="module" src="app.js?v=20260603-02"></script>
+  <script type="module" src="components/AppNav.js?v=20260603-03"></script>
+  <script type="module" src="app.js?v=20260603-03"></script>
 
 </body>
 </html>
