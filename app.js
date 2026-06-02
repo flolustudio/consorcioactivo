@@ -24,6 +24,7 @@ if ('serviceWorker' in navigator) {
   const links  = document.querySelectorAll('.nav-links a');
 
   if (!nav || !toggle) return;
+  if (customElements.get('app-nav') || nav.closest('app-nav')) return;
 
   /* ── helpers ─────────────────────────────────────────── */
   const open  = () => { nav.classList.add('is-open');    toggle.setAttribute('aria-expanded', 'true');  };

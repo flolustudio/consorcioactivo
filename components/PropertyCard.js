@@ -1,67 +1,74 @@
 /**
  * components/PropertyCard.js — Consorcio Activo
- * Custom Element: <property-card>
+ * Web Component que lee del store global por data-id.
  *
- * Light DOM — hereda estilos globales de styles.css.
- * El elemento mismo reemplaza al <li class="property-card"> en la grilla.
- *
- * Atributos:
- *   title    — nombre de la categoría, ej. "Residenciales"
- *   desc     — descripción corta
- *   href     — enlace del botón "Ver más"
- *   img      — ruta de la imagen (opcional; si falta muestra placeholder)
- *   imgalt   — alt de la imagen
- *   accent   — (boolean) pinta el título con --brand (default: true)
+ * Uso: <property-card data-id="1"></property-card>
+ * Requiere que window.app.store.properties esté cargado.
  */
 
 class PropertyCard extends HTMLElement {
-
-  static get observedAttributes() {
-    return ['title', 'desc', 'href', 'img', 'imgalt', 'accent'];
+  connectedCallback() {
+    // Si el store ya tiene datos, renderizamos inmediatamente.
+    // Si no, esperamos el evento.
+    if (window.app?.store?.properties) {
+      this._render();
+    } else {
+      window.addEventListener('apppropertieschange', () => this._render(), { once: true });
+    }
   }
 
-  connectedCallback() { this.render(); }
+  _render() {
+    const id = parseInt(this.dataset.id, 10);
+    const p  = window.app?.store?.properties?.find(x => x.id === id);
+    if (!p) return;
 
-  attributeChangedCallback() {
-    // Re-render solo si ya está en el DOM
-    if (this.isConnected) this.render();
-  }
+    const isAlquilada = p.estado === 'alquilada';
 
-  render() {
-    const title   = this.getAttribute('title')  || '';
-    const desc    = this.getAttribute('desc')   || '';
-    const href    = this.getAttribute('href')   || '#';
-    const img     = this.getAttribute('img')    || '';
-    const imgalt  = this.getAttribute('imgalt') || title;
-    const accent  = this.getAttribute('accent') !== 'false'; // default true
+    // Precio formateado: 860000 → $860.000/mes
+    const precioFmt = '$' + p.precio.toLocaleString('es-AR') + '/mes';
 
-    const figure = img
-      ? /* html */`
-          <img src="${img}" alt="${imgalt}"
-               width="400" height="280" loading="lazy">`
-      : /* html */`
-          <!--
-            IMAGEN PENDIENTE — reemplazar con:
-            <img src="images/..." alt="${imgalt}"
-                 width="400" height="280" loading="lazy">
-          -->
-          <div class="img-ph img-ph--property"></div>`;
+    // Specs: superficie, baños, features
+    const specItems = [
+      p.superficie ? `${p.superficie}m²` : '',
+      p.banos      ? `${p.banos} Baño${p.banos !== 1 ? 's' : ''}` : '',
+      ...(p.features || []).map(f => this._esc(f)),
+    ].filter(Boolean);
 
-    this.innerHTML = /* html */`
+    const specsHTML = specItems
+      .map(s => `<span class="property-spec-item">${s}</span>`)
+      .join('<span class="property-spec-sep" aria-hidden="true">|</span>');
+
+    const overlay = isAlquilada
+      ? `<div class="property-overlay" aria-hidden="true"><span>ALQUILADA</span></div>` : '';
+
+    const cta = isAlquilada
+      ? `<span class="btn btn-sm btn-alquilada">Alquilada</span>`
+      : `<a href="contacto.html?id=${p.id}&tipo=${p.tipo}" class="btn btn-brand btn-sm">Ver más</a>`;
+
+    this.innerHTML = `
       <figure class="property-card-img">
-        ${figure}
+        <img src="${this._esc(p.imagen)}" alt="${this._esc(p.titulo)}"
+             width="400" height="260" loading="lazy">
+        ${overlay}
       </figure>
       <div class="property-card-body">
-        <h3 ${accent ? 'class="accent"' : ''}>${this._escape(title)}</h3>
-        <p>${this._escape(desc)}</p>
-        <a href="${href}" class="btn btn-brand btn-sm">Ver más</a>
-      </div>
-    `;
+        <div class="property-card-top">
+          <h3>${this._esc(p.titulo)}</h3>
+          <p class="property-location">${this._esc(p.ubicacion)}</p>
+        </div>
+        ${specsHTML ? `<div class="property-card-specs">${specsHTML}</div>` : ''}
+        <div class="property-card-footer">
+          <div class="property-price-block">
+            <span class="property-price-label">Desde</span>
+            <p class="property-price">${precioFmt}</p>
+          </div>
+          ${cta}
+        </div>
+      </div>`;
   }
 
-  /** Escapa texto para evitar XSS al insertar en HTML */
-  _escape(str) {
-    return str
+  _esc(s = '') {
+    return String(s)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')

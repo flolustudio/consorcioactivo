@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Nosotros · Consorcio Activo</title>
-  <meta name="description" content="Conocé al equipo de Consorcio Activo. Profesionales dedicados a la administración transparente y eficiente de consorcios en Argentina.">
+  <meta name="description" content="Conocé al equipo de Consorcio Activo. Gestión transparente, responsable y cercana para cada edificio.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#FBC603" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#1C1B1F" media="(prefers-color-scheme: dark)">
@@ -13,16 +13,24 @@
   <meta property="og:site_name"   content="Consorcio Activo">
   <meta property="og:url"         content="https://consorcioactivo.ar/nosotros.html">
   <meta property="og:title"       content="Nosotros · Consorcio Activo">
-  <meta property="og:description" content="Equipo de profesionales dedicados a la gestión moderna y transparente de consorcios.">
+  <meta property="og:description" content="Un equipo comprometido con las personas y la gestión eficiente de consorcios.">
   <meta property="og:image"       content="https://consorcioactivo.ar/public/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale"      content="es_AR">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Nosotros · Consorcio Activo">
+  <meta name="twitter:description" content="Un equipo comprometido con las personas y la gestión eficiente de consorcios.">
+  <meta name="twitter:image"       content="https://consorcioactivo.ar/public/images/og-image.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.png">
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
-  <link rel="apple-touch-icon"    href="icons/apple-touch-icon.png">
-  <link rel="manifest"            href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260528-2">
+  <link rel="stylesheet" href="styles.css?v=20260603-02">
 </head>
 <body>
 
@@ -31,10 +39,8 @@
   <app-nav current="nosotros">
     <nav class="nav" aria-label="Navegación principal">
 
-      <a href="index.html" class="nav__logo" aria-label="Consorcio Activo — inicio">
-        <img src="icons/logoBLACK.png"
-             alt="Consorcio Activo"
-             width="160" height="40">
+      <a href="#inicio" class="nav__logo" aria-label="Consorcio Activo — inicio">
+        <img src="icons/logoBLACK.png" alt="Consorcio Activo" width="160" height="40">
       </a>
 
       <ul class="nav-links" role="list" id="nav-links">
@@ -54,181 +60,157 @@
     </nav>
   </app-nav>
 
-  <main id="main">
+  <main id="main" class="nosotros-page">
 
-    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
-    <section class="page-hero" aria-labelledby="page-h">
-      <div class="inner">
-        <p class="section-label">Sobre Nosotros</p>
-        <h1 id="page-h">
-          Administramos,<br>
-          <em class="accent">creando valor.</em>
+    <section class="nosotros-hero" id="inicio" aria-labelledby="nosotros-h">
+      <div class="nosotros-hero-content">
+        <h1 id="nosotros-h">
+          Más que <em class="accent">administrar,</em><br>
+          creamos <em class="accent">comunidad.</em>
         </h1>
-        <p class="hero-lead">Somos un equipo de profesionales enfocados en brindar
-           soluciones modernas, eficientes y personalizadas para cada edificio.</p>
+        <p>
+          En Consorcio Activo creemos en la transparencia,
+          la gestión eficiente y la construcción de relaciones
+          duraderas basadas en la confianza y eficacia.
+        </p>
       </div>
     </section>
 
-    <!-- ── IMAGEN NOSOTROS ──────────────────────────────────── -->
-    <section class="page-media" aria-hidden="true">
-      <img src="public/images/imagen_nosotros_inicio.jpg"
-           alt="Edificio administrado por Consorcio Activo"
-           width="1200" height="520" loading="eager"
-           style="width:100%; height:clamp(240px,30vw,460px); object-fit:cover; object-position:center; display:block;">
-    </section>
-
-    <!-- ── NUESTROS VALORES ──────────────────────────────────── -->
-    <section class="values" aria-labelledby="values-h">
-      <div class="inner values-inner">
-
-        <div class="values-intro">
-          <p class="section-label">Nuestros Valores</p>
-          <h2 id="values-h">Lo que nos guía<br>cada día.</h2>
-          <p>Creemos que la buena gestión parte de valores claros:
-             transparencia, responsabilidad y respeto por cada vecino.</p>
+    <section class="nosotros-about" aria-labelledby="about-h">
+      <div class="nosotros-about-content">
+        <p class="section-label">Quienes somos</p>
+        <h2 id="about-h">Somos un equipo<br>comprometido con<br>las personas</h2>
+        <p>
+          Con años de experiencia en administración de consorcio y gestión
+          inmobiliaria, combinamos el profesionalismo, cercanía y tecnología
+          para ofrecer un servicio integral.
+        </p>
+        <div class="nosotros-stats" aria-label="Indicadores de experiencia">
+          <div class="nosotros-stat">
+            <svg class="nosotros-stat-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <circle cx="24" cy="18" r="12" fill="none" stroke="currentColor" stroke-width="3.2"/>
+              <path d="M18.5 18.2l4.3 4.3 8.7-9" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M17 29.5l-3.2 10.4 7-3 4.2 6 3.4-10.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M31 29.5l3.2 10.4-7-3-4.2 6-3.4-10.8" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+            </svg>
+            <span>Más de 5 años<br>de experiencia</span>
+          </div>
+          <div class="nosotros-stat">
+            <svg class="nosotros-stat-icon" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path d="M8 42V18h16v24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+              <path d="M24 42V10h18v32" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linejoin="round"/>
+              <path d="M13 24h3M13 30h3M13 36h3M29 16h4M29 22h4M29 28h4M29 34h4M38 16h1M38 22h1M38 28h1M38 34h1" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M5 42h38" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/>
+            </svg>
+            <span>16 unidades<br>de edificios</span>
+          </div>
         </div>
-
-        <ul class="values-grid" role="list">
-
-          <li id="seguridad" class="value-card">
-            <span class="commitment-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L4 6V12C4 16.4 7.4 20.5 12 22C16.6 20.5 20 16.4 20 12V6L12 2Z"
-                      stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                <polyline points="9 12 11 14 15 10" stroke="currentColor"
-                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <h3>Seguridad</h3>
-            <p>Implementamos sistemas de vigilancia y control de acceso 24hs
-               para que cada vecino sienta su hogar como un lugar seguro.</p>
-          </li>
-
-          <li id="comunidad" class="value-card">
-            <span class="commitment-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
-                <circle cx="15" cy="8" r="3" stroke="currentColor" stroke-width="2"/>
-                <path d="M2 20C2 17 5 15 9 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M22 20C22 17 19 15 15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <path d="M9 15C10 14.5 11 14 12 14C13 14 14 14.5 15 15C15 17.5 13.7 20 12 20C10.3 20 9 17.5 9 15Z"
-                      stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </span>
-            <h3>Comunidad</h3>
-            <p>Fomentamos la comunicación y el diálogo entre propietarios,
-               inquilinos y el consejo de administración.</p>
-          </li>
-
-          <li id="innovacion" class="value-card">
-            <span class="commitment-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
-                <ellipse cx="12" cy="12" rx="4" ry="9" stroke="currentColor" stroke-width="2"/>
-                <line x1="3" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2"/>
-              </svg>
-            </span>
-            <h3>Innovación</h3>
-            <p>Adoptamos tecnología y procesos modernos para hacer la gestión
-               más eficiente, transparente y accesible para todos.</p>
-          </li>
-
-          <li class="value-card">
-            <span class="commitment-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"
-                      stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <h3>Transparencia</h3>
-            <p>Rendición de cuentas clara y accesible. Cada propietario puede
-               conocer el estado del consorcio en todo momento.</p>
-          </li>
-
-          <li class="value-card">
-            <span class="commitment-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
-                      stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <h3>Eficiencia</h3>
-            <p>Optimizamos tiempos y recursos para que los problemas del edificio
-               se resuelvan rápido y sin burocracia innecesaria.</p>
-          </li>
-
-          <li class="value-card">
-            <span class="commitment-icon" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"
-                      stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-            <h3>Compromiso</h3>
-            <p>Nos comprometemos con cada edificio como si fuera propio.
-               Tu tranquilidad es nuestra responsabilidad.</p>
-          </li>
-
-        </ul>
-
       </div>
-    </section>
-
-    <!-- ── MISIÓN / VISIÓN ───────────────────────────────────── -->
-    <section class="mission" aria-labelledby="mission-h">
-
-      <figure class="mission-figure" aria-hidden="true">
-        <img src="public/images/imagen_nosotros_inicio.jpg"
-             alt="Edificio administrado por Consorcio Activo"
-             width="640" height="520" loading="lazy">
-        <span class="deco-circle deco-circle--about"></span>
-        <span class="deco-dot deco-dot--1"></span>
+      <figure class="nosotros-about-figure" aria-hidden="true">
+        <img src="public/images/nosotros-quienes_somos.png" alt="" loading="lazy">
       </figure>
-
-      <div class="mission-content">
-        <p class="section-label">Misión &amp; Visión</p>
-        <h2 id="mission-h">Un nuevo concepto<br>de <em class="accent">gestión.</em></h2>
-        <p>Nuestra misión es transformar la administración de consorcios en
-           una experiencia simple, transparente y confiable para cada vecino.</p>
-        <p>Visualizamos un modelo donde la tecnología y la cercanía humana
-           coexisten para construir comunidades más fuertes.</p>
-        <a href="contacto.html" class="btn btn-brand">Trabajemos juntos</a>
-      </div>
-
     </section>
 
-    <!-- ── CTA ──────────────────────────────────────────────── -->
+    <section class="nosotros-commitment" aria-labelledby="commitment-h">
+      <header class="nosotros-commitment-header">
+        <p class="section-label">Nuestro compromiso</p>
+        <h2 id="commitment-h">
+          Trabajamos cada día para brindar<br>
+          una gestión responsable y de calidad
+        </h2>
+      </header>
+
+      <article class="nosotros-commitment-row nosotros-commitment-row--security">
+        <div class="nosotros-commitment-text">
+          <div class="nosotros-commitment-copy">
+            <h3>Seguridad</h3>
+            <p>Sistemas de seguridad y vigilancia 24hs para tu tranquilidad</p>
+          </div>
+        </div>
+        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_camaras.png" alt="" loading="lazy">
+      </article>
+
+      <article class="nosotros-commitment-row nosotros-commitment-row--community">
+        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_chic@s.png" alt="" loading="lazy">
+        <div class="nosotros-commitment-text">
+          <div class="nosotros-commitment-copy">
+            <h3>Comunidad</h3>
+            <p>Sistemas de seguridad y vigilancia 24hs para tu tranquilidad</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="nosotros-commitment-row nosotros-commitment-row--innovation">
+        <div class="nosotros-commitment-text">
+          <div class="nosotros-commitment-copy">
+            <h3>Innovación</h3>
+            <p>Sistemas de seguridad y vigilancia 24hs para tu tranquilidad</p>
+          </div>
+        </div>
+        <img class="nosotros-commitment-img" src="public/images/nosotros-nuestrocompromiso_innovacion.png" alt="" loading="lazy">
+      </article>
+    </section>
+
+    <section class="nosotros-testimonials" aria-labelledby="testimonials-h">
+      <div class="nosotros-testimonials-inner">
+        <p class="section-label">Lo que dicen de nosotros</p>
+        <h2 id="testimonials-h">La confianza de nuestra comunidad<br>es nuestro mayor respaldo</h2>
+
+        <ul class="nosotros-testimonial-list" role="list">
+          <li>
+            <span aria-hidden="true">“</span>
+            <p>Desde que trabajamos con Consorcio Activo, la comunicación es mucho más fluida y los problemas se resuelven rápidamente.</p>
+            <strong>María Laura Gómez</strong>
+            <small>Propietaria</small>
+          </li>
+          <li>
+            <span aria-hidden="true">“</span>
+            <p>La transparencia y el acceso a la información nos dan tranquilidad. Sabemos que nuestro edificio está en buenas manos.</p>
+            <strong>Diego Fernández</strong>
+            <small>Propietario</small>
+          </li>
+          <li>
+            <span aria-hidden="true">“</span>
+            <p>Profesionales, responsables y cercanos. Hicieron que nuestra comunidad se sienta escuchada y acompañada.</p>
+            <strong>Sofía Martínez</strong>
+            <small>Inquilina</small>
+          </li>
+        </ul>
+        <div class="nosotros-testimonial-dots" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </section>
+
     <section class="contact-cta" aria-labelledby="cta-h">
       <div class="contact-cta-content">
-        <h2 id="cta-h">¿Querés saber más<br>sobre nosotros?</h2>
-        <p>Estamos disponibles para responder tus consultas</p>
+        <h2 id="cta-h">¿Tenés dudas o querés<br>más información?</h2>
+        <p>Estamos para ayudarte</p>
         <div class="contact-cta-actions">
-          <a href="contacto.html" class="btn btn-brand">Contactanos</a>
-          <a href="tel:+5492995880858" class="link-arrow">
-            Llamanos <span aria-hidden="true">›</span>
-          </a>
+          <a href="contacto.html" class="btn btn-brand">Más información</a>
         </div>
       </div>
       <figure class="contact-cta-figure" aria-hidden="true">
-        <div class="img-ph img-ph--cta"></div>
+        <img src="public/images/imagen contacto nosotros.png"
+             alt="" role="presentation" loading="lazy">
       </figure>
     </section>
 
   </main>
 
   <footer class="site-footer">
+
     <div class="footer-inner">
+
       <div class="footer-brand">
-        <a href="index.html" class="nav__logo" aria-label="Consorcio Activo — inicio">
+        <a href="#inicio" class="nav__logo" aria-label="Consorcio Activo — inicio">
           <img src="icons/logoBLACK.png" alt="Consorcio Activo"
                width="160" height="40" loading="lazy">
         </a>
       </div>
+
       <nav class="footer-nav" aria-label="Páginas del sitio">
         <ul role="list">
           <li><a href="index.html">Inicio</a></li>
@@ -238,27 +220,34 @@
           <li><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
+
       <nav class="footer-legal" aria-label="Información legal">
         <ul role="list">
           <li><a href="terminos.html">Términos y condiciones</a></li>
           <li><a href="privacidad.html">Política de privacidad</a></li>
         </ul>
       </nav>
+
       <address class="footer-contact">
-        <p><a href="https://www.instagram.com/consorcio.activo.nqn"
-              target="_blank" rel="noopener noreferrer">@consorcio.activo.nqn</a></p>
+        <p>
+          <a href="https://www.instagram.com/consorcio.activo.nqn"
+             target="_blank" rel="noopener noreferrer">@consorcio.activo.nqn</a>
+        </p>
         <p>Consorcio Activo</p>
         <p><a href="tel:+5492995880858">299 588-0858</a></p>
         <p><a href="mailto:consorcios.nqn@gmail.com">consorcios.nqn@gmail.com</a></p>
       </address>
+
     </div>
+
     <p class="footer-copy">
-      <small>© <time datetime="2025">2025</time> Consorcio Activo. Todos los derechos reservados.</small>
+      <small>© <time datetime="2026">2026</time> Consorcio Activo. Todos los derechos reservados.</small>
     </p>
+
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260528-2"></script>
-  <script type="module" src="app.js?v=20260528-2"></script>
+  <script type="module" src="components/AppNav.js?v=20260603-02"></script>
+  <script type="module" src="app.js?v=20260603-02"></script>
 
 </body>
 </html>

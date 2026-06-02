@@ -15,14 +15,22 @@
   <meta property="og:title"       content="Propiedades · Consorcio Activo">
   <meta property="og:description" content="Residenciales, oficinas y comerciales. Encontrá tu espacio ideal.">
   <meta property="og:image"       content="https://consorcioactivo.ar/public/images/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale"      content="es_AR">
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Propiedades · Consorcio Activo">
+  <meta name="twitter:description" content="Residenciales, oficinas y comerciales. Encontrá tu espacio ideal.">
+  <meta name="twitter:image"       content="https://consorcioactivo.ar/public/images/og-image.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.png">
+  <link rel="icon" href="icons/favicon.ico" sizes="any">
   <link rel="icon" type="image/svg+xml" href="icons/favicon.svg">
   <link rel="apple-touch-icon"    href="icons/apple-touch-icon.png">
   <link rel="manifest"            href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260528-2">
+  <link rel="stylesheet" href="styles.css?v=20260603-02">
 </head>
 <body>
 
@@ -30,222 +38,127 @@
 
   <app-nav current="propiedades">
     <nav class="nav" aria-label="Navegación principal">
-
       <a href="index.html" class="nav__logo" aria-label="Consorcio Activo — inicio">
-        <img src="icons/logoBLACK.png"
-             alt="Consorcio Activo"
-             width="160" height="40">
+        <img src="icons/logoBLACK.png" alt="Consorcio Activo" width="160" height="40">
       </a>
-
       <ul class="nav-links" role="list" id="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="nosotros.html">Nosotros</a></li>
         <li><a href="propiedades.html" aria-current="page">Propiedades</a></li>
         <li><a href="soporte.html">Soporte</a></li>
       </ul>
-
       <a href="contacto.html" class="btn btn-brand nav-cta">Contáctanos</a>
-
       <button class="nav-toggle" aria-label="Abrir menú"
               aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
-
     </nav>
   </app-nav>
 
   <main id="main">
 
-    <!-- ── PAGE HERO ─────────────────────────────────────────── -->
-    <section class="page-hero" aria-labelledby="page-h">
-      <div class="inner">
-        <p class="section-label">Propiedades</p>
-        <h1 id="page-h">
-          Encontrá tu<br>
-          <em class="accent">espacio ideal.</em>
+    <!-- ── HERO ──────────────────────────────────────────────── -->
+    <section class="hero hero--propiedades" aria-labelledby="prop-h">
+      <div class="hero-content">
+        <h1 id="prop-h">
+          Tu <em class="accent">propiedad,</em><br>
+          más cerca <em class="accent">tuyo.</em>
         </h1>
-        <p class="hero-lead">Te acompañamos en la búsqueda del espacio que mejor
-           se adapta a tus necesidades, con total transparencia y profesionalismo.</p>
+        <p class="hero-lead">
+          Sabemos la importancia de encontrar un espacio
+          que puedas hacerlo tuyo, donde disfrutes
+          y te sientas en tu hogar.
+        </p>
       </div>
     </section>
 
-    <!-- ── RESIDENCIALES ─────────────────────────────────────── -->
-    <section id="residenciales" class="properties-section" aria-labelledby="res-h">
+    <!-- ── TABS DE CATEGORÍA ─────────────────────────────────── -->
+    <section class="prop-tabs-section" aria-label="Categorías de propiedades">
       <div class="inner">
+        <p class="section-label prop-tabs-label">La propiedad que buscás, en un solo lugar</p>
+        <nav class="prop-tabs" role="tablist" aria-label="Tipos de propiedad">
 
-        <header class="properties-header">
-          <div>
-            <p class="section-label">Residenciales</p>
-            <h2 id="res-h">Tu hogar,<br><em class="accent">tu espacio.</em></h2>
-          </div>
-          <p class="properties-aside-text">
-            Departamentos, duplex y monoambientes amueblados para vivir o invertir.
-          </p>
-        </header>
+          <button class="prop-tab prop-tab--active" role="tab"
+                  aria-selected="true" data-tipo="residencial">
+            <span class="prop-tab-icon" aria-hidden="true">
+              <!-- Casa minimalista: trazo grueso, forma simple -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 11L12 3l9 8v9a1 1 0 0 1-1 1H15v-6H9v6H4a1 1 0 0 1-1-1z"/>
+              </svg>
+            </span>
+            <span class="prop-tab-label">Residenciales</span>
+          </button>
 
-        <ul class="properties-grid" role="list">
-          <li>
-            <property-card
-              title="Departamento 2 Amb."
-              desc="Amueblado, luminoso, piso 4. Cochera opcional."
-              href="contacto.html?tipo=residencial"
-              img="public/images/imagen_recidenciales_inicio.jpg"
-              imgalt="Departamento residencial amueblado">
-            </property-card>
-          </li>
-          <li>
-            <property-card
-              title="Duplex"
-              desc="2 dormitorios, jardín privado, excelente ubicación."
-              href="contacto.html?tipo=residencial"
-              img="public/images/imagen_recidenciales_inicio.jpg"
-              imgalt="Duplex con jardín privado">
-            </property-card>
-          </li>
-          <li>
-            <property-card
-              title="Monoambiente"
-              desc="Totalmente equipado. Ideal para estudiantes o profesionales."
-              href="contacto.html?tipo=residencial"
-              img="public/images/imagen_recidenciales_inicio.jpg"
-              imgalt="Monoambiente equipado">
-            </property-card>
-          </li>
+          <span class="prop-tab-sep" aria-hidden="true"></span>
+
+          <button class="prop-tab" role="tab"
+                  aria-selected="false" data-tipo="oficina">
+            <span class="prop-tab-icon" aria-hidden="true">
+              <!-- Edificio minimalista: trazo grueso, sin grilla interna -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="1"/>
+                <path d="M9 22V12h6v10"/>
+              </svg>
+            </span>
+            <span class="prop-tab-label">Oficinas</span>
+          </button>
+
+          <span class="prop-tab-sep" aria-hidden="true"></span>
+
+          <button class="prop-tab" role="tab"
+                  aria-selected="false" data-tipo="comercial">
+            <span class="prop-tab-icon" aria-hidden="true">
+              <!-- Local comercial: frente simple con toldo -->
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/>
+                <path d="M3 9L6 4h12l3 5"/>
+                <path d="M9 21v-6h6v6"/>
+              </svg>
+            </span>
+            <span class="prop-tab-label">Comerciales</span>
+          </button>
+
+        </nav>
+      </div>
+    </section>
+
+    <!-- ── PANEL DE PROPIEDADES ───────────────────────────────── -->
+    <section class="prop-panel" id="prop-panel" aria-live="polite">
+      <div class="inner">
+        <div class="prop-panel-header">
+          <p class="prop-counter" id="prop-counter">Cargando propiedades…</p>
+        </div>
+        <ul class="properties-grid" id="prop-grid" role="list">
+          <!-- Renderizado dinámico desde properties.json -->
         </ul>
 
+        <!-- ── Navegación entre categorías ── -->
+        <nav class="prop-panel-nav" id="prop-nav" aria-label="Navegar entre categorías">
+          <button class="prop-nav-btn btn btn-outline btn-sm" id="prop-nav-btn">
+            IR A OFICINAS
+          </button>
+          <button class="prop-nav-next btn btn-brand btn-sm" id="prop-nav-next">
+            Siguiente <span aria-hidden="true">›</span>
+          </button>
+        </nav>
       </div>
-    </section>
-
-    <!-- ── OFICINAS ──────────────────────────────────────────── -->
-    <section id="oficinas" class="properties-section properties-section--alt" aria-labelledby="ofi-h">
-      <div class="inner">
-
-        <header class="properties-header">
-          <div>
-            <p class="section-label">Oficinas</p>
-            <h2 id="ofi-h">Espacios para<br><em class="accent">trabajar mejor.</em></h2>
-          </div>
-          <p class="properties-aside-text">
-            Oficinas equipadas con salas de reuniones y sala de coworking incluida.
-          </p>
-        </header>
-
-        <ul class="properties-grid" role="list">
-          <li>
-            <property-card
-              title="Oficina Estándar"
-              desc="Hasta 4 puestos. Internet dedicado, AC, sala de reuniones compartida."
-              href="contacto.html?tipo=oficina"
-              img="public/images/imagen_oficinas_inicio.jpg"
-              imgalt="Oficina estándar equipada">
-            </property-card>
-          </li>
-          <li>
-            <property-card
-              title="Suite Ejecutiva"
-              desc="6 puestos privados. Sala de reuniones exclusiva, recepción."
-              href="contacto.html?tipo=oficina"
-              img="public/images/imagen_oficinas_inicio.jpg"
-              imgalt="Suite ejecutiva con sala privada">
-            </property-card>
-          </li>
-          <li>
-            <property-card
-              title="Coworking"
-              desc="Puesto flexible por día, semana o mes. Networking incluido."
-              href="contacto.html?tipo=coworking"
-              img="public/images/imagen_oficinas_inicio.jpg"
-              imgalt="Sala de coworking compartida">
-            </property-card>
-          </li>
-        </ul>
-
-      </div>
-    </section>
-
-    <!-- ── COMERCIALES ───────────────────────────────────────── -->
-    <section id="comerciales" class="properties-section" aria-labelledby="com-h">
-      <div class="inner">
-
-        <header class="properties-header">
-          <div>
-            <p class="section-label">Comerciales</p>
-            <h2 id="com-h">Locales para<br><em class="accent">crecer.</em></h2>
-          </div>
-          <p class="properties-aside-text">
-            Locales de distintos tamaños, en ubicaciones estratégicas de la ciudad.
-          </p>
-        </header>
-
-        <ul class="properties-grid" role="list">
-          <li>
-            <property-card
-              title="Local Pequeño"
-              desc="35 m². Vidrieras dobles, contrafrente. Ideal gastronomía."
-              href="contacto.html?tipo=comercial"
-              img="public/images/imagen_comerciales_inicio.jpg"
-              imgalt="Local comercial pequeño">
-            </property-card>
-          </li>
-          <li>
-            <property-card
-              title="Local Amplio"
-              desc="120 m² + depósito. Sobre avenida principal, alta circulación."
-              href="contacto.html?tipo=comercial"
-              img="public/images/imagen_comerciales_inicio.jpg"
-              imgalt="Local comercial amplio sobre avenida">
-            </property-card>
-          </li>
-          <li>
-            <property-card
-              title="Galería Comercial"
-              desc="Espacios modulables desde 20 m². Seguridad y estacionamiento."
-              href="contacto.html?tipo=comercial"
-              img="public/images/imagen_comerciales_inicio.jpg"
-              imgalt="Galería comercial con locales modulables">
-            </property-card>
-          </li>
-        </ul>
-
-      </div>
-    </section>
-
-    <!-- ── GALERÍA ───────────────────────────────────────────── -->
-    <section id="galeria" class="spaces" aria-labelledby="gal-h">
-
-      <figure class="spaces-figure" aria-hidden="true">
-        <img src="public/images/imagen_nosotros_inicio.jpg"
-             alt="Espacios comunes de los edificios administrados"
-             width="640" height="480" loading="lazy">
-      </figure>
-
-      <div class="spaces-content">
-        <p class="section-label">Nuestros Espacios</p>
-        <h2 id="gal-h">
-          Diseñados,<br>
-          para <em class="accent">disfrutar.</em>
-        </h2>
-        <p>Cada espacio común de los edificios que administramos está pensado
-           para el bienestar y la conexión entre vecinos.</p>
-        <a href="contacto.html" class="btn btn-brand">Consultá disponibilidad</a>
-      </div>
-
     </section>
 
     <!-- ── CTA ──────────────────────────────────────────────── -->
     <section class="contact-cta" aria-labelledby="cta-h">
       <div class="contact-cta-content">
-        <h2 id="cta-h">¿No encontraste<br>lo que buscabas?</h2>
-        <p>Contanos qué necesitás y te ayudamos a encontrarlo</p>
+        <h2 id="cta-h">¿Tenés dudas o querés<br>más información?</h2>
+        <p>Estamos para ayudarte</p>
         <div class="contact-cta-actions">
-          <a href="contacto.html" class="btn btn-brand">Escribinos</a>
+          <a href="contacto.html" class="btn btn-brand">Más información</a>
           <a href="tel:+5492995880858" class="link-arrow">
             Llamanos <span aria-hidden="true">›</span>
           </a>
         </div>
       </div>
       <figure class="contact-cta-figure" aria-hidden="true">
-        <div class="img-ph img-ph--cta"></div>
+        <img src="public/images/contacto-contact-cta.png"
+             alt="" role="presentation" loading="lazy">
       </figure>
     </section>
 
@@ -283,13 +196,105 @@
       </address>
     </div>
     <p class="footer-copy">
-      <small>© <time datetime="2025">2025</time> Consorcio Activo. Todos los derechos reservados.</small>
+      <small>© <time datetime="2026">2026</time> Consorcio Activo. Todos los derechos reservados.</small>
     </p>
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260528-2"></script>
-  <script type="module" src="components/PropertyCard.js?v=20260528-2"></script>
-  <script type="module" src="app.js?v=20260528-2"></script>
+  <script type="module" src="components/AppNav.js?v=20260603-02"></script>
+  <script type="module" src="components/PropertyCard.js?v=20260603-02"></script>
+  <script type="module" src="app.js?v=20260603-02"></script>
+
+  <!-- Inicialización de propiedades -->
+  <script type="module">
+    // Importa el store y los datos directamente como módulos ES.
+    // Sin fetch → funciona con file:// y con cualquier servidor.
+    import PropertyStore from './services/PropertyStore.js?v=20260603-02';
+    import properties   from './data/properties.js?v=20260603-02';
+
+    // Exponer store globalmente para PropertyCard
+    window.app         = window.app || {};
+    window.app.store   = PropertyStore;
+
+    const grid    = document.getElementById('prop-grid');
+    const counter = document.getElementById('prop-counter');
+    const tabs    = document.querySelectorAll('.prop-tab');
+    const navBtn  = document.getElementById('prop-nav-btn');
+    const navNext = document.getElementById('prop-nav-next');
+
+    // Orden y labels de los tipos
+    const TIPOS = [
+      { tipo: 'residencial', label: 'Residenciales' },
+      { tipo: 'oficina',     label: 'Oficinas'       },
+      { tipo: 'comercial',   label: 'Comerciales'    },
+    ];
+
+    let filtroActivo = 'residencial';
+
+    // ── Actualiza el botón de nav con el tipo siguiente ──────────
+    function updateNav() {
+      const idx     = TIPOS.findIndex(t => t.tipo === filtroActivo);
+      const next    = TIPOS[(idx + 1) % TIPOS.length];
+      navBtn.textContent  = `IR A ${next.label.toUpperCase()}`;
+      navNext.innerHTML   = `Siguiente <span aria-hidden="true">›</span>`;
+    }
+
+    // ── Activa un tab por tipo ───────────────────────────────────
+    function activarTab(tipo) {
+      tabs.forEach(t => {
+        const isActive = t.dataset.tipo === tipo;
+        t.classList.toggle('prop-tab--active', isActive);
+        t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      filtroActivo = tipo;
+      renderCards();
+      updateNav();
+      document.getElementById('prop-panel')
+        .scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // ── Render de cards ─────────────────────────────────────────
+    function renderCards() {
+      const props = window.app.store.properties;
+      if (!props) return;
+
+      const filtradas = props.filter(p => p.activa && p.tipo === filtroActivo);
+
+      counter.innerHTML = `Mostrando <strong>${filtradas.length}</strong> propiedad${filtradas.length !== 1 ? 'es' : ''}`;
+
+      grid.innerHTML = '';
+      filtradas.forEach(p => {
+        const li   = document.createElement('li');
+        const card = document.createElement('property-card');
+        card.dataset.id = p.id;
+        li.appendChild(card);
+        grid.appendChild(li);
+      });
+    }
+
+    // ── Tabs ────────────────────────────────────────────────────
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activarTab(tab.dataset.tipo));
+    });
+
+    // ── Botones de navegación ───────────────────────────────────
+    navBtn.addEventListener('click', () => {
+      const idx  = TIPOS.findIndex(t => t.tipo === filtroActivo);
+      const next = TIPOS[(idx + 1) % TIPOS.length];
+      activarTab(next.tipo);
+    });
+    navNext.addEventListener('click', () => {
+      const idx  = TIPOS.findIndex(t => t.tipo === filtroActivo);
+      const next = TIPOS[(idx + 1) % TIPOS.length];
+      activarTab(next.tipo);
+    });
+
+    // ── Carga inicial ───────────────────────────────────────────
+    window.addEventListener('apppropertieschange', () => {
+      renderCards();
+      updateNav();
+    });
+    window.app.store.properties = properties;
+  </script>
 
 </body>
 </html>
