@@ -14,18 +14,26 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v26';
+const CACHE_VERSION  = 'ca-v27';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
 /**
  * Imágenes de propiedades individuales.
- * Convención: prop-{id}.{ext} — una entrada por propiedad.
- * Al agregar la propiedad 13: '/public/images/prop-13.jpg'
- * Al sacarla: eliminar la línea.
+ * Convención: prop-{id}.{ext} — foto principal.
+ *             prop-{id}b.{ext}, prop-{id}c.{ext} — fotos adicionales (carrusel).
+ *
+ * Al agregar la propiedad 13 con 2 fotos:
+ *   '/public/images/prop-13.jpg',
+ *   '/public/images/prop-13b.jpg',
+ * Al sacarla: eliminar todas sus líneas.
  */
 const PROP_IMAGES = [
+  // prop-1 — 3 fotos (carrusel demo)
   '/public/images/prop-1.png',
+  '/public/images/prop-1b.png',
+  '/public/images/prop-1c.png',
+  // resto — 1 foto cada una
   '/public/images/prop-2.png',
   '/public/images/prop-3.png',
   '/public/images/prop-4.png',

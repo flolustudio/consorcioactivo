@@ -2192,6 +2192,83 @@
     transition: transform 0.45s var(--ease);
   }
   property-card:hover .property-card-img img { transform: scale(1.04); }
+  /* Sin zoom en carrusel — el scroll gestiona la navegación */
+  property-card:hover .property-card-img--carousel img { transform: none; }
+
+  /* ── Carrusel de fotos ───────────────────────────────────── */
+  .carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .carousel-track::-webkit-scrollbar { display: none; }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    scroll-snap-align: start;
+    overflow: hidden;
+  }
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.88);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: background 0.15s, opacity 0.2s;
+    padding: 0;
+  }
+  property-card:hover .carousel-btn { opacity: 1; }
+  .carousel-btn--prev { left: 0.5rem; }
+  .carousel-btn--next { right: 0.5rem; }
+  .carousel-btn:hover { background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .carousel-btn:active { transform: translateY(-50%) scale(0.93); }
+
+  .carousel-dots {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    z-index: 2;
+  }
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .carousel-dot--active {
+    background: #fff;
+    transform: scale(1.35);
+  }
 
   /* Overlay "ALQUILADA" — cubre toda la imagen */
   .property-overlay {

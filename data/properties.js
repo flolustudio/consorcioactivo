@@ -2,12 +2,11 @@
  * data/properties.js — Consorcio Activo
  * Única fuente de datos de propiedades (ES module).
  *
- * Convención de imágenes: public/images/prop-{id}.{ext}
- * Para agregar una propiedad:
- *   1. Copiar la foto a public/images/prop-{id}.jpg (o .png)
- *   2. Agregar el objeto aquí con el id correspondiente
- * Para editar: modificar el objeto aquí y reemplazar la imagen si corresponde.
- * Para eliminar: borrar el objeto y el archivo public/images/prop-{id}.*
+ * Convención de imágenes:
+ *   - 1 foto:  imagenes: ['public/images/prop-{id}.jpg']
+ *   - N fotos: imagenes: ['public/images/prop-{id}.jpg', 'public/images/prop-{id}b.jpg', ...]
+ *
+ * Para agregar/editar/quitar propiedades ver GUIA-PROPIEDADES.md
  */
 
 const properties = [
@@ -23,7 +22,11 @@ const properties = [
     "features": ["Terraza", "Pet Friendly"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-1.png",
+    "imagenes": [
+      "public/images/prop-1.png",
+      "public/images/prop-1b.png",
+      "public/images/prop-1c.png"
+    ],
     "descripcion": "Departamento de 2 ambientes con terraza privada y orientación al norte. Luminoso, amueblado y listo para habitar. Acepta mascotas."
   },
   {
@@ -38,7 +41,7 @@ const properties = [
     "features": ["Terraza", "Pet Friendly"],
     "estado": "alquilada",
     "activa": true,
-    "imagen": "public/images/prop-2.png",
+    "imagenes": ["public/images/prop-2.png"],
     "descripcion": "Monoambiente moderno con terraza. Excelente distribución, cocina integrada y baño completo. Edificio con amenidades."
   },
   {
@@ -53,7 +56,7 @@ const properties = [
     "features": ["Terraza", "Pet Friendly"],
     "estado": "alquilada",
     "activa": true,
-    "imagen": "public/images/prop-3.png",
+    "imagenes": ["public/images/prop-3.png"],
     "descripcion": "Amplio departamento de 2 ambientes sobre Av. Argentina. Piso alto, excelente vista y luminosidad. Pet friendly."
   },
   {
@@ -68,7 +71,7 @@ const properties = [
     "features": ["Terraza", "Pet Friendly"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-4.png",
+    "imagenes": ["public/images/prop-4.png"],
     "descripcion": "Departamento de 1 ambiente con balcón. Ideal para profesionales o estudiantes. Excelente ubicación en el centro."
   },
   {
@@ -83,7 +86,7 @@ const properties = [
     "features": ["Terraza", "Pet Friendly"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-5.png",
+    "imagenes": ["public/images/prop-5.png"],
     "descripcion": "Gran departamento de 3 ambientes con 2 baños y terraza propia. Ideal para familias. Edificio con seguridad 24hs."
   },
   {
@@ -98,7 +101,7 @@ const properties = [
     "features": ["Terraza", "Pet Friendly"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-6.png",
+    "imagenes": ["public/images/prop-6.png"],
     "descripcion": "Departamento de 2 ambientes en barrio tranquilo. Diseño moderno, excelente terminación. Terraza con parrilla."
   },
   {
@@ -113,7 +116,7 @@ const properties = [
     "features": ["Internet", "Sala reuniones"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-7.jpg",
+    "imagenes": ["public/images/prop-7.jpg"],
     "descripcion": "Oficina equipada en el centro de Neuquén. Incluye internet de alta velocidad y acceso a sala de reuniones."
   },
   {
@@ -128,7 +131,7 @@ const properties = [
     "features": ["Internet", "Sala privada", "Recepción"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-8.jpg",
+    "imagenes": ["public/images/prop-8.jpg"],
     "descripcion": "Suite ejecutiva con sala privada de reuniones, recepción y vista panorámica al centro."
   },
   {
@@ -143,7 +146,7 @@ const properties = [
     "features": ["Internet", "Networking"],
     "estado": "alquilada",
     "activa": true,
-    "imagen": "public/images/prop-9.jpg",
+    "imagenes": ["public/images/prop-9.jpg"],
     "descripcion": "Espacio de coworking con puesto fijo, internet, sala de reuniones y comunidad de profesionales."
   },
   {
@@ -158,7 +161,7 @@ const properties = [
     "features": ["Vidriera", "Contrafrente"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-10.jpg",
+    "imagenes": ["public/images/prop-10.jpg"],
     "descripcion": "Local comercial con vidriera sobre calle de alto tránsito. Contrafrente para depósito. Ideal para retail o servicios."
   },
   {
@@ -173,7 +176,7 @@ const properties = [
     "features": ["Depósito", "Alta circulación"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-11.jpg",
+    "imagenes": ["public/images/prop-11.jpg"],
     "descripcion": "Local amplio sobre avenida principal con depósito incluido. Alta circulación de público. 2 baños."
   },
   {
@@ -188,7 +191,7 @@ const properties = [
     "features": ["Seguridad", "Estacionamiento"],
     "estado": "disponible",
     "activa": true,
-    "imagen": "public/images/prop-12.jpg",
+    "imagenes": ["public/images/prop-12.jpg"],
     "descripcion": "Local en galería comercial del centro. Seguridad 24hs y estacionamiento disponible para clientes."
   }
 ];
