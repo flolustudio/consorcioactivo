@@ -131,7 +131,7 @@
           <p class="prop-counter" id="prop-counter">Cargando propiedades…</p>
         </div>
         <ul class="properties-grid" id="prop-grid" role="list">
-          <!-- Renderizado dinámico desde properties.json -->
+          <!-- Renderizado dinámico desde data/properties.js vía services/API.js -->
         </ul>
 
         <!-- ── Navegación entre categorías ── -->
@@ -208,10 +208,10 @@
 
   <!-- Inicialización de propiedades -->
   <script type="module">
-    // Importa el store y los datos directamente como módulos ES.
-    // Sin fetch → funciona con file:// y con cualquier servidor.
-    import PropertyStore from './services/PropertyStore.js?v=20260603-03';
-    import properties   from './data/properties.js?v=20260603-03';
+    // Flujo de datos: propiedades.html → API.js → data/properties.js → PropertyStore → PropertyCard
+    // Para agregar/editar/sacar una propiedad, solo tocar data/properties.js + sw.js (PROP_IMAGES).
+    import PropertyStore      from './services/PropertyStore.js?v=20260603-03';
+    import { loadProperties } from './services/Properties.js';
 
     // Exponer store globalmente para PropertyCard
     window.app         = window.app || {};
@@ -291,11 +291,13 @@
     });
 
     // ── Carga inicial ───────────────────────────────────────────
+    // El event listener debe estar registrado ANTES de llamar loadProperties(),
+    // porque loadProperties() setea el store sincrónicamente (vía API.js local).
     window.addEventListener('apppropertieschange', () => {
       renderCards();
       updateNav();
     });
-    window.app.store.properties = properties;
+    loadProperties(); // API.js → data/properties.js → store → dispara 'apppropertieschange'
   </script>
 
 </body>

@@ -2,14 +2,44 @@
  * sw.js — Consorcio Activo Service Worker
  * Vanilla Web · Estrategia Cache-First para assets, Network-First para HTML
  *
- * Versión: cambiá CACHE_VERSION para invalidar el caché en deploys.
+ * CACHE_VERSION: incrementar en cada deploy para forzar actualización en clientes.
+ *
+ * ── Workflow para agregar/sacar propiedades ─────────────────────────────────
+ *  1. Editá data/properties.js (agregar o eliminar el objeto).
+ *  2. Copiá/borrá la imagen en public/images/prop-{id}.{ext}.
+ *  3. Actualizá PROP_IMAGES abajo: agregá o quitá la línea correspondiente.
+ *  4. Incrementá CACHE_VERSION (ej: 'ca-v26' → 'ca-v27').
+ *  5. Commit + push → GitHub Pages sirve la nueva versión; el SW viejo
+ *     se reemplaza automáticamente en la siguiente visita.
+ * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v25';
+const CACHE_VERSION  = 'ca-v26';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
-/* Assets que se pre-cachean en la instalación */
+/**
+ * Imágenes de propiedades individuales.
+ * Convención: prop-{id}.{ext} — una entrada por propiedad.
+ * Al agregar la propiedad 13: '/public/images/prop-13.jpg'
+ * Al sacarla: eliminar la línea.
+ */
+const PROP_IMAGES = [
+  '/public/images/prop-1.png',
+  '/public/images/prop-2.png',
+  '/public/images/prop-3.png',
+  '/public/images/prop-4.png',
+  '/public/images/prop-5.png',
+  '/public/images/prop-6.png',
+  '/public/images/prop-7.jpg',
+  '/public/images/prop-8.jpg',
+  '/public/images/prop-9.jpg',
+  '/public/images/prop-10.jpg',
+  '/public/images/prop-11.jpg',
+  '/public/images/prop-12.jpg',
+];
+
+/* Assets base que se pre-cachean en la instalación */
 const PRECACHE_ASSETS = [
   '/',
   '/index.html',
@@ -24,10 +54,14 @@ const PRECACHE_ASSETS = [
   '/components/AppNav.js?v=20260603-03',
   '/components/PropertyCard.js?v=20260603-03',
   '/components/ContactForm.js?v=20260603-03',
+  '/services/PropertyStore.js?v=20260603-03',
+  '/services/API.js',
+  '/services/Properties.js',
   '/data/properties.js',
   '/manifest.webmanifest',
   '/icons/logoBLACK.png',
   '/icons/favicon.svg',
+  ...PROP_IMAGES,
 ];
 
 /* ── Install: pre-cachea assets estáticos ─────────────────── */
