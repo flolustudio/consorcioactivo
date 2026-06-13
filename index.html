@@ -63,7 +63,7 @@
   </script>
 
   <!-- Preload imagen LCP -->
-  <link rel="preload" href="public/images/imagen_hero_inicio-v3.jpg" as="image" fetchpriority="high">
+  <link rel="preload" href="public/images/header-index-ampliado.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="styles.css?v=20260603-03">
 </head>
 <body>
@@ -151,7 +151,7 @@
 
         <li class="commitment-card">
           <span class="commitment-icon" aria-hidden="true">
-            <img src="icons/commitment-icons/icono_innovacion.png"
+            <img src="public/Icons-/icono _cohete.png"
                  alt="" width="50" height="50" loading="lazy">
           </span>
           <h2>Innovación</h2>
@@ -257,7 +257,8 @@
         </h2>
         <p>Creamos y mantenemos espacios comunes, pensados para
            el bienestar y la conexión entre vecinos.</p>
-        <a href="propiedades.html#galeria" class="btn btn-outline">Ver galería</a>
+        <button type="button" class="btn btn-outline" id="open-gallery-btn"
+                aria-haspopup="dialog">Ver galería</button>
       </div>
 
     </section>
@@ -293,13 +294,6 @@
 
     <div class="footer-inner">
 
-      <div class="footer-brand">
-        <a href="#inicio" class="nav__logo" aria-label="Consorcio Activo — inicio">
-          <img src="icons/logoBLACK.png" alt="Consorcio Activo"
-               width="160" height="40" loading="lazy">
-        </a>
-      </div>
-
       <nav class="footer-nav" aria-label="Páginas del sitio">
         <ul role="list">
           <li><a href="index.html">Inicio</a></li>
@@ -334,6 +328,97 @@
     </p>
 
   </footer>
+
+  <!-- ── MODAL GALERÍA ──────────────────────────────────────── -->
+  <div id="gallery-modal" class="gallery-modal" role="dialog"
+       aria-modal="true" aria-label="Galería de espacios" aria-hidden="true">
+    <div class="gallery-modal-inner">
+      <button class="gallery-modal-close" id="gallery-modal-close"
+              aria-label="Cerrar galería">×</button>
+      <div class="gallery-carousel">
+        <div class="gallery-track" id="gallery-track">
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 1.png" alt="Galería imagen 1" loading="lazy"></div>
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 2.png" alt="Galería imagen 2" loading="lazy"></div>
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 3.png" alt="Galería imagen 3" loading="lazy"></div>
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 4.png" alt="Galería imagen 4" loading="lazy"></div>
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 5.png" alt="Galería imagen 5" loading="lazy"></div>
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 6.png" alt="Galería imagen 6" loading="lazy"></div>
+          <div class="gallery-slide"><img src="public/Galery-images/galeria 7.png" alt="Galería imagen 7" loading="lazy"></div>
+        </div>
+        <button class="gallery-btn gallery-btn--prev" id="gallery-prev" aria-label="Imagen anterior">&#8249;</button>
+        <button class="gallery-btn gallery-btn--next" id="gallery-next" aria-label="Imagen siguiente">&#8250;</button>
+      </div>
+      <div class="gallery-dots" id="gallery-dots">
+        <span class="gallery-dot gallery-dot--active" data-index="0"></span>
+        <span class="gallery-dot" data-index="1"></span>
+        <span class="gallery-dot" data-index="2"></span>
+        <span class="gallery-dot" data-index="3"></span>
+        <span class="gallery-dot" data-index="4"></span>
+        <span class="gallery-dot" data-index="5"></span>
+        <span class="gallery-dot" data-index="6"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── GALERÍA MODAL JS ────────────────────────────────────── -->
+  <script>
+  (function() {
+    const modal   = document.getElementById('gallery-modal');
+    const track   = document.getElementById('gallery-track');
+    const dots    = document.querySelectorAll('#gallery-dots .gallery-dot');
+    const btnOpen = document.getElementById('open-gallery-btn');
+    const btnClose= document.getElementById('gallery-modal-close');
+    const btnPrev = document.getElementById('gallery-prev');
+    const btnNext = document.getElementById('gallery-next');
+    const TOTAL   = 7;
+    let current   = 0;
+
+    const goTo = (idx) => {
+      current = ((idx % TOTAL) + TOTAL) % TOTAL;
+      track.scrollTo({ left: current * track.offsetWidth, behavior: 'smooth' });
+      dots.forEach((d, i) => d.classList.toggle('gallery-dot--active', i === current));
+    };
+
+    const openModal = () => {
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      goTo(0);
+    };
+
+    const closeModal = () => {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      btnOpen.focus();
+    };
+
+    btnOpen?.addEventListener('click', openModal);
+    btnClose?.addEventListener('click', closeModal);
+    btnPrev?.addEventListener('click', () => goTo(current - 1));
+    btnNext?.addEventListener('click', () => goTo(current + 1));
+    dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.index)));
+
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    document.addEventListener('keydown', (e) => {
+      if (!modal.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft')  goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    let scrollTimer;
+    track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const idx = Math.round(track.scrollLeft / track.offsetWidth);
+        if (idx !== current) { current = idx; dots.forEach((d,i) => d.classList.toggle('gallery-dot--active', i===current)); }
+      }, 50);
+    }, { passive: true });
+  })();
+  </script>
 
   <!-- ============================================================
        SCRIPTS — Web Components + Service Worker

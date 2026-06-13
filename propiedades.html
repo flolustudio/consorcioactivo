@@ -31,7 +31,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <!-- Preload imagen LCP -->
-  <link rel="preload" href="public/images/propiedades-hero.png" as="image" fetchpriority="high">
+  <link rel="preload" href="public/images/header-propiedades-ampliado.png" as="image" fetchpriority="high">
   <link rel="stylesheet" href="styles.css?v=20260603-03">
 </head>
 <body>
@@ -124,6 +124,33 @@
       </div>
     </section>
 
+    <!-- ── FILTROS ──────────────────────────────────────────────── -->
+    <div class="prop-filters" id="prop-filters" role="search" aria-label="Filtros de propiedades">
+      <div class="prop-filters-inner">
+        <span class="prop-filter-label">Filtrar:</span>
+        <select class="prop-filter-select" id="filter-tipo" aria-label="Tipo de propiedad">
+          <option value="">Tipo</option>
+          <option value="residencial">Departamento / Casa</option>
+          <option value="oficina">Oficina</option>
+          <option value="comercial">Local Comercial</option>
+        </select>
+        <select class="prop-filter-select" id="filter-ambientes" aria-label="Cantidad de ambientes">
+          <option value="">Ambientes</option>
+          <option value="1">1 ambiente</option>
+          <option value="2">2 ambientes</option>
+          <option value="3">3+ ambientes</option>
+        </select>
+        <select class="prop-filter-select" id="filter-dormitorios" aria-label="Dormitorios">
+          <option value="">Dormitorios</option>
+          <option value="1">1 dormitorio</option>
+          <option value="2">2 dormitorios</option>
+        </select>
+        <button type="button" class="prop-filter-reset" id="filter-reset">
+          Limpiar filtros
+        </button>
+      </div>
+    </div>
+
     <!-- ── PANEL DE PROPIEDADES ───────────────────────────────── -->
     <section class="prop-panel" id="prop-panel" aria-live="polite">
       <div class="inner">
@@ -146,34 +173,26 @@
       </div>
     </section>
 
-    <!-- ── CTA ──────────────────────────────────────────────── -->
-    <section class="contact-cta" aria-labelledby="cta-h">
-      <div class="contact-cta-content">
-        <h2 id="cta-h">¿Tenés dudas o querés<br>más información?</h2>
-        <p>Estamos para ayudarte</p>
-        <div class="contact-cta-actions">
-          <a href="contacto.html" class="btn btn-brand">Más información</a>
-          <a href="tel:+5492995880858" class="link-arrow">
-            Llamanos <span aria-hidden="true">›</span>
-          </a>
-        </div>
+    <!-- ── NEWSLETTER ──────────────────────────────────────────── -->
+    <section class="newsletter-section" aria-labelledby="newsletter-h">
+      <div class="newsletter-inner">
+        <span class="section-label">Mantente informado</span>
+        <h2 id="newsletter-h">¿Querés recibir<br>novedades de propiedades?</h2>
+        <p>Suscribite y te avisamos cuando haya nuevas unidades disponibles.</p>
+        <form class="newsletter-form" id="newsletter-form" novalidate>
+          <input type="email" class="newsletter-input" id="newsletter-email"
+                 placeholder="Tu correo electrónico" autocomplete="email" required
+                 aria-label="Correo electrónico">
+          <button type="submit" class="btn btn-brand">Suscribirme</button>
+        </form>
+        <p class="newsletter-disclaimer">Sin spam. Podés darte de baja cuando quieras.</p>
       </div>
-      <figure class="contact-cta-figure" aria-hidden="true">
-        <img src="public/images/contacto-contact-cta.png"
-             alt="" role="presentation" loading="lazy">
-      </figure>
     </section>
 
   </main>
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <a href="index.html" class="nav__logo" aria-label="Consorcio Activo — inicio">
-          <img src="icons/logoBLACK.png" alt="Consorcio Activo"
-               width="160" height="40" loading="lazy">
-        </a>
-      </div>
       <nav class="footer-nav" aria-label="Páginas del sitio">
         <ul role="list">
           <li><a href="index.html">Inicio</a></li>
@@ -254,14 +273,33 @@
         .scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // ── Render de cards ─────────────────────────────────────────
+    // ── Referencia a los filtros ────────────────────────────────
+    const selTipo        = document.getElementById('filter-tipo');
+    const selAmbientes   = document.getElementById('filter-ambientes');
+    const selDormitorios = document.getElementById('filter-dormitorios');
+    const btnReset       = document.getElementById('filter-reset');
+
+    // ── Render de cards con filtros ─────────────────────────────
     function renderCards() {
       const props = window.app.store.properties;
       if (!props) return;
 
-      const filtradas = props.filter(p => p.activa && p.tipo === filtroActivo);
+      const fTipo        = selTipo.value;
+      const fAmbientes   = parseInt(selAmbientes.value, 10) || 0;
+      const fDormitorios = parseInt(selDormitorios.value, 10) || 0;
 
-      counter.innerHTML = `Mostrando <strong>${filtradas.length}</strong> propiedad${filtradas.length !== 1 ? 'es' : ''}`;
+      let filtradas = props.filter(p => p.activa && p.tipo === filtroActivo);
+
+      // Aplicar filtros adicionales del bar
+      if (fTipo)        filtradas = filtradas.filter(p => p.tipo === fTipo);
+      if (fAmbientes)   filtradas = filtradas.filter(p => fAmbientes === 3
+        ? p.ambientes >= 3
+        : p.ambientes === fAmbientes);
+      if (fDormitorios) filtradas = filtradas.filter(p => p.dormitorios >= fDormitorios);
+
+      counter.innerHTML = filtradas.length > 0
+        ? `Mostrando <strong>${filtradas.length}</strong> propiedad${filtradas.length !== 1 ? 'es' : ''}`
+        : `<em>Sin propiedades que coincidan con los filtros.</em>`;
 
       grid.innerHTML = '';
       filtradas.forEach(p => {
@@ -272,6 +310,28 @@
         grid.appendChild(li);
       });
     }
+
+    // ── Escucha cambios en los filtros ──────────────────────────
+    [selTipo, selAmbientes, selDormitorios].forEach(sel =>
+      sel.addEventListener('change', renderCards)
+    );
+    btnReset?.addEventListener('click', () => {
+      selTipo.value = '';
+      selAmbientes.value = '';
+      selDormitorios.value = '';
+      renderCards();
+    });
+
+    // ── Newsletter (simple UX) ──────────────────────────────────
+    document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      if (!email) return;
+      const btn = e.target.querySelector('[type="submit"]');
+      btn.textContent = '¡Listo!';
+      btn.disabled = true;
+      setTimeout(() => { btn.textContent = 'Suscribirme'; btn.disabled = false; }, 3000);
+    });
 
     // ── Tabs ────────────────────────────────────────────────────
     tabs.forEach(tab => {

@@ -3,8 +3,9 @@
  * Única fuente de datos de propiedades (ES module).
  *
  * Convención de imágenes:
- *   - 1 foto:  imagenes: ['public/images/prop-{id}.jpg']
- *   - N fotos: imagenes: ['public/images/prop-{id}.jpg', 'public/images/prop-{id}b.jpg', ...]
+ *   - Carpeta: public/properties/id{n}/
+ *   - Primera imagen del array = portada de la card
+ *   - El resto aparece en el carrusel
  *
  * Para agregar/editar/quitar propiedades ver GUIA-PROPIEDADES.md
  */
@@ -15,49 +16,79 @@ const properties = [
     "titulo": "Departamento 2 ambientes",
     "tipo": "residencial",
     "ubicacion": "Leloir 542, Neuquén",
-    "precio": 860000,
-    "superficie": 55,
+    "precio": 0,
+    "superficie": 42,
     "ambientes": 2,
+    "dormitorios": 1,
     "banos": 1,
-    "features": ["Terraza", "Pet Friendly"],
+    "features": ["Terraza", "Balcón", "Sin mascotas", "Piso 6"],
     "estado": "disponible",
     "activa": true,
     "imagenes": [
-      "public/images/prop-1.png",
-      "public/images/prop-1b.png",
-      "public/images/prop-1c.png"
+      "public/properties/id1/portada propiedad 2.png",
+      "public/properties/id1/balcon propiedad 2.jpg",
+      "public/properties/id1/baño propiedad 2 (1).jpg",
+      "public/properties/id1/baño propiedad 2.jpg",
+      "public/properties/id1/cocina propiedad 2.jpg",
+      "public/properties/id1/habitacion principal propiedad 2 (1).jpg",
+      "public/properties/id1/habitacion principal propiedad 2.jpg",
+      "public/properties/id1/ingreso propiedad 2.jpg"
     ],
-    "descripcion": "Departamento de 2 ambientes con terraza privada y orientación al norte. Luminoso, amueblado y listo para habitar. Acepta mascotas."
+    "descripcion": "Departamento de 2 ambientes con 1 dormitorio, terraza y balcón en living y habitación. Piso 6. Sin mascotas."
   },
   {
     "id": 2,
-    "titulo": "Monoambiente",
+    "titulo": "Departamento 3 ambientes",
     "tipo": "residencial",
     "ubicacion": "Leloir 430, Neuquén",
-    "precio": 560000,
-    "superficie": 32,
-    "ambientes": 1,
+    "precio": 0,
+    "superficie": 68,
+    "ambientes": 3,
+    "dormitorios": 2,
     "banos": 1,
-    "features": ["Terraza", "Pet Friendly"],
-    "estado": "alquilada",
+    "features": ["Terraza", "Balcón", "Baño con bañera", "Sin mascotas", "Piso 2"],
+    "estado": "disponible",
     "activa": true,
-    "imagenes": ["public/images/prop-2.png"],
-    "descripcion": "Monoambiente moderno con terraza. Excelente distribución, cocina integrada y baño completo. Edificio con amenidades."
+    "imagenes": [
+      "public/properties/id2/Portada - propiedad 1.png",
+      "public/properties/id2/baño propiedad 1 (1).jpg",
+      "public/properties/id2/baño propiedad 1.jpg",
+      "public/properties/id2/cocina propiedad 1.jpg",
+      "public/properties/id2/habitacion dos propiedad 1 (1).jpg",
+      "public/properties/id2/habitacion dos propiedad 1.jpg",
+      "public/properties/id2/habitacion principal propiedad 1 (1).jpg",
+      "public/properties/id2/habitacion principal propiedad 1.jpg",
+      "public/properties/id2/ingreso propiedad 1.jpg",
+      "public/properties/id2/living comedor propiedad 1.jpg"
+    ],
+    "descripcion": "Departamento de 3 ambientes con 2 dormitorios, baño con bañera, terraza y balcón. Piso 2. Sin mascotas."
   },
   {
     "id": 3,
-    "titulo": "Departamento 2 ambientes",
+    "titulo": "Departamento 3 ambientes",
     "tipo": "residencial",
     "ubicacion": "Av. Argentina 840, Neuquén",
-    "precio": 910000,
-    "superficie": 58,
-    "ambientes": 2,
+    "precio": 0,
+    "superficie": 72,
+    "ambientes": 3,
+    "dormitorios": 2,
     "banos": 1,
-    "features": ["Terraza", "Pet Friendly"],
-    "estado": "alquilada",
+    "features": ["Terraza", "Balcón", "Baño con bañera", "Sin mascotas", "Piso 8"],
+    "estado": "disponible",
     "activa": true,
-    "imagenes": ["public/images/prop-3.png"],
-    "descripcion": "Amplio departamento de 2 ambientes sobre Av. Argentina. Piso alto, excelente vista y luminosidad. Pet friendly."
+    "imagenes": [
+      "public/properties/id3/portada propiedad 3.png",
+      "public/properties/id3/balcon propiedad 3.jpg",
+      "public/properties/id3/baño propiedad 3.jpg",
+      "public/properties/id3/cocina propiedad 3.jpg",
+      "public/properties/id3/detalle comedor propiedad 3.jpg",
+      "public/properties/id3/habitacion 2 propiedad 3.jpg",
+      "public/properties/id3/habitacion principal propiedad 3 (1).jpg",
+      "public/properties/id3/habitacion principal propiedad 3 (2).jpg",
+      "public/properties/id3/habitacion principal propiedad 3.jpg",
+      "public/properties/id3/living comedor propiedad 3.jpg"
+    ],
+    "descripcion": "Departamento de 3 ambientes con 2 dormitorios, baño con bañera, terraza y balcón. Piso 8 con excelente vista. Sin mascotas."
   },
   {
     "id": 4,
@@ -69,7 +100,7 @@ const properties = [
     "ambientes": 1,
     "banos": 1,
     "features": ["Terraza", "Pet Friendly"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-4.png"],
     "descripcion": "Departamento de 1 ambiente con balcón. Ideal para profesionales o estudiantes. Excelente ubicación en el centro."
@@ -84,7 +115,7 @@ const properties = [
     "ambientes": 3,
     "banos": 2,
     "features": ["Terraza", "Pet Friendly"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-5.png"],
     "descripcion": "Gran departamento de 3 ambientes con 2 baños y terraza propia. Ideal para familias. Edificio con seguridad 24hs."
@@ -99,7 +130,7 @@ const properties = [
     "ambientes": 2,
     "banos": 1,
     "features": ["Terraza", "Pet Friendly"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-6.png"],
     "descripcion": "Departamento de 2 ambientes en barrio tranquilo. Diseño moderno, excelente terminación. Terraza con parrilla."
@@ -114,7 +145,7 @@ const properties = [
     "ambientes": 1,
     "banos": 1,
     "features": ["Internet", "Sala reuniones"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-7.jpg"],
     "descripcion": "Oficina equipada en el centro de Neuquén. Incluye internet de alta velocidad y acceso a sala de reuniones."
@@ -129,7 +160,7 @@ const properties = [
     "ambientes": 2,
     "banos": 1,
     "features": ["Internet", "Sala privada", "Recepción"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-8.jpg"],
     "descripcion": "Suite ejecutiva con sala privada de reuniones, recepción y vista panorámica al centro."
@@ -159,7 +190,7 @@ const properties = [
     "ambientes": 1,
     "banos": 1,
     "features": ["Vidriera", "Contrafrente"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-10.jpg"],
     "descripcion": "Local comercial con vidriera sobre calle de alto tránsito. Contrafrente para depósito. Ideal para retail o servicios."
@@ -174,7 +205,7 @@ const properties = [
     "ambientes": 1,
     "banos": 2,
     "features": ["Depósito", "Alta circulación"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-11.jpg"],
     "descripcion": "Local amplio sobre avenida principal con depósito incluido. Alta circulación de público. 2 baños."
@@ -189,7 +220,7 @@ const properties = [
     "ambientes": 1,
     "banos": 1,
     "features": ["Seguridad", "Estacionamiento"],
-    "estado": "disponible",
+    "estado": "alquilada",
     "activa": true,
     "imagenes": ["public/images/prop-12.jpg"],
     "descripcion": "Local en galería comercial del centro. Seguridad 24hs y estacionamiento disponible para clientes."

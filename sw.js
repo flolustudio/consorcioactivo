@@ -6,15 +6,15 @@
  *
  * ── Workflow para agregar/sacar propiedades ─────────────────────────────────
  *  1. Editá data/properties.js (agregar o eliminar el objeto).
- *  2. Copiá/borrá la imagen en public/images/prop-{id}.{ext}.
+ *  2. Guardá las imágenes en public/properties/id{n}/ (o public/images/ para legado).
  *  3. Actualizá PROP_IMAGES abajo: agregá o quitá la línea correspondiente.
- *  4. Incrementá CACHE_VERSION (ej: 'ca-v26' → 'ca-v27').
+ *  4. Incrementá CACHE_VERSION (ej: 'ca-v27' → 'ca-v28').
  *  5. Commit + push → GitHub Pages sirve la nueva versión; el SW viejo
  *     se reemplaza automáticamente en la siguiente visita.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v27';
+const CACHE_VERSION  = 'ca-v29';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
@@ -29,13 +29,38 @@ const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
  * Al sacarla: eliminar todas sus líneas.
  */
 const PROP_IMAGES = [
-  // prop-1 — 3 fotos (carrusel demo)
-  '/public/images/prop-1.png',
-  '/public/images/prop-1b.png',
-  '/public/images/prop-1c.png',
-  // resto — 1 foto cada una
-  '/public/images/prop-2.png',
-  '/public/images/prop-3.png',
+  // id1 — 8 fotos (public/properties/id1/)
+  '/public/properties/id1/portada propiedad 2.png',
+  '/public/properties/id1/balcon propiedad 2.jpg',
+  '/public/properties/id1/baño propiedad 2 (1).jpg',
+  '/public/properties/id1/baño propiedad 2.jpg',
+  '/public/properties/id1/cocina propiedad 2.jpg',
+  '/public/properties/id1/habitacion principal propiedad 2 (1).jpg',
+  '/public/properties/id1/habitacion principal propiedad 2.jpg',
+  '/public/properties/id1/ingreso propiedad 2.jpg',
+  // id2 — 10 fotos (public/properties/id2/)
+  '/public/properties/id2/Portada - propiedad 1.png',
+  '/public/properties/id2/baño propiedad 1 (1).jpg',
+  '/public/properties/id2/baño propiedad 1.jpg',
+  '/public/properties/id2/cocina propiedad 1.jpg',
+  '/public/properties/id2/habitacion dos propiedad 1 (1).jpg',
+  '/public/properties/id2/habitacion dos propiedad 1.jpg',
+  '/public/properties/id2/habitacion principal propiedad 1 (1).jpg',
+  '/public/properties/id2/habitacion principal propiedad 1.jpg',
+  '/public/properties/id2/ingreso propiedad 1.jpg',
+  '/public/properties/id2/living comedor propiedad 1.jpg',
+  // id3 — 10 fotos (public/properties/id3/)
+  '/public/properties/id3/portada propiedad 3.png',
+  '/public/properties/id3/balcon propiedad 3.jpg',
+  '/public/properties/id3/baño propiedad 3.jpg',
+  '/public/properties/id3/cocina propiedad 3.jpg',
+  '/public/properties/id3/detalle comedor propiedad 3.jpg',
+  '/public/properties/id3/habitacion 2 propiedad 3.jpg',
+  '/public/properties/id3/habitacion principal propiedad 3 (1).jpg',
+  '/public/properties/id3/habitacion principal propiedad 3 (2).jpg',
+  '/public/properties/id3/habitacion principal propiedad 3.jpg',
+  '/public/properties/id3/living comedor propiedad 3.jpg',
+  // id4–id12 — 1 foto cada una
   '/public/images/prop-4.png',
   '/public/images/prop-5.png',
   '/public/images/prop-6.png',
@@ -57,12 +82,12 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260603-03',
-  '/app.js?v=20260603-03',
-  '/components/AppNav.js?v=20260603-03',
-  '/components/PropertyCard.js?v=20260603-03',
-  '/components/ContactForm.js?v=20260603-03',
-  '/services/PropertyStore.js?v=20260603-03',
+  '/styles.css?v=20260613-01',
+  '/app.js?v=20260613-01',
+  '/components/AppNav.js?v=20260613-01',
+  '/components/PropertyCard.js?v=20260613-01',
+  '/components/ContactForm.js?v=20260613-01',
+  '/services/PropertyStore.js?v=20260613-01',
   '/services/API.js',
   '/services/Properties.js',
   '/data/properties.js',

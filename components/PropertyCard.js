@@ -27,13 +27,20 @@ class PropertyCard extends HTMLElement {
     const p  = window.app?.store?.properties?.find(x => x.id === id);
     if (!p) return;
 
-    const isAlquilada = p.estado === 'alquilada';
-    const precioFmt   = '$' + p.precio.toLocaleString('es-AR') + '/mes';
+    const isAlquilada  = p.estado === 'alquilada';
+    const esConsulta   = !p.precio || p.precio === 0;
+    const precioFmt    = esConsulta
+      ? 'Consultar precio'
+      : '$' + p.precio.toLocaleString('es-AR') + '/mes';
 
-    // Specs: superficie, baños, features
+    const WPP_NUM  = '5492995880858';
+    const wppMsg   = encodeURIComponent(`Hola! Consulto por la propiedad: ${p.titulo} en ${p.ubicacion}`);
+
+    // Specs: superficie, dormitorios, baños, features
     const specItems = [
-      p.superficie ? `${p.superficie}m²` : '',
-      p.banos      ? `${p.banos} Baño${p.banos !== 1 ? 's' : ''}` : '',
+      p.superficie    ? `${p.superficie}m²` : '',
+      p.dormitorios   ? `${p.dormitorios} Dorm.` : '',
+      p.banos         ? `${p.banos} Baño${p.banos !== 1 ? 's' : ''}` : '',
       ...(p.features || []).map(f => this._esc(f)),
     ].filter(Boolean);
 
@@ -46,7 +53,11 @@ class PropertyCard extends HTMLElement {
 
     const cta = isAlquilada
       ? `<span class="btn btn-sm btn-alquilada">Alquilada</span>`
-      : `<a href="contacto.html?id=${p.id}&tipo=${p.tipo}" class="btn btn-brand btn-sm">Ver más</a>`;
+      : `<a href="https://wa.me/${WPP_NUM}?text=${wppMsg}"
+            class="btn btn-brand btn-sm"
+            target="_blank" rel="noopener noreferrer">
+          Consultar por WPP
+         </a>`;
 
     // Soporte para imagenes[] (nuevo) con fallback a imagen (legado)
     const images = Array.isArray(p.imagenes) && p.imagenes.length
@@ -67,7 +78,7 @@ class PropertyCard extends HTMLElement {
         ${specsHTML ? `<div class="property-card-specs">${specsHTML}</div>` : ''}
         <div class="property-card-footer">
           <div class="property-price-block">
-            <span class="property-price-label">Desde</span>
+            ${esConsulta ? '' : '<span class="property-price-label">Desde</span>'}
             <p class="property-price">${precioFmt}</p>
           </div>
           ${cta}
