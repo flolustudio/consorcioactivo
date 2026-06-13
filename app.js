@@ -18,18 +18,29 @@ if ('serviceWorker' in navigator) {
 
   /**
    * Recarga automática cuando un nuevo SW toma el control.
-   * Patrón estándar para evitar que el usuario vea datos cacheados
-   * por el SW anterior. Solo recarga una vez (guarda con flag).
+   * Dos mecanismos redundantes para cubrir todos los casos:
    *
-   * Flujo: nuevo SW instala → skipWaiting() → activa → clients.claim()
-   * → dispara 'controllerchange' aquí → reload → página fresca del nuevo cache.
+   * 1. 'controllerchange' — dispara cuando el nuevo SW reclama el cliente.
+   *    Funciona a partir de la segunda visita (cuando corre el nuevo app.js).
+   *
+   * 2. Mensaje 'SW_UPDATED' — el SW postea a todos los clientes al activarse.
+   *    Funciona incluso si el cliente tiene el app.js VIEJO cargado, porque
+   *    'message' en navigator.serviceWorker existe desde siempre.
+   *
+   * Ambos usan el mismo flag _swRefreshing para evitar doble reload.
    */
   let _swRefreshing = false;
-  navigator.serviceWorker.addEventListener('controllerchange', () => {
+  const _swReload = () => {
     if (!_swRefreshing) {
       _swRefreshing = true;
       window.location.reload();
     }
+  };
+
+  navigator.serviceWorker.addEventListener('controllerchange', _swReload);
+
+  navigator.serviceWorker.addEventListener('message', event => {
+    if (event.data?.type === 'SW_UPDATED') _swReload();
   });
 }
 

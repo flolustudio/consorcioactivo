@@ -1,6 +1,6 @@
 /**
  * sw.js — Consorcio Activo Service Worker
- * Vanilla Web · Estrategia Cache-First para assets, Network-First para HTML
+ * Vanilla Web · Cache-First para assets, Network-First para HTML y /data/
  *
  * CACHE_VERSION: incrementar en cada deploy para forzar actualización en clientes.
  *
@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v32';
+const CACHE_VERSION  = 'ca-v33';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
@@ -82,15 +82,16 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260613-03',
-  '/app.js?v=20260613-03',
-  '/components/AppNav.js?v=20260613-03',
-  '/components/PropertyCard.js?v=20260613-03',
-  '/components/ContactForm.js?v=20260613-03',
-  '/services/PropertyStore.js?v=20260613-03',
+  '/styles.css?v=20260613-04',
+  '/app.js?v=20260613-04',
+  '/components/AppNav.js?v=20260613-04',
+  '/components/PropertyCard.js?v=20260613-04',
+  '/components/ContactForm.js?v=20260613-04',
+  '/services/PropertyStore.js?v=20260613-04',
   '/services/API.js',
   '/services/Properties.js',
-  '/data/properties.js',
+  /* data/properties.js se excluye del precache — se sirve siempre
+     Network-First para garantizar datos frescos en cada visita */
   '/public/images/header-contacto-ampliadov1.jpg',
   '/manifest.webmanifest',
   '/icons/logoBLACK.png',
@@ -107,7 +108,7 @@ self.addEventListener('install', event => {
   );
 });
 
-/* ── Activate: limpia cachés obsoletos ───────────────────── */
+/* ── Activate: limpia cachés obsoletos y notifica a clientes ── */
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
@@ -117,6 +118,20 @@ self.addEventListener('activate', event => {
           .map(key => caches.delete(key))
       ))
       .then(() => self.clients.claim())
+      .then(() => {
+        /**
+         * Avisa a todas las pestañas abiertas que hay un SW nuevo.
+         * app.js escucha este mensaje y recarga la página.
+         * Funciona incluso con versiones viejas de app.js que no tienen
+         * el listener de 'controllerchange'.
+         */
+        return self.clients.matchAll({ type: 'window' });
+      })
+      .then(clients => {
+        clients.forEach(client =>
+          client.postMessage({ type: 'SW_UPDATED', version: CACHE_VERSION })
+        );
+      })
   );
 });
 
@@ -128,13 +143,15 @@ self.addEventListener('fetch', event => {
   // Solo procesa peticiones del mismo origen
   if (url.origin !== self.location.origin) return;
 
-  const isHTML = request.headers.get('Accept')?.includes('text/html');
+  const isHTML    = request.headers.get('Accept')?.includes('text/html');
+  const isData    = url.pathname.startsWith('/data/');
 
-  if (isHTML) {
-    // Network-First para páginas HTML (contenido siempre fresco)
-    event.respondWith(networkFirst(request, CACHE_PAGES));
+  if (isHTML || isData) {
+    // Network-First para HTML y /data/ — siempre contenido fresco de la red.
+    // El fallback offline usa caché si existe.
+    event.respondWith(networkFirst(request, isData ? CACHE_STATIC : CACHE_PAGES));
   } else {
-    // Cache-First para assets (CSS, JS, imágenes, fuentes)
+    // Cache-First para assets estáticos (CSS, JS versionados, imágenes, fuentes)
     event.respondWith(cacheFirst(request, CACHE_STATIC));
   }
 });

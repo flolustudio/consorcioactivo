@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <!-- Preload imagen LCP -->
   <link rel="preload" href="public/images/header-propiedades-ampliado.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260613-03">
+  <link rel="stylesheet" href="styles.css?v=20260613-04">
 </head>
 <body>
 
@@ -222,15 +222,15 @@
     </p>
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260613-03"></script>
-  <script type="module" src="components/PropertyCard.js?v=20260613-03"></script>
-  <script type="module" src="app.js?v=20260613-03"></script>
+  <script type="module" src="components/AppNav.js?v=20260613-04"></script>
+  <script type="module" src="components/PropertyCard.js?v=20260613-04"></script>
+  <script type="module" src="app.js?v=20260613-04"></script>
 
   <!-- Inicialización de propiedades -->
   <script type="module">
     // Flujo de datos: propiedades.html → API.js → data/properties.js → PropertyStore → PropertyCard
     // Para agregar/editar/sacar una propiedad, solo tocar data/properties.js + sw.js (PROP_IMAGES).
-    import PropertyStore      from './services/PropertyStore.js?v=20260613-03';
+    import PropertyStore      from './services/PropertyStore.js?v=20260613-04';
     import { loadProperties } from './services/Properties.js';
 
     // Exponer store globalmente para PropertyCard
