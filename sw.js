@@ -14,9 +14,13 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v33';
+const CACHE_VERSION  = 'ca-v34';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
+const CACHE_DATA     = `${CACHE_VERSION}-data`;
+
+/* Rutas de datos: nunca van al precache ni se sirven Cache-First. */
+const DATA_PATH_PREFIX = '/data/';
 
 /**
  * Imágenes de propiedades individuales.
@@ -82,14 +86,14 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260613-04',
-  '/app.js?v=20260613-04',
-  '/components/AppNav.js?v=20260613-04',
-  '/components/PropertyCard.js?v=20260613-04',
-  '/components/ContactForm.js?v=20260613-04',
-  '/services/PropertyStore.js?v=20260613-04',
-  '/services/API.js',
-  '/services/Properties.js',
+  '/styles.css?v=20260613-05',
+  '/app.js?v=20260613-05',
+  '/components/AppNav.js?v=20260613-05',
+  '/components/PropertyCard.js?v=20260613-05',
+  '/components/ContactForm.js?v=20260613-05',
+  '/services/PropertyStore.js?v=20260613-05',
+  '/services/API.js?v=20260613-05',
+  '/services/Properties.js?v=20260613-05',
   /* data/properties.js se excluye del precache — se sirve siempre
      Network-First para garantizar datos frescos en cada visita */
   '/public/images/header-contacto-ampliadov1.jpg',
@@ -117,6 +121,7 @@ self.addEventListener('activate', event => {
           .filter(key => !key.startsWith(CACHE_VERSION))
           .map(key => caches.delete(key))
       ))
+      .then(() => purgeDataFromCaches())
       .then(() => self.clients.claim())
       .then(() => {
         /**
@@ -144,12 +149,21 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin) return;
 
   const isHTML    = request.headers.get('Accept')?.includes('text/html');
-  const isData    = url.pathname.startsWith('/data/');
+  const isData    = url.pathname.startsWith(DATA_PATH_PREFIX);
 
-  if (isHTML || isData) {
-    // Network-First para HTML y /data/ — siempre contenido fresco de la red.
+  if (isData) {
+    // Datos: red fresca, bypass del HTTP cache, fallback offline separado.
+    event.respondWith(networkFirst(request, CACHE_DATA, {
+      cacheMode: 'reload',
+      fallbackToIndex: false,
+    }));
+  } else if (isHTML) {
+    // Network-First para HTML — siempre contenido fresco de la red.
     // El fallback offline usa caché si existe.
-    event.respondWith(networkFirst(request, isData ? CACHE_STATIC : CACHE_PAGES));
+    event.respondWith(networkFirst(request, CACHE_PAGES, {
+      cacheMode: 'reload',
+      fallbackToIndex: true,
+    }));
   } else {
     // Cache-First para assets estáticos (CSS, JS versionados, imágenes, fuentes)
     event.respondWith(cacheFirst(request, CACHE_STATIC));
@@ -175,12 +189,13 @@ async function cacheFirst(request, cacheName) {
 }
 
 /* ── Estrategia: Network-First ────────────────────────────── */
-async function networkFirst(request, cacheName) {
+async function networkFirst(request, cacheName, options = {}) {
   try {
-    const response = await fetch(request);
+    const fetchRequest = requestWithCacheMode(request, options.cacheMode);
+    const response = await fetch(fetchRequest);
     if (response.ok) {
       const cache = await caches.open(cacheName);
-      cache.put(request, response.clone());
+      await cache.put(request, response.clone());
     }
     return response;
   } catch {
@@ -188,8 +203,37 @@ async function networkFirst(request, cacheName) {
     const cached = await caches.match(request);
     if (cached) return cached;
 
-    // Fallback a index.html para páginas no cacheadas
-    const fallback = await caches.match('/index.html');
-    return fallback || new Response('', { status: 503 });
+    if (options.fallbackToIndex) {
+      // Fallback a index.html para páginas no cacheadas
+      const fallback = await caches.match('/index.html');
+      if (fallback) return fallback;
+    }
+
+    return new Response('', { status: 503 });
   }
+}
+
+function requestWithCacheMode(request, cacheMode) {
+  if (!cacheMode) return request;
+
+  try {
+    return new Request(request, { cache: cacheMode });
+  } catch {
+    return request;
+  }
+}
+
+/* Elimina copias viejas de /data/ aunque hayan quedado en caches anteriores. */
+async function purgeDataFromCaches() {
+  const keys = await caches.keys();
+  await Promise.all(keys.map(async key => {
+    const cache = await caches.open(key);
+    const requests = await cache.keys();
+    const dataRequests = requests.filter(request => {
+      const url = new URL(request.url);
+      return url.origin === self.location.origin && url.pathname.startsWith(DATA_PATH_PREFIX);
+    });
+
+    await Promise.all(dataRequests.map(request => cache.delete(request)));
+  }));
 }
