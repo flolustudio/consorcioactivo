@@ -13,6 +13,8 @@ const NAV_LINKS = [
   { id: 'nosotros',     label: 'Nosotros',     href: 'nosotros.html'    },
   { id: 'propiedades',  label: 'Propiedades',  href: 'propiedades.html' },
   { id: 'soporte',      label: 'Soporte',      href: 'soporte.html'     },
+  /* Solo visible en el dropdown mobile — oculto en desktop vía CSS */
+  { id: 'contacto',     label: 'Contáctanos',  href: 'contacto.html',   mobileOnly: true },
 ];
 
 class AppNav extends HTMLElement {
@@ -46,9 +48,10 @@ class AppNav extends HTMLElement {
   render() {
     const current = this.getAttribute('current') ?? 'home';
     const logoHref = current === 'home' ? '#inicio' : 'index.html';
-    const links = NAV_LINKS.map(({ id, label, href }) => {
-      const active = id === current ? ' aria-current="page"' : '';
-      return `<li><a href="${href}"${active}>${label}</a></li>`;
+    const links = NAV_LINKS.map(({ id, label, href, mobileOnly }) => {
+      const active   = id === current ? ' aria-current="page"' : '';
+      const liClass  = mobileOnly ? ' class="nav-link--mobile"' : '';
+      return `<li${liClass}><a href="${href}"${active}>${label}</a></li>`;
     }).join('\n        ');
     const ctaCurrent = current === 'contacto' ? ' aria-current="page"' : '';
 

@@ -382,13 +382,39 @@
     background: var(--surface-0);
     border-bottom: 1px solid var(--border);
     padding: var(--sp-4) var(--gutter);
-    gap: var(--sp-4);
+    gap: 0;
     z-index: 99;
     margin-left: 0;
     transform: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    animation: navSlideDown 0.22s var(--ease) both;
   }
-  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-links a { font-size: 1rem; border-bottom-color: transparent; }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-links a {
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-bottom-color: transparent;
+    border-bottom: 1px solid var(--border);
+    padding-block: 0.875rem; /* ≥ 44px touch target */
+    display: block;
+  }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-links li:last-child a {
+    border-bottom: none;
+  }
   .nav:has(.nav-toggle[aria-expanded="true"]) .nav-cta { display: none; }
+
+  /* Enlace de Contáctanos — solo visible en el dropdown mobile */
+  .nav-link--mobile { display: none; }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-link--mobile { display: list-item; }
+  .nav:has(.nav-toggle[aria-expanded="true"]) .nav-link--mobile a {
+    color: var(--brand);
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes navSlideDown {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
 
   /* ================================================================
@@ -1444,7 +1470,7 @@
     border-radius: 8px;
     background-color: #fafafa;
     font-family: var(--font-body);
-    font-size: 0.95rem;
+    font-size: 1rem; /* ≥16px previene zoom automático en iOS */
     color: var(--text-primary);
     outline: none;
     transition: border-color var(--t-fast) var(--ease),
@@ -2596,6 +2622,20 @@
     .mission-figure { min-height: 280px; }
     .mission-content { padding: var(--sp-7) var(--gutter); }
 
+    /* Contacto — canales apilados en tablet */
+    .contacto-canales-grid {
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .contacto-canal {
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding: var(--sp-3) 0;
+    }
+    .contacto-canal--last { border-bottom: none; }
+
+    .contacto-form-grid { grid-template-columns: 1fr; gap: var(--sp-6); }
+
     .contact-page-inner {
       grid-template-columns: 1fr;
     }
@@ -2651,14 +2691,23 @@
     .prop-panel-nav { justify-content: center; }
   }
 
-  /* mobile ≤ 600px */
-  @media (width < 600px) {
-
+  /* hamburger nav ≤ 768px */
+  @media (width < 768px) {
     .nav-links  { display: none; }
     .nav-cta    { display: none; }
     .nav-toggle { display: flex; }
+  }
+
+  /* mobile ≤ 600px */
+  @media (width < 600px) {
 
     .properties-grid { grid-template-columns: 1fr; }
+
+    /* Hero index — usar cover en portrait para que la imagen no quede enana */
+    .hero--inicio {
+      background-size: cover;
+      background-position: center 30%;
+    }
 
     .footer-inner { flex-direction: column; align-items: center; gap: var(--sp-5); }
     .footer-nav ul, .footer-legal ul { align-items: center; }
@@ -2757,6 +2806,13 @@
     .prop-tab:first-child { padding-left: 0; }
     .prop-panel-nav { flex-direction: column; }
     .property-card-footer { flex-direction: column; align-items: flex-start; gap: var(--sp-2); }
+
+    /* Formulario de contacto */
+    .contacto-form-footer { justify-content: stretch; }
+    .contacto-submit { width: 100%; justify-content: center; }
+
+    /* Hero propiedades — centrar mejor en portrait */
+    .hero--propiedades { background-position: 60% center; }
   }
 
   /* Prefers reduced motion — accesibilidad */
@@ -3035,8 +3091,20 @@
   .prop-filter-reset:hover { color: var(--text-primary); }
 
   @media (width < 600px) {
-    .prop-filters-inner { gap: var(--sp-1); }
-    .prop-filter-select { font-size: 0.82rem; }
+    /* Filtros — columna vertical táctil */
+    .prop-filters-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--sp-2);
+    }
+    .prop-filter-select {
+      font-size: 1rem; /* ≥16px → no iOS zoom */
+      padding-block: 0.65rem;
+    }
+    .prop-filter-reset {
+      margin-left: 0;
+      align-self: flex-end;
+    }
     .newsletter-form { flex-direction: column; }
     .newsletter-input { min-width: unset; width: 100%; }
   }

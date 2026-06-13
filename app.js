@@ -15,6 +15,22 @@ if ('serviceWorker' in navigator) {
       .register('/sw.js')
       .catch(() => { /* silencioso en desarrollo */ });
   });
+
+  /**
+   * Recarga automática cuando un nuevo SW toma el control.
+   * Patrón estándar para evitar que el usuario vea datos cacheados
+   * por el SW anterior. Solo recarga una vez (guarda con flag).
+   *
+   * Flujo: nuevo SW instala → skipWaiting() → activa → clients.claim()
+   * → dispara 'controllerchange' aquí → reload → página fresca del nuevo cache.
+   */
+  let _swRefreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!_swRefreshing) {
+      _swRefreshing = true;
+      window.location.reload();
+    }
+  });
 }
 
 /* ── Botón flotante WhatsApp — visible en todas las páginas ── */

@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v30';
+const CACHE_VERSION  = 'ca-v32';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
@@ -82,12 +82,12 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260613-01',
-  '/app.js?v=20260613-01',
-  '/components/AppNav.js?v=20260613-01',
-  '/components/PropertyCard.js?v=20260613-01',
-  '/components/ContactForm.js?v=20260613-01',
-  '/services/PropertyStore.js?v=20260613-01',
+  '/styles.css?v=20260613-03',
+  '/app.js?v=20260613-03',
+  '/components/AppNav.js?v=20260613-03',
+  '/components/PropertyCard.js?v=20260613-03',
+  '/components/ContactForm.js?v=20260613-03',
+  '/services/PropertyStore.js?v=20260613-03',
   '/services/API.js',
   '/services/Properties.js',
   '/data/properties.js',
