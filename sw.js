@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v29';
+const CACHE_VERSION  = 'ca-v30';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 
@@ -91,6 +91,7 @@ const PRECACHE_ASSETS = [
   '/services/API.js',
   '/services/Properties.js',
   '/data/properties.js',
+  '/public/images/header-contacto-ampliadov1.jpg',
   '/manifest.webmanifest',
   '/icons/logoBLACK.png',
   '/icons/favicon.svg',

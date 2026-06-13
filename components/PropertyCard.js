@@ -34,6 +34,8 @@ class PropertyCard extends HTMLElement {
       : '$' + p.precio.toLocaleString('es-AR') + '/mes';
 
     const WPP_NUM  = '5492995880858';
+    // encodeURIComponent produce solo chars URL-safe (%XX, alfanum, -_.!~*'())
+    // ninguno es HTML-especial → inserción en href dentro de innerHTML es segura.
     const wppMsg   = encodeURIComponent(`Hola! Consulto por la propiedad: ${p.titulo} en ${p.ubicacion}`);
 
     // Specs: superficie, dormitorios, baños, features
