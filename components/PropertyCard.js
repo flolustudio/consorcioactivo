@@ -90,6 +90,7 @@ class PropertyCard extends HTMLElement {
       </div>`;
 
     if (images.length > 1) this._initCarousel();
+    this._initLightbox(p.id);
   }
 
   /* ── HTML de imagen simple ───────────────────────────────── */
@@ -149,9 +150,11 @@ class PropertyCard extends HTMLElement {
     const dots   = this.querySelectorAll('.carousel-dot');
     const total  = slides.length;
     let current  = 0;
+    this._carouselCurrent = 0; // compartido con _initLightbox
 
     const goTo = (idx) => {
       current = ((idx % total) + total) % total;
+      this._carouselCurrent = current;
       track.scrollTo({ left: current * track.offsetWidth, behavior: 'smooth' });
       dots.forEach((d, i) => d.classList.toggle('carousel-dot--active', i === current));
     };
@@ -178,10 +181,36 @@ class PropertyCard extends HTMLElement {
         const idx = Math.round(track.scrollLeft / track.offsetWidth);
         if (idx !== current) {
           current = idx;
+          this._carouselCurrent = idx;
           dots.forEach((d, i) => d.classList.toggle('carousel-dot--active', i === current));
         }
       }, 50);
     }, { passive: true });
+  }
+
+  /* ── Lightbox: abre el visor de fotos al clickear la imagen ── */
+  _initLightbox(propId) {
+    if (!window.propLightbox) return; // solo en propiedades.html
+
+    const figure = this.querySelector('.property-card-img');
+    if (!figure) return;
+
+    // Detectar drag vs click (no abrir el lightbox si el usuario arrastró)
+    let _startX = 0;
+    figure.addEventListener('pointerdown', e => { _startX = e.clientX; }, { passive: true });
+
+    figure.addEventListener('click', e => {
+      // Ignorar si fue un arrastre (swipe)
+      if (Math.abs(e.clientX - _startX) > 8) return;
+      // Ignorar clicks en botones de carrusel y dots
+      if (e.target.closest('button, .carousel-dots')) return;
+
+      // Asegurar animación de entrada visible (IntersectionObserver)
+      this.closest('[class*="js-animate"]')?.classList.add('is-visible');
+
+      const startIdx = this._carouselCurrent ?? 0;
+      window.propLightbox.open(propId, startIdx);
+    });
   }
 
   /* ── Utilidad XSS ───────────────────────────────────────── */

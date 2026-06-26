@@ -217,6 +217,107 @@
     </p>
   </footer>
 
+  <!-- ── LIGHTBOX DE PROPIEDADES ──────────────────────────────── -->
+  <dialog id="prop-lightbox" class="prop-lightbox"
+          aria-label="Visor de fotos de la propiedad"
+          aria-modal="true">
+    <button class="plb-close" aria-label="Cerrar visor">&#215;</button>
+    <span  class="plb-counter" aria-live="polite" aria-atomic="true"></span>
+    <div   class="plb-track-wrap">
+      <div class="plb-track" id="plb-track"></div>
+      <button class="plb-btn plb-btn--prev" aria-label="Foto anterior">&#8249;</button>
+      <button class="plb-btn plb-btn--next" aria-label="Foto siguiente">&#8250;</button>
+    </div>
+  </dialog>
+
+  <script>
+  /* ── Lightbox de propiedades ─────────────────────────────────
+     Único visor reutilizado por todas las property-card.
+     Se alimenta de window.app.store.properties — funciona
+     automáticamente con cualquier propiedad nueva.
+  ────────────────────────────────────────────────────────────── */
+  window.propLightbox = (() => {
+    const dialog  = document.getElementById('prop-lightbox');
+    const track   = document.getElementById('plb-track');
+    const counter = dialog.querySelector('.plb-counter');
+    const btnPrev = dialog.querySelector('.plb-btn--prev');
+    const btnNext = dialog.querySelector('.plb-btn--next');
+    const btnClose = dialog.querySelector('.plb-close');
+
+    let _images  = [];
+    let _current = 0;
+
+    /* ── Navegar a un índice ────────────────────────────────── */
+    const goTo = (idx, behavior = 'smooth') => {
+      const total = _images.length;
+      _current = ((idx % total) + total) % total;
+      track.scrollTo({ left: _current * track.offsetWidth, behavior });
+      counter.textContent = `${_current + 1} / ${total}`;
+    };
+
+    /* ── Abrir con propId y slide de inicio ─────────────────── */
+    const open = (propId, startIdx = 0) => {
+      const prop = window.app?.store?.properties?.find(p => p.id === propId);
+      if (!prop) return;
+
+      _images = Array.isArray(prop.imagenes) && prop.imagenes.length
+        ? prop.imagenes
+        : (prop.imagen ? [prop.imagen] : []);
+
+      if (!_images.length) return;
+
+      /* Poblar slides — solo la primera imagen de la vista se carga eager */
+      track.innerHTML = _images.map((src, i) =>
+        `<div class="plb-slide">
+           <img src="${src}"
+                alt="${prop.titulo} — foto ${i + 1}"
+                loading="${i === startIdx ? 'eager' : 'lazy'}">
+         </div>`
+      ).join('');
+
+      dialog.showModal();
+
+      /* Ir al slide tocado sin animación (instant) */
+      requestAnimationFrame(() => goTo(startIdx, 'instant'));
+    };
+
+    const close = () => {
+      dialog.close();
+      /* Limpiar slides al cerrar para liberar memoria */
+      setTimeout(() => { track.innerHTML = ''; _images = []; _current = 0; }, 300);
+    };
+
+    /* ── Controles ──────────────────────────────────────────── */
+    btnPrev?.addEventListener('click',  () => goTo(_current - 1));
+    btnNext?.addEventListener('click',  () => goTo(_current + 1));
+    btnClose?.addEventListener('click', close);
+
+    /* Backdrop click cierra */
+    dialog.addEventListener('click', e => { if (e.target === dialog) close(); });
+
+    /* Teclado ← → */
+    dialog.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  goTo(_current - 1);
+      if (e.key === 'ArrowRight') goTo(_current + 1);
+    });
+
+    /* Sincronizar contador al hacer swipe táctil */
+    let _scrollTimer;
+    track.addEventListener('scroll', () => {
+      clearTimeout(_scrollTimer);
+      _scrollTimer = setTimeout(() => {
+        const idx = Math.round(track.scrollLeft / track.offsetWidth);
+        if (idx !== _current) {
+          _current = idx;
+          counter.textContent = `${_current + 1} / ${_images.length}`;
+        }
+      }, 50);
+    }, { passive: true });
+
+    return { open, close };
+  })();
+  </script>
+
   <script type="module" src="components/AppNav.js?v=20260626-01"></script>
   <script type="module" src="components/PropertyCard.js?v=20260626-01"></script>
   <script type="module" src="app.js?v=20260626-01"></script>
