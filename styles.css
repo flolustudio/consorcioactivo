@@ -702,33 +702,6 @@
     align-items: start;
   }
 
-  /* Card destacada (nuevo: true) → fila completa del grid */
-  .prop-card--featured {
-    grid-column: 1 / -1;
-  }
-  .prop-card--featured property-card {
-    display: flex;
-    flex-direction: row;
-    max-height: 420px;
-  }
-  .prop-card--featured property-card .property-card-img,
-  .prop-card--featured property-card .property-card-img--carousel {
-    width: 58%;
-    flex-shrink: 0;
-    max-height: 420px;
-    border-radius: var(--radius) 0 0 var(--radius);
-  }
-  .prop-card--featured property-card .property-card-img img,
-  .prop-card--featured property-card .carousel-slide img {
-    height: 420px;
-    object-fit: cover;
-  }
-  .prop-card--featured property-card .property-card-body {
-    flex: 1;
-    justify-content: center;
-    padding: var(--sp-5) var(--sp-6);
-  }
-
   .property-card {
     display: flex;
     flex-direction: column;
@@ -2777,26 +2750,22 @@
     .commitment-grid {
       grid-template-columns: 1fr;
     }
+    /* Cards en fila: ícono izq, texto der */
     .commitment-card {
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: var(--sp-4);
+      padding: var(--sp-4) var(--sp-3);
       border-right: none;
       border-bottom: 1px solid var(--border);
     }
     .commitment-card:last-child { border-bottom: none; }
+    .commitment-icon { margin-bottom: 0; flex-shrink: 0; }
+    .commitment-card h2 { font-size: 1rem; }
+    .commitment-card p  { max-width: none; font-size: 0.9rem; }
 
     .properties-grid { grid-template-columns: 1fr 1fr; }
-    .prop-card--featured property-card {
-      flex-direction: column;
-      max-height: none;
-    }
-    .prop-card--featured property-card .property-card-img,
-    .prop-card--featured property-card .property-card-img--carousel {
-      width: 100%;
-      border-radius: var(--radius) var(--radius) 0 0;
-      max-height: 300px;
-    }
-    .prop-card--featured property-card .carousel-slide img {
-      height: 300px;
-    }
 
     .properties-header {
       flex-direction: column;
@@ -2939,10 +2908,83 @@
 
     .properties-grid { grid-template-columns: 1fr; }
 
-    /* Hero index — usar cover en portrait para que la imagen no quede enana */
+    /* ── Hero index ──────────────────────────────────────────── */
     .hero--inicio {
       background-size: cover;
       background-position: center 30%;
+      min-height: 92dvh;
+    }
+    /* h1 hero: grande e impactante en mobile */
+    #hero-h {
+      font-size: clamp(2.6rem, 14vw, 4rem);
+      line-height: 1.05;
+    }
+    .hero-lead {
+      font-size: clamp(0.95rem, 4vw, 1.1rem);
+      margin-top: var(--sp-2);
+    }
+
+    /* ── Ritmo de secciones: reducir padding vertical ────────── */
+    .commitment {
+      padding: var(--sp-3) 0 var(--sp-4);
+    }
+    .commitment > .section-label {
+      margin-bottom: var(--sp-4);
+    }
+    .properties-preview {
+      padding: var(--sp-4) 0 var(--sp-5);
+    }
+    .properties-header {
+      margin-bottom: var(--sp-3);
+    }
+    .about-preview--bg {
+      min-height: 380px;
+    }
+    .about-content {
+      padding-top:    var(--sp-5);
+      padding-bottom: var(--sp-5);
+    }
+    .about-content h2 {
+      font-size: clamp(1.8rem, 10vw, 2.6rem);
+    }
+    .spaces-content {
+      padding-top:    var(--sp-4);
+      padding-bottom: var(--sp-5);
+    }
+    .spaces-content h2 {
+      font-size: clamp(1.8rem, 10vw, 2.6rem);
+    }
+
+    /* ── Properties preview → scroll horizontal snap ─────────── */
+    .properties-preview .properties-grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: var(--sp-3);
+      /* ancho completo, sangría visual para ver que hay más */
+      width: 100%;
+      max-width: 100%;
+      padding-inline: var(--gutter);
+      box-sizing: border-box;
+    }
+    .properties-preview .properties-grid::-webkit-scrollbar { display: none; }
+    .properties-preview .properties-grid .property-card {
+      flex-shrink: 0;
+      width: 78vw;
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+    }
+    /* Imagen del card a altura fija */
+    .properties-preview .property-card-img {
+      height: 220px;
+    }
+    .properties-preview .property-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .footer-inner { flex-direction: column; align-items: center; gap: var(--sp-5); }
@@ -3283,6 +3325,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: var(--sp-2);
   }
   .prop-filter-label {
@@ -3313,7 +3356,7 @@
   }
   .prop-filter-select:focus { border-color: var(--brand); }
   .prop-filter-reset {
-    margin-left: auto;
+    margin-left: var(--sp-2);
     background: none;
     border: none;
     font-size: 0.82rem;

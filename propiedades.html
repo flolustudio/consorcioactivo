@@ -304,8 +304,6 @@
         card.dataset.id = p.id;
         /* Solo el primer card above-the-fold carga su imagen en eager */
         if (idx === 0) card.dataset.eager = '';
-        /* Card nueva → ocupa fila completa del grid */
-        if (p.nuevo) li.classList.add('prop-card--featured');
         li.appendChild(card);
         grid.appendChild(li);
       });
