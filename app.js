@@ -111,52 +111,95 @@ if ('serviceWorker' in navigator) {
 })();
 /* ─────────────────────────────────────────────────────────── */
 
-/* ── Scroll-driven animations: fallback IntersectionObserver ─
-   Solo activa en navegadores sin soporte nativo (ej. Firefox).
-   El CSS nativo tiene prioridad cuando está disponible.
-─────────────────────────────────────────────────────────────── */
-if (
-  !window.matchMedia('(prefers-reduced-motion: reduce)').matches &&
-  !CSS.supports('(animation-timeline: view()) and (animation-range: entry)')
-) {
-  const ANIMATED = [
-    '.commitment-card',
-    '.property-card',
-    '.value-card',
-    '.nosotros-testimonial-list li',
-    '.support-card',
-    '.support-topic-list li',
-    '.support-accordion-item',
-  ].join(',');
+/* ── Scroll-driven animations — IntersectionObserver ─────────
+   Activa en todos los navegadores excepto cuando el usuario
+   prefiere reducir el movimiento (accesibilidad).
 
+   Dos tipos:
+   · SOLO    → bloque completo aparece como unidad
+   · STAGGER → grupo de elementos en cascada (delay progresivo)
+─────────────────────────────────────────────────────────────── */
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+  /* Inyectamos los estilos de la animación */
   const style = document.createElement('style');
   style.textContent = `
-    .js-scroll-hidden {
+    .js-animate {
       opacity: 0;
-      translate: 0 28px;
-      transition: opacity 0.5s ease, translate 0.5s ease;
+      translate: 0 32px;
+      transition: opacity 0.6s cubic-bezier(.22,.68,0,1.2),
+                  translate 0.6s cubic-bezier(.22,.68,0,1.2);
     }
-    .js-scroll-visible {
+    .js-animate.is-visible {
       opacity: 1;
       translate: 0 0;
     }
   `;
   document.head.appendChild(style);
 
-  const observer = new IntersectionObserver(
-    entries => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          entry.target.classList.replace('js-scroll-hidden', 'js-scroll-visible');
-          observer.unobserve(entry.target);
-        }
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
       }
-    },
-    { threshold: 0.1 }
-  );
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -32px 0px' });
 
-  document.querySelectorAll(ANIMATED).forEach(el => {
-    el.classList.add('js-scroll-hidden');
+  const observe = (el, delay = 0) => {
+    el.classList.add('js-animate');
+    if (delay) el.style.transitionDelay = `${delay}s`;
     observer.observe(el);
+  };
+
+  /* ── Bloques individuales (sin cascada) ───────────────────── */
+  const SOLO = [
+    /* index */
+    '.commitment > .section-label',
+    '.about-content',
+    '.spaces-figure',
+    '.spaces-content',
+    '.contact-cta-content',
+    '.properties-header',
+    /* propiedades */
+    '.prop-tabs-section .section-label',
+    '.prop-panel-header',
+    /* nosotros */
+    '.nosotros-about-content',
+    '.nosotros-stats',
+    '.nosotros-commitment-header',
+    '.nosotros-testimonials h2',
+    /* soporte */
+    '.support-hero-content',
+    '.support-faq-intro',
+    /* contacto */
+    '.contact-info',
+    '.contacto-hero-text',
+    /* newsletter */
+    '.newsletter-inner',
+  ];
+
+  document.querySelectorAll(SOLO.join(',')).forEach(el => observe(el));
+
+  /* ── Grupos con efecto cascada ─────────────────────────────
+     Cada elemento del grupo entra con 110ms de delay adicional
+  ─────────────────────────────────────────────────────────── */
+  const STAGGER_DELAY = 0.11; // segundos entre elementos
+
+  [
+    '.commitment-card',
+    '.property-card',
+    '.value-card',
+    '.nosotros-stat',
+    '.nosotros-testimonial-list li',
+    '.support-card',
+    '.support-topic-list li',
+    '.support-accordion-item',
+    '.faq-item',
+    '.contacto-canal',
+  ].forEach(selector => {
+    document.querySelectorAll(selector).forEach((el, i) => {
+      observe(el, i * STAGGER_DELAY);
+    });
   });
 }

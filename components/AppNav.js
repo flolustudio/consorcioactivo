@@ -59,8 +59,8 @@ class AppNav extends HTMLElement {
       <nav class="nav" aria-label="Navegación principal">
 
         <a href="${logoHref}" class="nav__logo" aria-label="Consorcio Activo — inicio">
-          <img src="icons/logoBLACK.png" alt="Consorcio Activo"
-               width="160" height="40">
+          <img src="public/images/logo horizontal-26-06.png" alt="Consorcio Activo"
+               width="66" height="40">
         </a>
 
         <ul class="nav-links" role="list" id="nav-links">

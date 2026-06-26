@@ -109,7 +109,7 @@ const PRECACHE_ASSETS = [
      Network-First para garantizar datos frescos en cada visita */
   '/public/images/header-contacto-ampliadov1.jpg',
   '/manifest.webmanifest',
-  '/icons/logoBLACK.png',
+  '/public/images/logo horizontal-26-06.png',
   '/icons/favicon.svg',
   /* PROP_IMAGES se excluye del precache — las imágenes de propiedades se
      cachean on-demand vía el fetch handler (Cache-First). Esto evita
