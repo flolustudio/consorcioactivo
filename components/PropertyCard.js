@@ -56,7 +56,7 @@ class PropertyCard extends HTMLElement {
     const cta = isAlquilada
       ? `<span class="btn btn-sm btn-alquilada">Alquilada</span>`
       : `<a href="https://wa.me/${WPP_NUM}?text=${wppMsg}"
-            class="btn btn-brand btn-sm"
+            class="btn btn-brand btn-sm prop-card-cta"
             target="_blank" rel="noopener noreferrer">
           Consultar por WPP
          </a>`;
@@ -66,9 +66,11 @@ class PropertyCard extends HTMLElement {
       ? p.imagenes
       : (p.imagen ? [p.imagen] : []);
 
+    const newBadge = p.nuevo ? `<span class="prop-badge-new" aria-label="Novedad">NEW</span>` : '';
+
     const figureHTML = images.length > 1
-      ? this._buildCarousel(images, p.titulo, overlay)
-      : this._buildSingleImage(images[0] || '', p.titulo, overlay);
+      ? this._buildCarousel(images, p.titulo, overlay, newBadge)
+      : this._buildSingleImage(images[0] || '', p.titulo, overlay, newBadge);
 
     this.innerHTML = `
       ${figureHTML}
@@ -91,17 +93,18 @@ class PropertyCard extends HTMLElement {
   }
 
   /* ── HTML de imagen simple ───────────────────────────────── */
-  _buildSingleImage(src, titulo, overlay) {
+  _buildSingleImage(src, titulo, overlay, badge = '') {
     return `
       <figure class="property-card-img">
         <img src="${this._esc(src)}" alt="${this._esc(titulo)}"
              width="400" height="260" loading="lazy">
+        ${badge}
         ${overlay}
       </figure>`;
   }
 
   /* ── HTML del carrusel ───────────────────────────────────── */
-  _buildCarousel(images, titulo, overlay) {
+  _buildCarousel(images, titulo, overlay, badge = '') {
     const total  = images.length;
     const slides = images.map((src, i) => `
       <div class="carousel-slide" role="group"
@@ -111,6 +114,7 @@ class PropertyCard extends HTMLElement {
              alt="${this._esc(titulo)} — foto ${i + 1}"
              width="400" height="260"
              loading="${i === 0 ? 'eager' : 'lazy'}">
+        ${i === 0 ? badge : ''}
       </div>`).join('');
 
     const dots = images.map((_, i) =>

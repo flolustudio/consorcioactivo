@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260613-05">
+  <link rel="stylesheet" href="styles.css?v=20260626-01">
 </head>
 <body>
 
@@ -72,35 +72,6 @@
             <span>Tus <em class="accent">dudas &amp; consultas,</em></span>
             <span>son nuestro <em class="accent">compromiso.</em></span>
           </h1>
-          <p>
-            En Consorcio Activo creemos en la transparencia,
-            la gestión eficiente y la construcción de relaciones
-            duraderas basadas en la confianza y eficacia.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="support-questions" aria-labelledby="support-questions-h">
-      <div class="support-split">
-        <div class="support-questions-content">
-          <p class="section-label">Soporte</p>
-          <h2 id="support-questions-h">Dudas &amp; Preguntas</h2>
-          <p>
-            Respondemos las consultas más frecuentes para que tengas toda la
-            información que necesitás.
-          </p>
-
-          <div class="support-stats" aria-label="Indicadores de experiencia">
-            <div class="support-stat-item">
-              <img src="public/Icons-/guarantee 1.png" alt="" width="40" height="40" loading="lazy">
-              <span>Más de 5 años<br>de experiencia</span>
-            </div>
-            <div class="support-stat-item">
-              <img src="public/Icons-/buildings 1.png" alt="" width="40" height="40" loading="lazy">
-              <span>16 unidades<br>de edificios</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -115,7 +86,8 @@
           </p>
 
           <ul class="support-topic-list" role="list">
-            <li>
+            <li role="button" tabindex="0" data-modal="modal-admin"
+                aria-haspopup="dialog" aria-label="Abrir sección Administración">
               <span class="support-topic-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path d="M5 20V8l7-4 7 4v12" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
@@ -228,6 +200,53 @@
 
   </main>
 
+  <!-- ── MODAL ADMINISTRACIÓN ─────────────────────────────────── -->
+  <dialog class="support-modal" id="modal-admin" aria-labelledby="modal-admin-title">
+    <div class="support-modal-inner">
+
+      <div class="support-modal-header">
+        <span class="support-modal-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+            <path d="M5 20V8l7-4 7 4v12"/>
+            <path d="M9 20v-6h6v6M8 10h1M14 10h1" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h2 id="modal-admin-title">Administración</h2>
+        <button class="support-modal-close" type="button" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="support-modal-body">
+
+        <!-- Pregunta 1 -->
+        <div class="modal-question">
+          <p class="modal-question-label"><span aria-hidden="true">1.</span> ¿Cómo instalar la app de "expensas online"?</p>
+          <figure class="modal-video-wrap">
+            <!-- Cuando el video esté disponible: reemplazar div por <video controls src="public/properties/Videos/admin-expensas-online.mp4"> -->
+            <div class="modal-video-placeholder" aria-label="Tutorial próximamente disponible">
+              <span>Ver tutorial</span>
+            </div>
+          </figure>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="modal-question">
+          <p class="modal-question-label"><span aria-hidden="true">2.</span> ¿Cómo descargar mis expensas?</p>
+          <figure class="modal-video-wrap">
+            <!-- Cuando el video esté disponible: reemplazar div por <video controls src="public/properties/Videos/admin-descargar-expensas.mp4"> -->
+            <div class="modal-video-placeholder" aria-label="Tutorial próximamente disponible">
+              <span>Ver tutorial</span>
+            </div>
+          </figure>
+          <div class="modal-actions">
+            <button class="modal-btn-info" type="button" data-info="admin-2">Ver información</button>
+            <button class="modal-btn-back" type="button">Volver atrás</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </dialog>
+
   <footer class="site-footer">
     <div class="footer-inner">
       <nav class="footer-nav" aria-label="Páginas del sitio">
@@ -258,15 +277,58 @@
     </p>
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260613-05"></script>
-  <script type="module" src="components/ContactForm.js?v=20260613-05"></script>
-  <script type="module" src="app.js?v=20260613-05"></script>
+  <script type="module" src="components/AppNav.js?v=20260626-01"></script>
+  <script type="module" src="components/ContactForm.js?v=20260626-01"></script>
+  <script type="module" src="app.js?v=20260626-01"></script>
   <script>
     document.querySelectorAll('.support-accordion-item').forEach(item => {
       item.addEventListener('toggle', () => {
         if (!item.open) return;
         document.querySelectorAll('.support-accordion-item').forEach(other => {
           if (other !== item) other.open = false;
+        });
+      });
+    });
+  </script>
+
+  <script>
+    /* ── Modal de soporte ──────────────────────────────────────── */
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.showModal();
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(modal) {
+      modal.close();
+      document.body.style.overflow = '';
+      // Pausa cualquier video activo
+      modal.querySelectorAll('video').forEach(v => { v.pause(); v.currentTime = 0; });
+    }
+
+    // Abrir al click en li[data-modal]
+    document.querySelectorAll('[data-modal]').forEach(trigger => {
+      const open = () => openModal(trigger.dataset.modal);
+      trigger.addEventListener('click', open);
+      trigger.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    });
+
+    // Cerrar con botón ✕ o "Volver atrás"
+    document.querySelectorAll('.support-modal').forEach(modal => {
+      modal.querySelector('.support-modal-close')?.addEventListener('click', () => closeModal(modal));
+      modal.querySelectorAll('.modal-btn-back').forEach(btn => btn.addEventListener('click', () => closeModal(modal)));
+
+      // Cerrar al click en el backdrop (fuera del inner)
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(modal); });
+
+      // Tecla Escape nativa del <dialog> — limpiar overflow
+      modal.addEventListener('close', () => { document.body.style.overflow = ''; });
+
+      // "Ver información" — slot aislado, listo para contenido futuro
+      modal.querySelectorAll('.modal-btn-info').forEach(btn => {
+        btn.addEventListener('click', () => {
+          // TODO: conectar contenido según btn.dataset.info
         });
       });
     });

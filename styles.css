@@ -525,7 +525,7 @@
      COMPROMISO
   ================================================================ */
   .commitment {
-    padding: var(--sp-5) 0 var(--sp-3);
+    padding: var(--sp-2) 0 var(--sp-3);
     font-family: var(--font-body);
     text-align: center;
   }
@@ -882,13 +882,12 @@
 
   .footer-inner {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: start;
     flex-wrap: wrap;
     gap: var(--sp-8);
     width: 100%;
-    margin-inline: auto;
-    padding: var(--sp-6) var(--gutter);
+    padding: var(--sp-6) 7%;
     background: var(--surface-0);
   }
 
@@ -964,7 +963,7 @@
   .nosotros-hero-content {
     position: absolute;
     top: 50%;
-    right: max(var(--gutter), calc((100% - var(--max-w)) / 2 + var(--sp-4)));
+    right: max(var(--gutter), calc((100% - var(--max-w)) / 2 - var(--sp-3)));
     transform: translateY(-50%);
     width: min(620px, 44vw);
     text-align: right;
@@ -2050,7 +2049,7 @@
 
   /* Hero propiedades */
   .hero--propiedades {
-    background-image: url("public/images/header-propiedades-ampliado.png");
+    background-image: url("public/properties/images/propiedades-26-06.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -2420,6 +2419,36 @@
     line-height: 1.1;
   }
 
+  /* Badge NEW sobre primera imagen */
+  .prop-badge-new {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 3;
+    background: #fff;
+    color: #1C1B1F;
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    padding: 0.35rem 0.7rem;
+    border-radius: 99px;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* CTA WPP en footer de card — más compacto y equilibrado */
+  .prop-card-cta {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .property-card-footer {
+    align-items: center;
+  }
+
   /* Botón estado alquilada */
   .btn-alquilada {
     background: var(--surface-2);
@@ -2430,6 +2459,173 @@
     opacity: 0.75;
   }
 
+
+  /* ================================================================
+     SUPPORT MODAL
+  ================================================================ */
+
+  .support-modal {
+    border: none;
+    border-radius: 1.25rem;
+    padding: 0;
+    width: min(680px, 92vw);
+    max-height: 88dvh;
+    overflow-y: auto;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+    background: #fff;
+    margin: auto;
+  }
+
+  .support-modal::backdrop {
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(3px);
+  }
+
+  .support-modal[open] {
+    animation: modal-in 0.22s ease both;
+  }
+
+  @keyframes modal-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to   { opacity: 1; transform: translateY(0)    scale(1);    }
+  }
+
+  .support-modal-inner {
+    padding: 1.75rem 2rem 2rem;
+  }
+
+  /* Header */
+  .support-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .support-modal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    background: var(--brand);
+    flex-shrink: 0;
+  }
+
+  .support-modal-icon svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: #fff;
+  }
+
+  .support-modal-header h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    flex: 1;
+  }
+
+  .support-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.4rem;
+    transition: background 0.15s;
+    line-height: 1;
+  }
+
+  .support-modal-close:hover { background: var(--surface-2); }
+
+  /* Body */
+  .support-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .modal-question-label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-question-label span {
+    color: var(--text-muted);
+    margin-right: 0.25rem;
+  }
+
+  /* Placeholder de video */
+  .modal-video-wrap {
+    margin: 0 0 0.85rem;
+  }
+
+  .modal-video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EBEBEB;
+    border-radius: 0.9rem;
+    height: 200px;
+    cursor: default;
+  }
+
+  .modal-video-placeholder span {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+
+  /* Cuando el video esté disponible */
+  .modal-video-wrap video {
+    width: 100%;
+    border-radius: 0.9rem;
+    display: block;
+    background: #000;
+  }
+
+  /* Acciones */
+  .modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .modal-btn-info,
+  .modal-btn-back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    padding: 0.55rem 1.4rem;
+    border-radius: 999px;
+    background: var(--brand);
+    border: 2px solid var(--brand);
+    color: #1C1B1F;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+
+  .modal-btn-info:hover,
+  .modal-btn-back:hover {
+    background: var(--brand-hover);
+    border-color: var(--brand-hover);
+    transform: translateY(-1px);
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .support-modal-inner { padding: 1.25rem 1.1rem 1.5rem; }
+    .modal-video-placeholder { height: 160px; }
+  }
 
   /* ================================================================
      VIEW TRANSITIONS — animación suave entre páginas

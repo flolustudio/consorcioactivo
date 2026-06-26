@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v34';
+const CACHE_VERSION  = 'ca-v35';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 const CACHE_DATA     = `${CACHE_VERSION}-data`;
@@ -64,8 +64,19 @@ const PROP_IMAGES = [
   '/public/properties/id3/habitacion principal propiedad 3 (2).jpg',
   '/public/properties/id3/habitacion principal propiedad 3.jpg',
   '/public/properties/id3/living comedor propiedad 3.jpg',
-  // id4–id12 — 1 foto cada una
-  '/public/images/prop-4.png',
+  // id4 — 11 fotos (public/properties/id4/)
+  '/public/properties/id4/id4-foto1.jpg',
+  '/public/properties/id4/id4-foto2.jpg',
+  '/public/properties/id4/id4-foto3.jpg',
+  '/public/properties/id4/id4-foto4.jpg',
+  '/public/properties/id4/id4-foto5.jpg',
+  '/public/properties/id4/id4-foto6.jpg',
+  '/public/properties/id4/id4-foto7.jpg',
+  '/public/properties/id4/id4-foto8.jpg',
+  '/public/properties/id4/id4-foto9.jpg',
+  '/public/properties/id4/id4-foto10.jpg',
+  '/public/properties/id4/id4-foto11.jpg',
+  // id5–id12 — 1 foto cada una
   '/public/images/prop-5.png',
   '/public/images/prop-6.png',
   '/public/images/prop-7.jpg',
@@ -86,14 +97,14 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260613-05',
-  '/app.js?v=20260613-05',
-  '/components/AppNav.js?v=20260613-05',
-  '/components/PropertyCard.js?v=20260613-05',
-  '/components/ContactForm.js?v=20260613-05',
-  '/services/PropertyStore.js?v=20260613-05',
-  '/services/API.js?v=20260613-05',
-  '/services/Properties.js?v=20260613-05',
+  '/styles.css?v=20260626-01',
+  '/app.js?v=20260626-01',
+  '/components/AppNav.js?v=20260626-01',
+  '/components/PropertyCard.js?v=20260626-01',
+  '/components/ContactForm.js?v=20260626-01',
+  '/services/PropertyStore.js?v=20260626-01',
+  '/services/API.js?v=20260626-01',
+  '/services/Properties.js?v=20260626-01',
   /* data/properties.js se excluye del precache — se sirve siempre
      Network-First para garantizar datos frescos en cada visita */
   '/public/images/header-contacto-ampliadov1.jpg',
