@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v36';
+const CACHE_VERSION  = 'ca-v37';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 const CACHE_DATA     = `${CACHE_VERSION}-data`;
@@ -97,14 +97,14 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260626-01',
-  '/app.js?v=20260626-01',
-  '/components/AppNav.js?v=20260626-01',
-  '/components/PropertyCard.js?v=20260626-01',
-  '/components/ContactForm.js?v=20260626-01',
-  '/services/PropertyStore.js?v=20260626-01',
-  '/services/API.js?v=20260626-01',
-  '/services/Properties.js?v=20260626-01',
+  '/styles.css?v=20260626-02',
+  '/app.js?v=20260626-02',
+  '/components/AppNav.js?v=20260626-02',
+  '/components/PropertyCard.js?v=20260626-02',
+  '/components/ContactForm.js?v=20260626-02',
+  '/services/PropertyStore.js?v=20260626-02',
+  '/services/API.js?v=20260626-02',
+  '/services/Properties.js?v=20260626-02',
   /* data/properties.js se excluye del precache — se sirve siempre
      Network-First para garantizar datos frescos en cada visita */
   '/public/images/header-contacto-ampliadov1.jpg',
@@ -117,11 +117,20 @@ const PRECACHE_ASSETS = [
 ];
 
 /* ── Install: pre-cachea assets estáticos ─────────────────── */
+/* Usamos cache:'no-cache' en cada fetch para bypassear el CDN de GitHub
+   Pages (y el HTTP cache del browser) durante el precache. Así el SW
+   siempre instala la versión más fresca que el origen tiene disponible. */
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_STATIC)
-      .then(cache => cache.addAll(PRECACHE_ASSETS))
-      .then(() => self.skipWaiting())
+    caches.open(CACHE_STATIC).then(cache =>
+      Promise.all(
+        PRECACHE_ASSETS.map(url =>
+          fetch(new Request(url, { cache: 'no-cache' }))
+            .then(resp => resp.ok ? cache.put(url, resp) : null)
+            .catch(() => null)   // asset no crítico: no bloquear install
+        )
+      )
+    ).then(() => self.skipWaiting())
   );
 });
 

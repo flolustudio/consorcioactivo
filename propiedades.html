@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <!-- Preload imagen LCP -->
   <link rel="preload" href="public/properties/images/propiedades-26-06.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260626-01">
+  <link rel="stylesheet" href="styles.css?v=20260626-02">
 </head>
 <body>
 
@@ -318,16 +318,16 @@
   })();
   </script>
 
-  <script type="module" src="components/AppNav.js?v=20260626-01"></script>
-  <script type="module" src="components/PropertyCard.js?v=20260626-01"></script>
-  <script type="module" src="app.js?v=20260626-01"></script>
+  <script type="module" src="components/AppNav.js?v=20260626-02"></script>
+  <script type="module" src="components/PropertyCard.js?v=20260626-02"></script>
+  <script type="module" src="app.js?v=20260626-02"></script>
 
   <!-- Inicialización de propiedades -->
   <script type="module">
     // Flujo de datos: propiedades.html → API.js → data/properties.js → PropertyStore → PropertyCard
     // Para agregar/editar/sacar una propiedad, solo tocar data/properties.js + sw.js (PROP_IMAGES).
-    import PropertyStore      from './services/PropertyStore.js?v=20260626-01';
-    import { loadProperties } from './services/Properties.js?v=20260626-01';
+    import PropertyStore      from './services/PropertyStore.js?v=20260626-02';
+    import { loadProperties } from './services/Properties.js?v=20260626-02';
 
     // Exponer store globalmente para PropertyCard
     window.app         = window.app || {};
