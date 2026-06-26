@@ -475,6 +475,12 @@
     color: var(--text-secondary);
     max-width: 38ch;
   }
+  .hero-title-mobile,
+  .hero-lead-mobile,
+  .commitment-link,
+  .properties-dots {
+    display: none;
+  }
 
   /* Círculos decorativos del hero */
   .deco-circle--lg {
@@ -2975,7 +2981,7 @@
       flex-shrink: 0;
       width: 78vw;
       scroll-snap-align: start;
-      border-radius: var(--radius);
+      border-radius: var(--radius-md);
     }
     /* Imagen del card a altura fija */
     .properties-preview .property-card-img {
@@ -3088,6 +3094,422 @@
     /* Formulario de contacto */
     .contacto-form-footer { justify-content: stretch; }
     .contacto-submit { width: 100%; justify-content: center; }
+
+    /* ============================================================
+       HOME MOBILE — versión alineada a mockups iPhone
+    ============================================================ */
+    .home-page {
+      --nav-h: 56px;
+      background: var(--surface-0);
+    }
+
+    .home-page app-nav .nav {
+      min-height: var(--nav-h);
+      height: var(--nav-h);
+      padding: 0 var(--sp-3);
+      justify-content: flex-end;
+      box-shadow: none;
+    }
+    .home-page app-nav .nav__logo {
+      display: none;
+    }
+    .home-page .nav-toggle {
+      width: 34px;
+      height: 34px;
+    }
+    .home-page .nav-toggle span {
+      width: 19px;
+      height: 2px;
+    }
+
+    .home-page .hero--inicio {
+      display: block;
+      min-height: 350px;
+      background-size: 112% auto;
+      background-position: center bottom;
+      background-color: var(--surface-0);
+    }
+    .home-page .hero-content {
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      gap: 0.38rem;
+      width: min(100%, 310px);
+      margin-inline: auto;
+      padding: 2.35rem 1.25rem 11.8rem;
+    }
+    .home-page .hero-title-desktop,
+    .home-page .hero-lead-desktop {
+      display: none;
+    }
+    .home-page .hero-title-mobile,
+    .home-page .hero-lead-mobile {
+      display: inline;
+    }
+    .home-page #hero-h {
+      font-size: clamp(1.55rem, 7.1vw, 1.9rem);
+      line-height: 0.96;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+    .home-page .hero-lead {
+      margin: 0.1rem auto 0;
+      max-width: 27ch;
+      font-size: 0.64rem;
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--text-primary);
+    }
+    .home-page .hero-content .btn {
+      min-height: 0;
+      margin-top: 0.08rem;
+      padding: 0.26rem 1.05rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.58rem;
+      line-height: 1;
+      letter-spacing: 0.06em;
+    }
+
+    .home-page .commitment {
+      padding: 1.35rem 0 1.7rem;
+      background: var(--surface-0);
+    }
+    .home-page .commitment > .section-label {
+      margin: 0 auto 1.25rem;
+      font-size: 0.82rem;
+      letter-spacing: 0;
+      color: var(--brand-accent);
+    }
+    .home-page .commitment-grid {
+      display: flex;
+      flex-direction: column;
+      width: min(280px, calc(100% - 4.5rem));
+      gap: 1.35rem;
+      border-top: 0;
+    }
+    .home-page .commitment-card {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      grid-template-areas:
+        "icon title"
+        "icon text"
+        "icon link";
+      align-items: center;
+      column-gap: 1rem;
+      row-gap: 0.22rem;
+      padding: 0;
+      border: 0;
+      text-align: left;
+      animation: none;
+      opacity: 1;
+      translate: 0;
+    }
+    .home-page .commitment-icon {
+      grid-area: icon;
+      width: 58px;
+      height: 58px;
+      margin: 0;
+      background: var(--brand);
+    }
+    .home-page .commitment-icon img {
+      width: 36px;
+      height: 36px;
+    }
+    .home-page .commitment-card h2 {
+      grid-area: title;
+      font-size: 1.04rem;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .home-page .commitment-card p {
+      grid-area: text;
+      max-width: 18ch;
+      font-size: 0.67rem;
+      font-weight: 600;
+      line-height: 1.22;
+      color: var(--text-primary);
+    }
+    .home-page .commitment-link {
+      grid-area: link;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(100%, 102px);
+      margin-top: 0.18rem;
+      padding-bottom: 0.18rem;
+      border-bottom: 1px solid currentColor;
+      font-size: 0.67rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .home-page .commitment-link span {
+      font-size: 1rem;
+      line-height: 0.7;
+    }
+
+    .home-page .about-preview--bg {
+      min-height: 472px;
+      background-size: auto 100%;
+      background-position: 76% bottom;
+    }
+    .home-page .about-content {
+      align-items: center;
+      justify-content: flex-start;
+      text-align: center;
+      gap: 0.7rem;
+      padding: 3.1rem 1.4rem 14.5rem;
+    }
+    .home-page .about-content::before {
+      content: "Sobre Nosotros";
+      display: block;
+      margin-bottom: 0.1rem;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .home-page .about-content h2 {
+      font-size: clamp(1.62rem, 8.2vw, 2rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+    .home-page .about-content p {
+      max-width: 30ch;
+      font-size: 0.58rem;
+      font-weight: 700;
+      line-height: 1.16;
+      color: var(--text-primary);
+    }
+    .home-page .about-content .btn {
+      padding: 0.28rem 1.1rem;
+      min-height: 0;
+      font-size: 0.58rem;
+      line-height: 1;
+    }
+
+    .home-page .properties-preview {
+      padding: 2.35rem 0 2.05rem;
+      background: var(--surface-0);
+      text-align: center;
+    }
+    .home-page .properties-header {
+      display: block;
+      width: min(100%, 310px);
+      margin: 0 auto 1.15rem;
+    }
+    .home-page .properties-header .section-label {
+      margin-bottom: 0.5rem;
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      color: var(--brand-accent);
+    }
+    .home-page .properties-header h2 {
+      font-size: clamp(1.7rem, 9vw, 2.2rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+    .home-page .properties-aside {
+      display: none;
+    }
+    .home-page .properties-preview .properties-grid {
+      display: flex !important;
+      flex-flow: row nowrap;
+      gap: 1rem;
+      width: min(280px, 76vw);
+      max-width: none;
+      margin: 0 auto;
+      padding: 0;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .home-page .properties-preview .properties-grid::-webkit-scrollbar {
+      display: none;
+    }
+    .home-page .properties-preview .property-card {
+      flex: 0 0 100%;
+      width: 100%;
+      scroll-snap-align: center;
+      gap: 0.42rem;
+      text-align: center;
+      align-items: center;
+    }
+    .home-page .properties-preview .property-card-img {
+      width: 100%;
+      height: 250px;
+      aspect-ratio: auto;
+      border-radius: 1.6rem;
+    }
+    .home-page .properties-preview .property-card-body {
+      gap: 0.24rem;
+    }
+    .home-page .properties-preview .property-card-body h3 {
+      font-size: 1.45rem;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .home-page .properties-preview .property-card-body p {
+      font-size: 0.7rem;
+      line-height: 1.2;
+      color: var(--text-secondary);
+    }
+    .home-page .properties-preview .property-card-body .btn {
+      min-width: 92px;
+      margin-top: 0.1rem;
+      padding: 0.48rem 1.15rem;
+      font-size: 0.66rem;
+      line-height: 1;
+    }
+    .home-page .properties-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.52rem;
+      margin-top: 1.35rem;
+    }
+    .home-page .properties-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand-accent);
+      opacity: 0.88;
+      transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease);
+    }
+    .home-page .properties-dot--active {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+
+    .home-page .spaces {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      background: var(--surface-1);
+    }
+    .home-page .spaces-content {
+      order: 0;
+      align-items: center;
+      text-align: center;
+      gap: 0.78rem;
+      padding: 2.25rem 1.45rem 1.45rem;
+      background: var(--surface-1);
+    }
+    .home-page .spaces-content .section-label {
+      font-size: 0.78rem;
+      letter-spacing: 0;
+      color: var(--brand-accent);
+    }
+    .home-page .spaces-content h2 {
+      font-size: clamp(1.75rem, 9vw, 2.15rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+    .home-page .spaces-content p {
+      max-width: 29ch;
+      font-size: 0.72rem;
+      font-weight: 600;
+      line-height: 1.22;
+      color: var(--text-primary);
+    }
+    .home-page .spaces-content .btn {
+      margin-top: 0.45rem;
+      min-height: 0;
+      padding: 0.52rem 1.5rem;
+      font-size: 0.74rem;
+      line-height: 1;
+      text-transform: none;
+      background: var(--brand);
+      border-color: var(--brand);
+      color: var(--brand-text);
+    }
+    .home-page .spaces-figure {
+      order: 1;
+      width: 100%;
+      min-height: 0;
+      height: 168px;
+    }
+
+    .home-page .contact-cta {
+      display: block;
+      min-height: 0;
+      background: var(--surface-1);
+    }
+    .home-page .contact-cta-figure {
+      display: none;
+    }
+    .home-page .contact-cta-content {
+      align-items: center;
+      text-align: center;
+      gap: 0.85rem;
+      padding: 2.45rem 1.55rem 2.75rem;
+    }
+    .home-page .contact-cta-content h2 {
+      font-size: clamp(1.55rem, 8vw, 1.95rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+    .home-page .contact-cta-content > p {
+      font-size: 0.93rem;
+      color: var(--text-secondary);
+    }
+    .home-page .contact-cta-actions {
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.2rem;
+    }
+    .home-page .contact-cta-actions .btn {
+      min-height: 0;
+      padding: 0.62rem 1.4rem;
+      font-size: 0.66rem;
+      line-height: 1;
+    }
+    .home-page .contact-cta-actions .link-arrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+    }
+
+    .home-page .site-footer {
+      padding: 0;
+      background: var(--surface-1);
+    }
+    .home-page .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.75rem;
+      padding: 2.8rem 4.6rem 2.45rem;
+      background: var(--surface-0);
+    }
+    .home-page .footer-nav ul,
+    .home-page .footer-legal ul,
+    .home-page .footer-contact {
+      align-items: flex-start;
+      gap: 0.12rem;
+      text-align: left;
+    }
+    .home-page .footer-nav a,
+    .home-page .footer-legal a,
+    .home-page .footer-contact a,
+    .home-page .footer-contact p {
+      font-size: 0.72rem;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+    .home-page .footer-copy {
+      display: none;
+    }
+    .home-page .wpp-float {
+      width: 48px;
+      height: 48px;
+      right: 1.15rem;
+      bottom: 1.25rem;
+    }
+    .home-page .wpp-float svg {
+      width: 27px;
+      height: 27px;
+    }
 
     /* Hero propiedades — centrar mejor en portrait */
     .hero--propiedades { background-position: 60% center; }

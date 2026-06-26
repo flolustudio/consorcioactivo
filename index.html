@@ -64,9 +64,9 @@
 
   <!-- Preload imagen LCP -->
   <link rel="preload" href="public/images/header-index-ampliado.jpg" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260626-01">
+  <link rel="stylesheet" href="styles.css?v=20260626-02">
 </head>
-<body>
+<body class="home-page">
 
   <!-- Accesibilidad: saltar al contenido principal -->
   <a class="skip-link" href="#main">Saltar al contenido</a>
@@ -107,10 +107,19 @@
 
       <div class="hero-content">
         <h1 id="hero-h">
-          <em class="accent">Somos</em><br>
-          Consorcio Activo
+          <span class="hero-title-desktop">
+            <em class="accent">Somos</em><br>
+            Consorcio Activo
+          </span>
+          <span class="hero-title-mobile" aria-hidden="true">
+            Un <em class="accent">nuevo</em> concepto<br>
+            <em class="accent">de consorcio.</em>
+          </span>
         </h1>
-        <p class="hero-lead">Un nuevo concepto de consorcio</p>
+        <p class="hero-lead">
+          <span class="hero-lead-desktop">Un nuevo concepto de consorcio</span>
+          <span class="hero-lead-mobile">Gestionamos tu edificio con transparencia, tecnología y compromiso.</span>
+        </p>
         <a href="nosotros.html" class="btn btn-brand">Saber más</a>
       </div>
 
@@ -128,7 +137,8 @@
                  alt="" width="50" height="50" loading="lazy">
           </span>
           <h2>Seguridad</h2>
-          <p>Sistemas de seguridad y vigilancia 24hs para la tranquilidad de todos los vecinos.</p>
+          <p>Sistemas de seguridad y vigilancia 24hs para tu tranquilidad.</p>
+          <a href="nosotros.html" class="commitment-link">Saber más <span aria-hidden="true">›</span></a>
         </li>
 
         <li class="commitment-card">
@@ -137,7 +147,8 @@
                  alt="" width="50" height="50" loading="lazy">
           </span>
           <h2>Comunidad</h2>
-          <p>Fomentamos la convivencia y el diálogo entre propietarios e inquilinos de cada edificio.</p>
+          <p>Unión y escucha en cada edificio para una convivencia más clara.</p>
+          <a href="nosotros.html" class="commitment-link">Saber más <span aria-hidden="true">›</span></a>
         </li>
 
         <li class="commitment-card">
@@ -146,7 +157,8 @@
                  alt="" width="50" height="50" loading="lazy">
           </span>
           <h2>Innovación</h2>
-          <p>Tecnología y procesos modernos para una gestión más transparente y eficiente.</p>
+          <p>Tecnología para administrar y llegar más lejos con procesos simples.</p>
+          <a href="nosotros.html" class="commitment-link">Saber más <span aria-hidden="true">›</span></a>
         </li>
 
       </ul>
@@ -225,6 +237,12 @@
         </li>
 
       </ul>
+
+      <div class="properties-dots" aria-hidden="true">
+        <span class="properties-dot properties-dot--active"></span>
+        <span class="properties-dot"></span>
+        <span class="properties-dot"></span>
+      </div>
 
     </section>
 
@@ -325,13 +343,13 @@
               aria-label="Cerrar galería">×</button>
       <div class="gallery-carousel">
         <div class="gallery-track" id="gallery-track">
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 1.jpg" alt="Galería imagen 1" loading="lazy"></div>
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 2.jpg" alt="Galería imagen 2" loading="lazy"></div>
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 3.jpg" alt="Galería imagen 3" loading="lazy"></div>
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 4.jpg" alt="Galería imagen 4" loading="lazy"></div>
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 5.jpg" alt="Galería imagen 5" loading="lazy"></div>
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 6.jpg" alt="Galería imagen 6" loading="lazy"></div>
-          <div class="gallery-slide"><img src="public/Galery-images/galeria 7.jpg" alt="Galería imagen 7" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 1.jpg" alt="Galería imagen 1" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 2.jpg" alt="Galería imagen 2" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 3.jpg" alt="Galería imagen 3" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 4.jpg" alt="Galería imagen 4" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 5.jpg" alt="Galería imagen 5" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 6.jpg" alt="Galería imagen 6" loading="lazy"></div>
+          <div class="gallery-slide"><img data-src="public/Galery-images/galeria 7.jpg" alt="Galería imagen 7" loading="lazy"></div>
         </div>
         <button class="gallery-btn gallery-btn--prev" id="gallery-prev" aria-label="Imagen anterior">&#8249;</button>
         <button class="gallery-btn gallery-btn--next" id="gallery-next" aria-label="Imagen siguiente">&#8250;</button>
@@ -360,6 +378,15 @@
     const btnNext = document.getElementById('gallery-next');
     const TOTAL   = 7;
     let current   = 0;
+    let galleryLoaded = false;
+
+    const loadGalleryImages = () => {
+      if (galleryLoaded) return;
+      track.querySelectorAll('img[data-src]').forEach(img => {
+        img.src = img.dataset.src;
+      });
+      galleryLoaded = true;
+    };
 
     const goTo = (idx) => {
       current = ((idx % TOTAL) + TOTAL) % TOTAL;
@@ -368,6 +395,7 @@
     };
 
     const openModal = () => {
+      loadGalleryImages();
       modal.classList.add('is-open');
       modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -404,6 +432,29 @@
         const idx = Math.round(track.scrollLeft / track.offsetWidth);
         if (idx !== current) { current = idx; dots.forEach((d,i) => d.classList.toggle('gallery-dot--active', i===current)); }
       }, 50);
+    }, { passive: true });
+  })();
+  </script>
+
+  <script>
+  (function() {
+    const grid = document.querySelector('.properties-preview .properties-grid');
+    const dots = document.querySelectorAll('.properties-dots .properties-dot');
+    if (!grid || dots.length === 0) return;
+
+    let scrollTimer;
+    const syncDots = () => {
+      const card = grid.querySelector('.property-card');
+      if (!card) return;
+      const gap = parseFloat(getComputedStyle(grid).columnGap) || 0;
+      const step = card.getBoundingClientRect().width + gap;
+      const idx = Math.max(0, Math.min(dots.length - 1, Math.round(grid.scrollLeft / step)));
+      dots.forEach((dot, i) => dot.classList.toggle('properties-dot--active', i === idx));
+    };
+
+    grid.addEventListener('scroll', () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(syncDots, 60);
     }, { passive: true });
   })();
   </script>
