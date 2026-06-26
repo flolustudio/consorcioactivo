@@ -105,6 +105,7 @@ const properties = [
     "nuevo": true,
     "activa": true,
     "imagenes": [
+      "public/properties/id4/id4-foto8.jpg",
       "public/properties/id4/id4-foto1.jpg",
       "public/properties/id4/id4-foto2.jpg",
       "public/properties/id4/id4-foto3.jpg",
@@ -112,7 +113,6 @@ const properties = [
       "public/properties/id4/id4-foto5.jpg",
       "public/properties/id4/id4-foto6.jpg",
       "public/properties/id4/id4-foto7.jpg",
-      "public/properties/id4/id4-foto8.jpg",
       "public/properties/id4/id4-foto9.jpg",
       "public/properties/id4/id4-foto10.jpg",
       "public/properties/id4/id4-foto11.jpg"

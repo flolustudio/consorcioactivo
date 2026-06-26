@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v35';
+const CACHE_VERSION  = 'ca-v36';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 const CACHE_DATA     = `${CACHE_VERSION}-data`;
@@ -111,7 +111,9 @@ const PRECACHE_ASSETS = [
   '/manifest.webmanifest',
   '/icons/logoBLACK.png',
   '/icons/favicon.svg',
-  ...PROP_IMAGES,
+  /* PROP_IMAGES se excluye del precache — las imágenes de propiedades se
+     cachean on-demand vía el fetch handler (Cache-First). Esto evita
+     descargar ~149 MB en la instalación del SW. */
 ];
 
 /* ── Install: pre-cachea assets estáticos ─────────────────── */

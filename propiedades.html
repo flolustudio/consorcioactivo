@@ -298,10 +298,14 @@
         : `<em>Sin propiedades que coincidan con los filtros.</em>`;
 
       grid.innerHTML = '';
-      filtradas.forEach(p => {
+      filtradas.forEach((p, idx) => {
         const li   = document.createElement('li');
         const card = document.createElement('property-card');
         card.dataset.id = p.id;
+        /* Solo el primer card above-the-fold carga su imagen en eager */
+        if (idx === 0) card.dataset.eager = '';
+        /* Card nueva → ocupa fila completa del grid */
+        if (p.nuevo) li.classList.add('prop-card--featured');
         li.appendChild(card);
         grid.appendChild(li);
       });

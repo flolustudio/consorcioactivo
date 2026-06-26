@@ -94,10 +94,12 @@ class PropertyCard extends HTMLElement {
 
   /* ── HTML de imagen simple ───────────────────────────────── */
   _buildSingleImage(src, titulo, overlay, badge = '') {
+    /* Solo eager si el card tiene data-eager (primer card above-the-fold) */
+    const load = this.dataset.eager !== undefined ? 'eager' : 'lazy';
     return `
       <figure class="property-card-img">
         <img src="${this._esc(src)}" alt="${this._esc(titulo)}"
-             width="400" height="260" loading="lazy">
+             width="400" height="260" loading="${load}">
         ${badge}
         ${overlay}
       </figure>`;
@@ -106,6 +108,8 @@ class PropertyCard extends HTMLElement {
   /* ── HTML del carrusel ───────────────────────────────────── */
   _buildCarousel(images, titulo, overlay, badge = '') {
     const total  = images.length;
+    /* Solo el primer slide del primer card se carga eager */
+    const isEagerCard = this.dataset.eager !== undefined;
     const slides = images.map((src, i) => `
       <div class="carousel-slide" role="group"
            aria-roledescription="slide"
@@ -113,7 +117,7 @@ class PropertyCard extends HTMLElement {
         <img src="${this._esc(src)}"
              alt="${this._esc(titulo)} — foto ${i + 1}"
              width="400" height="260"
-             loading="${i === 0 ? 'eager' : 'lazy'}">
+             loading="${i === 0 && isEagerCard ? 'eager' : 'lazy'}">
         ${i === 0 ? badge : ''}
       </div>`).join('');
 
