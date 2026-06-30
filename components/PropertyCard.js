@@ -68,9 +68,13 @@ class PropertyCard extends HTMLElement {
 
     const newBadge = p.nuevo ? `<span class="prop-badge-new" aria-label="Novedad">NEW</span>` : '';
 
-    const figureHTML = images.length > 1
+    const detalleUrl = this.dataset.detalle || null;
+
+    const figureHTML = (!detalleUrl && images.length > 1)
       ? this._buildCarousel(images, p.titulo, overlay, newBadge)
       : this._buildSingleImage(images[0] || '', p.titulo, overlay, newBadge);
+
+    if (detalleUrl) this.style.cursor = 'pointer';
 
     this.innerHTML = `
       ${figureHTML}
@@ -89,7 +93,7 @@ class PropertyCard extends HTMLElement {
         </div>
       </div>`;
 
-    if (images.length > 1) this._initCarousel();
+    if (!detalleUrl && images.length > 1) this._initCarousel();
     this._initLightbox(p.id);
   }
 
@@ -188,26 +192,35 @@ class PropertyCard extends HTMLElement {
     }, { passive: true });
   }
 
-  /* ── Lightbox: abre el visor de fotos al clickear la imagen ── */
+  /* ── Lightbox / navegación al clickear la imagen ── */
   _initLightbox(propId) {
+    const detalleUrl = this.dataset.detalle;
+
+    // Si tiene página de detalle propia → navegar al hacer click en toda la card
+    if (detalleUrl) {
+      let _startX = 0;
+      this.addEventListener('pointerdown', e => { _startX = e.clientX; }, { passive: true });
+      this.addEventListener('click', e => {
+        if (Math.abs(e.clientX - _startX) > 8) return;
+        // Dejar que el CTA de WPP funcione normalmente
+        if (e.target.closest('a, button')) return;
+        window.location.href = detalleUrl;
+      });
+      return;
+    }
+
     if (!window.propLightbox) return; // solo en propiedades.html
 
     const figure = this.querySelector('.property-card-img');
     if (!figure) return;
 
-    // Detectar drag vs click (no abrir el lightbox si el usuario arrastró)
     let _startX = 0;
     figure.addEventListener('pointerdown', e => { _startX = e.clientX; }, { passive: true });
 
     figure.addEventListener('click', e => {
-      // Ignorar si fue un arrastre (swipe)
       if (Math.abs(e.clientX - _startX) > 8) return;
-      // Ignorar clicks en botones de carrusel y dots
       if (e.target.closest('button, .carousel-dots')) return;
-
-      // Asegurar animación de entrada visible (IntersectionObserver)
       this.closest('[class*="js-animate"]')?.classList.add('is-visible');
-
       const startIdx = this._carouselCurrent ?? 0;
       window.propLightbox.open(propId, startIdx);
     });

@@ -309,7 +309,8 @@
   .nav {
     display: flex;
     align-items: center;
-    gap: var(--sp-5);
+    justify-content: center;
+    gap: var(--sp-6);
     height: var(--nav-h);
     width: calc(100% - (var(--nav-gutter) * 2));
     margin-inline: auto;
@@ -319,17 +320,13 @@
   .nav__logo {
     display: flex;
     align-items: center;
-    position: relative;
-    z-index: 1;
+    flex-shrink: 0;
   }
-  .nav__logo img { height: 36px; width: auto; }
+  .nav__logo img { height: 0.85rem; width: auto; }
 
   .nav-links {
     display: flex;
     gap: var(--sp-6);
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
   }
   .nav-links a {
     font-family: var(--font-display);
@@ -347,7 +344,7 @@
     border-bottom-color: var(--brand);
   }
 
-  .nav-cta { margin-left: auto; flex-shrink: 0; }
+  .nav-cta { display: none; }
 
   /* Hamburger */
   .nav-toggle {
@@ -402,8 +399,8 @@
   }
   .nav:has(.nav-toggle[aria-expanded="true"]) .nav-cta { display: none; }
 
-  /* Enlace de Contáctanos — solo visible en el dropdown mobile */
-  .nav-link--mobile { display: none; }
+  /* Contáctanos — visible en desktop como li normal, y en mobile dropdown */
+  .nav-link--mobile { display: list-item; }
   .nav:has(.nav-toggle[aria-expanded="true"]) .nav-link--mobile { display: list-item; }
   .nav:has(.nav-toggle[aria-expanded="true"]) .nav-link--mobile a {
     color: var(--brand);
@@ -1094,7 +1091,7 @@
     z-index: 1;
     width: fit-content;
     max-width: 50%;
-    margin-left: 12%;
+    margin-left: 20%;
     padding-block: var(--sp-4);
   }
   .nosotros-commitment-copy {
@@ -1125,7 +1122,7 @@
   .nosotros-commitment-row--community .nosotros-commitment-text {
     justify-content: flex-end;
     margin-left: auto;
-    margin-right: 11%;
+    margin-right: 20%;
     text-align: right;
   }
   .nosotros-commitment-row--security .nosotros-commitment-img,
@@ -1324,7 +1321,7 @@
     inset: 0;
     display: flex;
     align-items: flex-start;
-    padding-top: clamp(3.5rem, 9vh, 6.5rem);
+    padding-top: clamp(11rem, 27vh, 20rem);
     z-index: 1;
   }
 
@@ -2055,7 +2052,7 @@
 
   /* Hero propiedades */
   .hero--propiedades {
-    background-image: url("public/properties/images/propiedades-26-06.png");
+    background-image: url("public/images/header-propiedades-jun26.png");
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -2713,6 +2710,10 @@
 
   /* Cursor que invita al zoom sobre cualquier imagen de card */
   .property-card-img { cursor: zoom-in; }
+
+  /* Card con página de detalle propia → todo pointer, toda la card */
+  property-card[data-detalle],
+  property-card[data-detalle] * { cursor: pointer !important; }
 
   /* Dialog base */
   .prop-lightbox {
