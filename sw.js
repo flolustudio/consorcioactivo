@@ -14,7 +14,7 @@
  * ────────────────────────────────────────────────────────────────────────────
  */
 
-const CACHE_VERSION  = 'ca-v38';
+const CACHE_VERSION  = 'ca-v40';
 const CACHE_STATIC   = `${CACHE_VERSION}-static`;
 const CACHE_PAGES    = `${CACHE_VERSION}-pages`;
 const CACHE_DATA     = `${CACHE_VERSION}-data`;
@@ -97,14 +97,14 @@ const PRECACHE_ASSETS = [
   '/contacto.html',
   '/terminos.html',
   '/privacidad.html',
-  '/styles.css?v=20260629-01',
-  '/app.js?v=20260629-01',
-  '/components/AppNav.js?v=20260629-01',
-  '/components/PropertyCard.js?v=20260629-01',
-  '/components/ContactForm.js?v=20260629-01',
-  '/services/PropertyStore.js?v=20260629-01',
-  '/services/API.js?v=20260629-01',
-  '/services/Properties.js?v=20260629-01',
+  '/styles.css?v=20260629-03',
+  '/app.js?v=20260629-03',
+  '/components/AppNav.js?v=20260629-03',
+  '/components/PropertyCard.js?v=20260629-03',
+  '/components/ContactForm.js?v=20260629-03',
+  '/services/PropertyStore.js?v=20260629-03',
+  '/services/API.js?v=20260629-03',
+  '/services/Properties.js?v=20260629-03',
   /* data/properties.js se excluye del precache — se sirve siempre
      Network-First para garantizar datos frescos en cada visita */
   '/vista-detalle/id1.html',
