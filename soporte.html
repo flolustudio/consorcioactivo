@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260708-07">
+  <link rel="stylesheet" href="styles.css?v=20260708-08">
   <link rel="preload" href="public/images/soporte-hero_image.png" as="image" fetchpriority="high">
 </head>
 <body>
@@ -222,16 +222,14 @@
       <p class="modal-question">1. ¿Cómo instalar la app de "expensas online"?</p>
       <div class="modal-card-row">
         <div class="modal-card modal-card--video">
-          <video class="modal-card-video" controls preload="none"
-                 poster="public/support-modal/1 DESDE APP STORE.png"
-                 src="public/support-modal/1 DESDE APP STORE.MP4">
-          </video>
+          <img class="modal-card-video"
+               src="public/support-modal/1 DESDE APP STORE.png"
+               alt="Instructivo para instalar desde App Store">
         </div>
         <div class="modal-card modal-card--video">
-          <video class="modal-card-video" controls preload="none"
-                 poster="public/support-modal/1.2 CON RECIBO.png"
-                 src="public/support-modal/1.2 CON RECIBO.MOV">
-          </video>
+          <img class="modal-card-video"
+               src="public/support-modal/1.2 CON RECIBO.png"
+               alt="Instructivo para instalar desde el QR del recibo">
         </div>
       </div>
       <div class="modal-download-row">
@@ -242,10 +240,9 @@
       <!-- Pregunta 2 -->
       <p class="modal-question">2. ¿Cómo registrar una unidad?</p>
       <figure class="modal-video-wrap">
-        <video class="modal-video" controls preload="none"
-               poster="public/support-modal/2 AÑADIR UNIDAD.png"
-               src="public/support-modal/2 AÑADIR UNIDAD.MP4">
-        </video>
+        <img class="modal-video-poster"
+             src="public/support-modal/2 AÑADIR UNIDAD.png"
+             alt="Instructivo para registrar una unidad">
       </figure>
       <div class="modal-download-row modal-download-row--single">
         <a class="modal-download-link" href="public/support-modal/2 AÑADIR UNIDAD.png" download="2 AÑADIR UNIDAD.png">Descargar instructivo</a>
@@ -304,9 +301,9 @@
     </p>
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260708-07"></script>
-  <script type="module" src="components/ContactForm.js?v=20260708-07"></script>
-  <script type="module" src="app.js?v=20260708-07"></script>
+  <script type="module" src="components/AppNav.js?v=20260708-08"></script>
+  <script type="module" src="components/ContactForm.js?v=20260708-08"></script>
+  <script type="module" src="app.js?v=20260708-08"></script>
   <script>
     document.querySelectorAll('.support-accordion-item').forEach(item => {
       item.addEventListener('toggle', () => {
