@@ -30,7 +30,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
-  <link rel="stylesheet" href="styles.css?v=20260629-03">
+  <link rel="stylesheet" href="styles.css?v=20260708-07">
   <link rel="preload" href="public/images/soporte-hero_image.png" as="image" fetchpriority="high">
 </head>
 <body>
@@ -50,6 +50,7 @@
         <li><a href="propiedades.html">Propiedades</a></li>
         <li><a href="soporte.html" aria-current="page">Soporte</a></li>
         <li class="nav-link--mobile"><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="https://expensasonline.pro/index.php/landing" target="_blank" rel="noopener noreferrer">Expensas Online</a></li>
       </ul>
 
       <a href="contacto.html" class="btn btn-brand nav-cta">Contáctanos</a>
@@ -205,46 +206,71 @@
   <dialog class="support-modal" id="modal-admin" aria-labelledby="modal-admin-title">
     <div class="support-modal-inner">
 
-      <div class="support-modal-header">
+      <button class="support-modal-close" type="button" aria-label="Cerrar">✕</button>
+
+      <div class="support-modal-head">
         <span class="support-modal-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
             <path d="M5 20V8l7-4 7 4v12"/>
             <path d="M9 20v-6h6v6M8 10h1M14 10h1" stroke-linecap="round"/>
           </svg>
         </span>
-        <h2 id="modal-admin-title">Administración</h2>
-        <button class="support-modal-close" type="button" aria-label="Cerrar">✕</button>
+        <h2 id="modal-admin-title" class="support-modal-title">Administración</h2>
       </div>
 
-      <div class="support-modal-body">
-
-        <!-- Pregunta 1 -->
-        <div class="modal-question">
-          <p class="modal-question-label"><span aria-hidden="true">1.</span> ¿Cómo instalar la app de "expensas online"?</p>
-          <figure class="modal-video-wrap">
-            <!-- Cuando el video esté disponible: reemplazar div por <video controls src="public/properties/Videos/admin-expensas-online.mp4"> -->
-            <div class="modal-video-placeholder" aria-label="Tutorial próximamente disponible">
-              <span>Ver tutorial</span>
-            </div>
-          </figure>
+      <!-- Pregunta 1 -->
+      <p class="modal-question">1. ¿Cómo instalar la app de "expensas online"?</p>
+      <div class="modal-card-row">
+        <div class="modal-card modal-card--video">
+          <video class="modal-card-video" controls preload="none"
+                 poster="public/support-modal/1 DESDE APP STORE.png"
+                 src="public/support-modal/1 DESDE APP STORE.MP4">
+          </video>
         </div>
-
-        <!-- Pregunta 2 -->
-        <div class="modal-question">
-          <p class="modal-question-label"><span aria-hidden="true">2.</span> ¿Cómo descargar mis expensas?</p>
-          <figure class="modal-video-wrap">
-            <!-- Cuando el video esté disponible: reemplazar div por <video controls src="public/properties/Videos/admin-descargar-expensas.mp4"> -->
-            <div class="modal-video-placeholder" aria-label="Tutorial próximamente disponible">
-              <span>Ver tutorial</span>
-            </div>
-          </figure>
-          <div class="modal-actions">
-            <button class="modal-btn-info" type="button" data-info="admin-2">Ver información</button>
-            <button class="modal-btn-back" type="button">Volver atrás</button>
-          </div>
+        <div class="modal-card modal-card--video">
+          <video class="modal-card-video" controls preload="none"
+                 poster="public/support-modal/1.2 CON RECIBO.png"
+                 src="public/support-modal/1.2 CON RECIBO.MOV">
+          </video>
         </div>
-
       </div>
+      <div class="modal-download-row">
+        <a class="modal-download-link" href="public/support-modal/1 DESDE APP STORE.png" download="1 DESDE APP STORE.png">Descargar instructivo</a>
+        <a class="modal-download-link" href="public/support-modal/1.2 CON RECIBO.png" download="1.2 CON RECIBO.png">Descargar instructivo</a>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <p class="modal-question">2. ¿Cómo registrar una unidad?</p>
+      <figure class="modal-video-wrap">
+        <video class="modal-video" controls preload="none"
+               poster="public/support-modal/2 AÑADIR UNIDAD.png"
+               src="public/support-modal/2 AÑADIR UNIDAD.MP4">
+        </video>
+      </figure>
+      <div class="modal-download-row modal-download-row--single">
+        <a class="modal-download-link" href="public/support-modal/2 AÑADIR UNIDAD.png" download="2 AÑADIR UNIDAD.png">Descargar instructivo</a>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <p class="modal-question">3. ¿Dónde encontrar mis expensas anteriores o actuales?</p>
+      <figure class="modal-video-wrap">
+        <!-- Cuando el video esté disponible: reemplazar div por <video controls src="public/properties/Videos/admin-expensas-anteriores.mp4"> -->
+        <div class="modal-video-placeholder" aria-label="Tutorial próximamente disponible">
+          <span>Ver tutorial</span>
+        </div>
+      </figure>
+      <div class="modal-download-row modal-download-row--single">
+        <span class="modal-download-link modal-download-link--disabled" aria-disabled="true">Instructivo próximamente</span>
+      </div>
+
+      <!-- Footer -->
+      <div class="support-modal-actions">
+        <a class="btn modal-btn-info"
+           href="https://expensasonline.pro/index.php/landing"
+           target="_blank" rel="noopener noreferrer">Ver información</a>
+        <button class="btn modal-btn-back" type="button">Volver atrás</button>
+      </div>
+
     </div>
   </dialog>
 
@@ -278,9 +304,9 @@
     </p>
   </footer>
 
-  <script type="module" src="components/AppNav.js?v=20260629-03"></script>
-  <script type="module" src="components/ContactForm.js?v=20260629-03"></script>
-  <script type="module" src="app.js?v=20260629-03"></script>
+  <script type="module" src="components/AppNav.js?v=20260708-07"></script>
+  <script type="module" src="components/ContactForm.js?v=20260708-07"></script>
+  <script type="module" src="app.js?v=20260708-07"></script>
   <script>
     document.querySelectorAll('.support-accordion-item').forEach(item => {
       item.addEventListener('toggle', () => {
@@ -326,12 +352,6 @@
       // Tecla Escape nativa del <dialog> — limpiar overflow
       modal.addEventListener('close', () => { document.body.style.overflow = ''; });
 
-      // "Ver información" — slot aislado, listo para contenido futuro
-      modal.querySelectorAll('.modal-btn-info').forEach(btn => {
-        btn.addEventListener('click', () => {
-          // TODO: conectar contenido según btn.dataset.info
-        });
-      });
     });
   </script>
 

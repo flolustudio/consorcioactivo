@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <link rel="preload" href="../public/properties/id1/portada propiedad 2.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="../styles.css?v=20260629-03">
+  <link rel="stylesheet" href="../styles.css?v=20260708-07">
 
   <style>
     /* ── DETALLE PAGE ─────────────────────────────────────────── */
@@ -218,7 +218,8 @@
       margin-bottom: var(--sp-1);
     }
     .detalle-precio-valor {
-      font-size: clamp(1.6rem, 2.5vw, 2rem);
+      font-size: 1.8rem;
+      font-style: italic;
       font-weight: 800;
       color: var(--text-primary);
       margin-bottom: var(--sp-4);
@@ -227,6 +228,19 @@
       font-size: 1rem;
       font-weight: 500;
       color: var(--text-secondary);
+    }
+    /* Caso "Consultar precio" — mismo tamaño/estilo en las dos palabras */
+    .detalle-precio-valor--consulta,
+    .detalle-precio-valor--consulta span {
+      font-size: 1rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    .detalle-precio-valor--consulta {
+      text-align: center;
+      padding-block: var(--sp-2);
+      margin-bottom: var(--sp-4);
     }
     .detalle-contactar {
       display: block;
@@ -463,6 +477,7 @@
         <li><a href="../propiedades.html">Propiedades</a></li>
         <li><a href="../soporte.html">Soporte</a></li>
         <li class="nav-link--mobile"><a href="../contacto.html">Contáctanos</a></li>
+        <li><a href="https://expensasonline.pro/index.php/landing" target="_blank" rel="noopener noreferrer">Expensas Online</a></li>
       </ul>
       <a href="../contacto.html" class="btn btn-brand nav-cta">Contáctanos</a>
       <button class="nav-toggle" aria-label="Abrir menú"
@@ -584,12 +599,12 @@
           </div>
         </div>
 
-        <!-- Acordeón Requisitos -->
+        <!-- Requisitos -->
         <div class="req-card">
           <div class="req-header">
-            <span class="req-title">Requisitos para alquilar</span>
+            <span class="req-title" id="req-title">Requisitos para alquilar</span>
           </div>
-          <div class="req-body" id="req-body" role="region" aria-labelledby="req-toggle">
+          <div class="req-body" id="req-body" role="region" aria-labelledby="req-title">
             <p>Recibo de sueldo o constancia de ingresos, según corresponda.</p>
             <p><strong>Garantes</strong></p>
             <p>2 Garantes recibo de sueldo, constancia de ingresos según corresponda.<br>
@@ -608,8 +623,7 @@
       <!-- Sidebar precio -->
       <aside class="detalle-sidebar" aria-label="Precio y contacto">
         <div class="detalle-precio-card">
-          <p class="detalle-precio-label">Desde</p>
-          <p class="detalle-precio-valor">$860.000<span>/mes</span></p>
+          <p class="detalle-precio-valor detalle-precio-valor--consulta">Consultar<span> precio</span></p>
 
           <a href="../contacto.html" class="detalle-contactar">Contactar ahora</a>
           <p class="detalle-nota">Sin cargo por consulta</p>
@@ -647,7 +661,7 @@
     <div class="lightbox-inner">
       <button class="lightbox-close" id="lb-close" aria-label="Cerrar galería">✕</button>
       <button class="lightbox-prev" id="lb-prev" aria-label="Foto anterior">‹</button>
-      <img class="lightbox-img" id="lb-img" src="" alt="Foto de la propiedad">
+      <img class="lightbox-img" id="lb-img" alt="Foto de la propiedad">
       <button class="lightbox-next" id="lb-next" aria-label="Foto siguiente">›</button>
       <p class="lightbox-counter" id="lb-counter">1 / 8</p>
     </div>
@@ -683,8 +697,8 @@
     </p>
   </footer>
 
-  <script type="module" src="../components/AppNav.js?v=20260629-03"></script>
-  <script type="module" src="../app.js?v=20260629-03"></script>
+  <script type="module" src="../components/AppNav.js?v=20260708-07"></script>
+  <script type="module" src="../app.js?v=20260708-07"></script>
 
   <script>
     // ── LIGHTBOX ────────────────────────────────────────────────
@@ -744,15 +758,8 @@
       dx < 0 ? next() : prev();
     });
 
-    // ── ACORDEÓN REQUISITOS ────────────────────────────────────
-    const reqToggle = document.getElementById('req-toggle');
-    const reqBody   = document.getElementById('req-body');
-    reqToggle.addEventListener('click', () => {
-      const expanded = reqToggle.getAttribute('aria-expanded') === 'true';
-      reqToggle.setAttribute('aria-expanded', String(!expanded));
-      if (expanded) { reqBody.setAttribute('hidden', ''); }
-      else          { reqBody.removeAttribute('hidden'); }
-    });
+    // Nota: el bloque "Requisitos para alquilar" es fijo (sin toggle),
+    // según ARQUITECTURA-vista-detalle.md — no requiere JS.
 
     // Abrir desde galería
     document.querySelectorAll('[data-index]').forEach(el => {

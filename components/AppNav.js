@@ -15,6 +15,7 @@ const NAV_LINKS = [
   { id: 'soporte',      label: 'Soporte',      href: 'soporte.html'     },
   /* Solo visible en el dropdown mobile — oculto en desktop vía CSS */
   { id: 'contacto',     label: 'Contáctanos',  href: 'contacto.html',   mobileOnly: true },
+  { id: 'expensas',     label: 'Expensas Online', href: 'https://expensasonline.pro/index.php/landing', external: true },
 ];
 
 class AppNav extends HTMLElement {
@@ -48,10 +49,11 @@ class AppNav extends HTMLElement {
   render() {
     const current = this.getAttribute('current') ?? 'home';
     const logoHref = current === 'home' ? '#inicio' : 'index.html';
-    const links = NAV_LINKS.map(({ id, label, href, mobileOnly }) => {
+    const links = NAV_LINKS.map(({ id, label, href, mobileOnly, external }) => {
       const active   = id === current ? ' aria-current="page"' : '';
       const liClass  = mobileOnly ? ' class="nav-link--mobile"' : '';
-      return `<li${liClass}><a href="${href}"${active}>${label}</a></li>`;
+      const extAttrs = external ? ' target="_blank" rel="noopener noreferrer"' : '';
+      return `<li${liClass}><a href="${href}"${extAttrs}${active}>${label}</a></li>`;
     }).join('\n        ');
     const ctaCurrent = current === 'contacto' ? ' aria-current="page"' : '';
 

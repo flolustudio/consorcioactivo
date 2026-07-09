@@ -64,7 +64,7 @@
 
   <!-- Preload imagen LCP -->
   <link rel="preload" href="public/images/header-index-ampliado.jpg" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260629-03">
+  <link rel="stylesheet" href="styles.css?v=20260708-07">
 </head>
 <body class="home-page">
 
@@ -85,6 +85,7 @@
         <li><a href="propiedades.html">Propiedades</a></li>
         <li><a href="soporte.html">Soporte</a></li>
         <li class="nav-link--mobile"><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="https://expensasonline.pro/index.php/landing" target="_blank" rel="noopener noreferrer">Expensas Online</a></li>
       </ul>
 
       <a href="contacto.html" class="btn btn-brand nav-cta">Contáctanos</a>
@@ -176,24 +177,27 @@
 
     </section>
 
-    <!-- ── PROPIEDADES (preview) ─────────────────────────────── -->
-    <section class="properties-preview" aria-labelledby="properties-h">
+    <!-- ── PROPIEDADES CTA (bg) ──────────────────────────────── -->
+    <section class="properties-cta properties-cta--bg" aria-labelledby="properties-cta-h">
 
-      <header class="properties-header">
-        <div>
+      <div class="properties-cta-inner">
+        <div class="properties-cta-content">
           <p class="section-label">Propiedades</p>
-          <h2 id="properties-h">
+          <h2 id="properties-cta-h">
             Encontrá tu<br>
             <em class="accent">espacio ideal</em>
           </h2>
-        </div>
-        <div class="properties-aside">
           <p>Te acompañamos a encontrar<br>tu lugar perfecto</p>
           <a href="propiedades.html" class="link-arrow">
             Ver todas las propiedades <span aria-hidden="true">›</span>
           </a>
         </div>
-      </header>
+      </div>
+
+    </section>
+
+    <!-- ── PROPIEDADES (preview) ─────────────────────────────── -->
+    <section class="properties-preview" aria-label="Propiedades">
 
       <ul class="properties-grid" role="list">
 
@@ -261,7 +265,7 @@
       </div>
 
       <figure class="contact-cta-figure" aria-hidden="true">
-        <img src="public/images/contact-cta-figure.png"
+        <img src="public/images/imagen-contacto-pagina-index-new.png"
              alt="" role="presentation"
              loading="lazy">
       </figure>
@@ -439,9 +443,9 @@
   <!-- ============================================================
        SCRIPTS — Web Components + Service Worker
   ============================================================ -->
-  <script type="module" src="components/AppNav.js?v=20260629-03"></script>
-  <script type="module" src="components/PropertyCard.js?v=20260629-03"></script>
-  <script type="module" src="app.js?v=20260629-03"></script>
+  <script type="module" src="components/AppNav.js?v=20260708-07"></script>
+  <script type="module" src="components/PropertyCard.js?v=20260708-07"></script>
+  <script type="module" src="app.js?v=20260708-07"></script>
 
 </body>
 </html>

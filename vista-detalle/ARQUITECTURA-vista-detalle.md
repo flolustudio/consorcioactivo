@@ -9,7 +9,9 @@ Guía para crear o modificar páginas de detalle (`idN.html`) en esta carpeta.
 ```
 vista-detalle/
   id1.html                      ← propiedad id=1 (referencia)
-  id2.html                      ← propiedad id=2 (a crear)
+  id2.html                      ← propiedad id=2
+  id3.html                      ← propiedad id=3
+  id4.html                      ← propiedad id=4
   ARQUITECTURA-vista-detalle.md ← este archivo
 ```
 
@@ -79,14 +81,14 @@ const IMAGES = [
 </div>
 ```
 
-### Acordeón Requisitos (fijo, sin toggle)
+### Requisitos (fijo, sin toggle)
 ```html
-<!-- Acordeón Requisitos -->
+<!-- Requisitos -->
 <div class="req-card">
   <div class="req-header">
-    <span class="req-title">Requisitos para alquilar</span>
+    <span class="req-title" id="req-title">Requisitos para alquilar</span>
   </div>
-  <div class="req-body" id="req-body" role="region" aria-labelledby="req-toggle">
+  <div class="req-body" id="req-body" role="region" aria-labelledby="req-title">
     <p>Recibo de sueldo o constancia de ingresos, según corresponda.</p>
     <p><strong>Garantes</strong></p>
     <p>2 Garantes recibo de sueldo, constancia de ingresos según corresponda.<br>
@@ -103,10 +105,12 @@ const IMAGES = [
 
 ### Sidebar — precio
 ```html
+<!-- Convención actual (id1–id4): ningún detalle muestra monto. -->
+<p class="detalle-precio-valor">Consultar<span> precio</span></p>
+
+<!-- Si en el futuro se define un precio real, usar: -->
 <p class="detalle-precio-label">Desde</p>
 <p class="detalle-precio-valor">$X.XXX.XXX<span>/mes</span></p>
-<!-- Si no hay precio definido usar: -->
-<p class="detalle-precio-valor">Consultar<span> precio</span></p>
 ```
 
 ---
@@ -150,5 +154,7 @@ property-card[data-detalle] * { cursor: pointer !important; }
 | Imágenes | Las rutas con espacios funcionan en HTML/JS sin encode |
 | CSS | Está inline en `<style>` dentro del HTML, no en styles.css |
 | Requisitos | El bloque `.req-card` es fijo (no acordeón), copiar tal cual |
+| Requisitos JS | **No** agregar listeners de acordeón: el bloque es fijo, sin toggle. Un listener sobre un id inexistente corta el resto del `<script>` y rompe el lightbox. |
 | Descripción | `<p class="detalle-descripcion">` eliminado — no incluir |
+| Precio | Ninguna vista muestra monto — usar siempre `Consultar precio` (ver sección Sidebar) |
 | Cursor | Ya resuelto globalmente en styles.css — no requiere acción por id |

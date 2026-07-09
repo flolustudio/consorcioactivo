@@ -4,7 +4,7 @@
  * Fase 2: reemplazar fetchProperties() por fetch al backend real.
  */
 
-import DATA from '../data/properties.js?v=20260629-03';
+import DATA from '../data/properties.js?v=20260708-07';
 
 const API = {
   // Fase 2: url: 'https://mi-api.com/properties',

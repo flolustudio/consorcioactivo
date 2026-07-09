@@ -32,7 +32,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
   <!-- Preload imagen LCP -->
   <link rel="preload" href="public/properties/images/propiedades-26-06.png" as="image" fetchpriority="high">
-  <link rel="stylesheet" href="styles.css?v=20260629-03">
+  <link rel="stylesheet" href="styles.css?v=20260708-07">
 </head>
 <body>
 
@@ -49,6 +49,7 @@
         <li><a href="propiedades.html" aria-current="page">Propiedades</a></li>
         <li><a href="soporte.html">Soporte</a></li>
         <li class="nav-link--mobile"><a href="contacto.html">Contáctanos</a></li>
+        <li><a href="https://expensasonline.pro/index.php/landing" target="_blank" rel="noopener noreferrer">Expensas Online</a></li>
       </ul>
       <a href="contacto.html" class="btn btn-brand nav-cta">Contáctanos</a>
       <button class="nav-toggle" aria-label="Abrir menú"
@@ -311,16 +312,16 @@
   })();
   </script>
 
-  <script type="module" src="components/AppNav.js?v=20260629-03"></script>
-  <script type="module" src="components/PropertyCard.js?v=20260629-03"></script>
-  <script type="module" src="app.js?v=20260629-03"></script>
+  <script type="module" src="components/AppNav.js?v=20260708-07"></script>
+  <script type="module" src="components/PropertyCard.js?v=20260708-07"></script>
+  <script type="module" src="app.js?v=20260708-07"></script>
 
   <!-- Inicialización de propiedades -->
   <script type="module">
     // Flujo de datos: propiedades.html → API.js → data/properties.js → PropertyStore → PropertyCard
     // Para agregar/editar/sacar una propiedad, solo tocar data/properties.js + sw.js (PROP_IMAGES).
-    import PropertyStore      from './services/PropertyStore.js?v=20260629-03';
-    import { loadProperties } from './services/Properties.js?v=20260629-03';
+    import PropertyStore      from './services/PropertyStore.js?v=20260708-07';
+    import { loadProperties } from './services/Properties.js?v=20260708-07';
 
     // Exponer store globalmente para PropertyCard
     window.app         = window.app || {};
@@ -400,6 +401,9 @@
         if (idx === 0) card.dataset.eager = '';
         /* Cards con página de detalle propia */
         if (p.id === 1) card.dataset.detalle = 'vista-detalle/id1.html';
+        if (p.id === 2) card.dataset.detalle = 'vista-detalle/id2.html';
+        if (p.id === 3) card.dataset.detalle = 'vista-detalle/id3.html';
+        if (p.id === 4) card.dataset.detalle = 'vista-detalle/id4.html';
         li.appendChild(card);
         grid.appendChild(li);
       });

@@ -4,7 +4,7 @@
  * El setter del Proxy dispara "apppropertieschange" automáticamente.
  */
 
-import API from './API.js?v=20260629-03';
+import API from './API.js?v=20260708-07';
 
 export async function loadProperties() {
   try {
