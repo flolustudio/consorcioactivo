@@ -4270,6 +4270,6 @@
  @media (max-width: 600px) {
   .properties-cta--bg {
     background-image: url("./consorcio-mobile/imagen-inicio-propiedades-mobile.png");
-    background-position: 50% center;
+    background-size: cover;
   }
 }

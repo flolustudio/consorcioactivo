@@ -15,7 +15,7 @@ const NAV_LINKS = [
   { id: 'soporte',      label: 'Soporte',      href: 'soporte.html'     },
   /* Solo visible en el dropdown mobile — oculto en desktop vía CSS */
   { id: 'contacto',     label: 'Contáctanos',  href: 'contacto.html',   mobileOnly: true },
-  { id: 'expensas',     label: 'Expensas Online', href: 'https://expensasonline.pro/index.php/landing', external: true },
+  { id: 'expensas',     label: 'Expensas Online', href: 'https://propietarios.expensasonline.pro/#/login', external: true },
 ];
 
 class AppNav extends HTMLElement {
