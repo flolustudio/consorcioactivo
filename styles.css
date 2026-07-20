@@ -445,6 +445,11 @@
     min-height: calc(100dvh - var(--nav-h));
   }
 
+@media (max-width: 600px) {
+  .nosotros-hero{
+    background-image: url("./consorcio-mobile/header-mobile-nosotros.png");
+  }
+}
   .hero--nosotros .hero-content {
     grid-column: 2;
     text-align: right;
