@@ -433,6 +433,11 @@
     background-image: url("public/images/header-index-ampliado.jpg");
   }
 
+@media (max-width: 600px) {
+  .hero--inicio {
+    background-image: url("./consorcio-mobile/hero-inicio-mobile.png");
+  }
+}
   .hero--nosotros {
     background-image: url("public/images/header-nosotros-ampliado.jpg");
     background-size: cover;
@@ -629,7 +634,6 @@
   .properties-cta--bg {
     background-image: url("public/images/propiedades index-new.png");
     background-repeat: no-repeat;
-    background-size: 100% auto;
     background-position: center bottom;
   }
 
@@ -639,9 +643,10 @@
     min-height: 580px;
     margin-inline: auto;
     display: flex;
-    align-items: center;
     justify-content: flex-end;
   }
+
+ 
 
   .properties-cta-content {
     display: flex;
@@ -3645,7 +3650,7 @@
     }
     .home-page .commitment-card p {
       grid-area: text;
-      max-width: 18ch;
+      max-width: 50ch;
       font-size: 0.67rem;
       font-weight: 600;
       line-height: 1.22;
@@ -3671,9 +3676,15 @@
 
     .home-page .about-preview--bg {
       min-height: 472px;
-      background-size: auto 100%;
       background-position: 76% bottom;
-    }
+
+
+    } @media (max-width: 600px) {
+  .about-preview--bg {
+    background-image: url("./consorcio-mobile/imagen-inicio-sobre-nosotros-mobile.png");
+    background-size: 100%;
+  }
+}
     .home-page .about-content {
       align-items: center;
       justify-content: flex-start;
@@ -3710,11 +3721,6 @@
       line-height: 1;
     }
 
-    .home-page .properties-cta--bg {
-      min-height: 472px;
-      background-size: auto 100%;
-      background-position: 76% bottom;
-    }
     .home-page .properties-cta-content {
       align-items: center;
       justify-content: flex-start;
@@ -4259,5 +4265,11 @@
     }
     .newsletter-form { flex-direction: column; }
     .newsletter-input { min-width: unset; width: 100%; }
+  }
+}
+ @media (max-width: 600px) {
+  .properties-cta--bg {
+    background-image: url("./consorcio-mobile/imagen-inicio-propiedades-mobile.png");
+    background-position: 50% center;
   }
 }
