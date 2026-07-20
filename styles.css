@@ -403,7 +403,6 @@
   .nav-link--mobile { display: list-item; }
   .nav:has(.nav-toggle[aria-expanded="true"]) .nav-link--mobile { display: list-item; }
   .nav:has(.nav-toggle[aria-expanded="true"]) .nav-link--mobile a {
-    color: var(--brand);
     font-weight: 800;
     letter-spacing: 0.02em;
   }
@@ -3537,9 +3536,6 @@
       justify-content: flex-end;
       box-shadow: none;
     }
-    .home-page app-nav .nav__logo {
-      display: none;
-    }
     .home-page .nav-toggle {
       width: 34px;
       height: 34px;
@@ -4272,4 +4268,17 @@
     background-image: url("./consorcio-mobile/imagen-inicio-propiedades-mobile.png");
     background-size: cover;
   }
+}
+
+@media (max-width: 600px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav.is-open .nav-links {
+    display: flex;
+    flex-direction: column;
+  }
+
 }
