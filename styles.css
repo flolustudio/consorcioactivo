@@ -642,24 +642,29 @@
   }
 
   /* Contenedor centrado al ancho máximo del sitio, texto empujado al tercio derecho */
-  .properties-cta-inner {
-    width: min(var(--max-w), 100% - (var(--gutter) * 2));
-    min-height: 580px;
-    margin-inline: auto;
-    display: flex;
-    justify-content: flex-end;
-  }
+    .properties-cta-inner {
+      width: min(var(--max-w), calc(100% - (var(--gutter) * 2)));
+  min-height: 580px;
+  margin-inline: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 
  
 
   .properties-cta-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--sp-1);
-    width: min(320px, 30%);
-    position: relative;
-    z-index: 1;
+   .properties-cta-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: min(320px, 30%);
+  gap: var(--sp-1);
+  position: relative;
+  z-index: 1;
+  margin-top: 140px !important;
+}
   }
   .properties-cta-content .section-label {
     color: var(--brand);
@@ -3056,9 +3061,8 @@
     }
 
     .properties-cta-inner {
-      justify-content: center;
-      padding: 0 var(--gutter);
-    }
+    min-height: 580px;
+}
     .properties-cta-content {
       width: 100%;
       max-width: 480px;
@@ -3099,10 +3103,10 @@
       min-height: calc(100dvh - var(--nav-h));
       background-position: center top;
     }
-    .nosotros-hero-content {
+     .nosotros-hero-content {
       right: var(--gutter);
       width: min(520px, calc(100% - (var(--gutter) * 2)));
-    }
+  }
     .nosotros-about {
       grid-template-columns: 1fr;
     }
@@ -3345,8 +3349,13 @@
       min-height: 380px;
     }
     .properties-cta-content {
-      padding-top:    var(--sp-5);
-      padding-bottom: var(--sp-5);
+        display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(320px, 30%);
+    gap: var(--sp-1);
+    position: relative;
+    z-index: 1;
     }
     .properties-cta-content h2 {
       font-size: clamp(1.8rem, 10vw, 2.6rem);
@@ -3399,14 +3408,16 @@
       min-height: calc(100dvh - var(--nav-h));
     }
     .nosotros-hero-content {
-      top: auto;
+      top: 25%;
       right: var(--gutter);
-      bottom: var(--sp-5);
-      transform: none;
-      text-align: left;
+      left: var(--gutter);
+      bottom: auto;
+      transform: translateY(-50%);
+      width: auto;
+      text-align: center;
     }
     .nosotros-hero-content h1 {
-      font-size: clamp(2rem, 12vw, 3rem);
+       font-size: clamp(2rem, 10vw, 3rem);
     }
 
     /* contacto hero mobile */
@@ -3634,14 +3645,14 @@
     }
     .home-page .commitment-icon {
       grid-area: icon;
-      width: 58px;
-      height: 58px;
+      width: 50px;
+      height: 50px;
       margin: 0;
       background: var(--brand);
     }
     .home-page .commitment-icon img {
-      width: 36px;
-      height: 36px;
+      width: 30px;
+      height: 30px;
     }
     .home-page .commitment-card h2 {
       grid-area: title;
@@ -3723,16 +3734,18 @@
     }
 
     .home-page .properties-cta-content {
-      align-items: center;
-      justify-content: flex-start;
-      text-align: center;
-      gap: 0.7rem;
-      padding: 3.1rem 1.4rem 14.5rem;
+     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(320px, 30%);
+    gap: var(--sp-1);
+    position: relative;
+    z-index: 1;
     }
     .home-page .properties-cta-content h2 {
       font-size: clamp(1.62rem, 8.2vw, 2rem);
       line-height: 0.98;
-      letter-spacing: 0;
+      letter-spacing: 0; 
     }
     .home-page .properties-cta-content p {
       max-width: 30ch;
@@ -4273,6 +4286,10 @@
     background-image: url("./consorcio-mobile/imagen-inicio-propiedades-mobile.png");
     background-size: cover;
   }
+
+  .nosotros-hero{
+    background-image: url("./consorcio-mobile/header-mobile-nosotros.png");
+  }
 }
 
 @media (max-width: 600px) {
@@ -4284,6 +4301,34 @@
   .nav.is-open .nav-links {
     display: flex;
     flex-direction: column;
+    
+  }
+}
+
+.properties-cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(320px, 30%);
+    gap: var(--sp-1);
+    position: relative;
+    z-index: 1;
+    margin: 0;
+}
+
+@media (max-width:768px) {
+
+      .properties-cta-inner {
+    min-height: 580px;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 80px;
   }
 
+  .properties-cta-content {
+    width: 90%;
+    max-width: 320px;
+    align-items: center;
+    text-align: center;
+  }
 }
