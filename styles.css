@@ -3470,25 +3470,16 @@
       min-height: 420px;
       padding: 2.25rem 0 2.5rem;
     }
-    .support-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.95) 0%,
-        rgba(255,255,255,0.76) 52%,
-        rgba(255,255,255,0.24) 100%
-      );
-      z-index: 0;
-    }
+    
     .support-hero-bg {
       object-position: 28% bottom;
     }
     .support-hero-inner {
-      align-items: flex-start;
-      justify-content: flex-start;
-      min-height: 0;
+      .support-hero-inner {
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100dvh - var(--nav-h));
+    }
     }
     .support-hero-content {
       max-width: 300px;
@@ -3501,12 +3492,13 @@
       font-size: clamp(2rem, 11vw, 3rem);
     }
     .support-hero-content h1 {
-      max-width: 10.8ch;
       font-size: clamp(1.95rem, 8.5vw, 2.35rem);
       line-height: 1.02;
+       text-align: center;
     }
     .support-hero-content h1 span {
-      white-space: normal;
+      white-space: center
+      ;
     }
     .support-stats {
       flex-direction: column;
@@ -4463,4 +4455,64 @@
     display: none;
   }
 
+}
+
+@media (width < 600px) {
+
+  .prop-tabs {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scrollbar-width: none;
+  }
+
+  .prop-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .prop-tab {
+    flex: 0 0 auto;
+    padding: 0.6rem 0.8rem;
+    font-size: 12px;
+  }
+
+  .prop-tab-icon{
+    width: 30px;
+    height: 30px;
+  }
+  .prop-tab-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .prop-tab-sep {
+    display: block;
+  }
+
+}
+@media (max-width: 600px) {
+  .support-hero-bg {
+    content: url("consorcio-mobile/header-mobile-soporte.png");
+  }
+  
+}@media (width < 600px) {
+  .support-hero-inner {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .support-hero-content {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .support-hero-content h1 {
+    width: 100%;
+    text-align: center;
+  }
 }
