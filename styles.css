@@ -1435,7 +1435,6 @@
     background: var(--surface-0);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: var(--sp-5) 0;
   }
 
   .contacto-canales-grid {
@@ -4532,4 +4531,38 @@
   .modal-tutorial-grid {
     grid-template-columns:1fr;
   }
+}
+
+/* HERO MOBILE CONTACTO */
+@media (width < 600px) {
+
+  .contacto-hero {
+    background-image: url("consorcio-mobile/header-mobile-contacto.png");
+    background-size: contain;
+    background-position: center;
+  }
+   
+    .contacto-hero-content {
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 80px;
+    }
+
+    .contacto-hero-text {
+        max-width: 90%;
+        margin-left: 0;
+        text-align: center;
+    }
+
+
+    .contacto-hero {
+        min-height: 320px;
+        height: 320px;
+    }
+
+    .contacto-hero-content {
+        height: 100%;
+        align-items: flex-start;
+        padding-top: 60px;
+    }
 }
